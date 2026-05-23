@@ -1,6 +1,6 @@
 ---
 name: backlog-management
-description: "Manage product and sprint backlogs: writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, and dependency mapping. Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
+description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down only as items rise in priority). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
@@ -9,9 +9,13 @@ metadata:
 
 # Backlog Management
 
-This skill provides structured workflows for managing product and sprint backlogs with AI agents. It covers the full lifecycle: capturing ideas, writing user stories with acceptance criteria, prioritizing using established frameworks, estimating effort, refining items, and maintaining a healthy backlog.
+This skill provides structured workflows for managing product and sprint backlogs with AI agents. It is grounded in the Certified Scrum Master (CSM) definition: **the product backlog is a dynamic, single-ranked, ordered list** of everything needed to achieve the product goal.
+
+It covers the full lifecycle: defining the product goal, capturing items, writing user stories with acceptance criteria, prioritizing using established frameworks, estimating effort, refining items, and maintaining a healthy backlog.
 
 > **Relationship to agent-collaboration:** This skill focuses on the *backlog artifact itself* — its structure, quality, and prioritization. The [agent-collaboration](../agent-collaboration/SKILL.md) skill focuses on *team ceremonies* (sprint planning, daily syncs, retros). They work well together: use backlog-management to keep your backlog healthy, and agent-collaboration to run the sprint rhythm.
+
+> **CSM reference:** See [references/csm-course-notes.md](references/csm-course-notes.md) for the full Certified Scrum Master training on the product backlog by Kane Mar.
 
 ---
 
@@ -37,14 +41,44 @@ If no backlog exists, initialize one:
 
 ## 🧠 Core Concepts
 
+### The Product Goal
+
+The backlog does not exist in a vacuum. It starts with the **product goal** — a description of the future state of the product. The product owner defines what they're trying to achieve, then lists everything needed to get there. That list, ordered in a single rank, becomes the product backlog.
+
+> Every backlog item should trace back to the product goal. If an item doesn't serve the goal, question whether it belongs.
+
 ### What is a Backlog?
 
-A backlog is a prioritized list of work items (features, bugs, tech debt, improvements) that a team maintains. It is:
+The formal CSM definition: the product backlog is a **dynamic, single-ranked, ordered list** of everything needed to achieve the product goal.
 
-- **Living** — continuously refined, never "finished"
-- **Prioritized** — items at the top are more important/urgent than items at the bottom
-- **Decomposable** — large items (epics) are broken down into smaller items (stories, tasks)
-- **Estimable** — items should be small enough to estimate with reasonable confidence
+> **A backlog is just a to-do list** — but ordered with discipline. This is why Scrum works across so many domains: as soon as you can take a to-do list and put it in a single rank order, you can start doing Scrum.
+
+#### Dynamic
+
+The backlog changes constantly — and this is **a good thing**. It's how we ensure we deliver something that meets customer needs.
+
+- At a **minimum**, the backlog changes once per sprint, driven by the Sprint Review
+- In practice, it changes **every few days** — product owners talk to stakeholders, senior management, end users, and subject matter experts regularly, returning with new ideas, features, and needs
+- They add that work to the backlog and reorder it
+- **Why the Sprint Review drives change:** The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most people can't fully conceptualize what they're trying to achieve — it's easier to see something and then make decisions. That's fine. If it's not what they want, the team adjusts.
+
+#### Single Ranked
+
+There is only **one item at the top**, one item underneath that, one item underneath that — a strict single-ranked order throughout. No ties, no "top 50 priorities."
+
+**Why this matters:** If a product owner says "these top 50 things are my highest priority," where do you start? Item #1? Item #50? Somewhere in between? That's not useful. Instead, the product owner chooses **one thing** to solve first, then one thing after that, then one thing after that.
+
+#### Ordered (Progressive Granularity)
+
+The backlog is structured with **small, fine-grained bodies of work at the top** and **larger, chunkier bodies of work at the bottom**.
+
+**Why not break everything down upfront?** The fundamental reason is **waste**:
+- Large bodies of work at the bottom are **low value** — why spend time breaking down work you may never reach?
+- The product owner may only have funding for items above a certain point. Breaking down items below that line is effort thrown away.
+
+**When does work get broken down?** As the team takes work off the top each sprint, the remaining work **shuffles up** in priority order. Large items only get broken down as they **rise in priority**. If an item stays low priority forever, it never needs to be broken down.
+
+> **Guardrail:** Do not treat the backlog like a requirements document. Requirements documents are held static through reviews and sign-offs — they resist change. The backlog must be freely changeable. Requirements documents also break everything down to roughly the same size upfront — the backlog keeps small work at top and large work at bottom to avoid waste. These are fundamentally different artifacts.
 
 ### Backlog Types
 
@@ -93,9 +127,11 @@ project-root/
 │   │   ├── ITEM-001--user-auth.md
 │   │   ├── ITEM-002--password-reset.md
 │   │   └── ...
-│   ├── EPICS.md                 # Epics (large initiatives broken into items)
+│   ├── EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
 │   ├── DEPENDENCIES.md          # Dependency map between items
 │   └── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
+
+> **Caution on epics and features:** From a pure Scrum perspective, there is no such thing as an epic or a feature. Scrum only requires a single-ranked ordered list. Be cautious about introducing hierarchy. The only structure you need is: **small, fine-grained work at the top; larger, chunkier work at the bottom**. Don't overload the backlog with unnecessary layers. Items get broken down naturally as they rise in priority.
 ```
 
 ---
@@ -218,7 +254,22 @@ Estimate items using a consistent scale defined in CONFIG.md:
 
 ### 5. Backlog Refinement (Grooming)
 
-Regular refinement keeps the backlog healthy. Run every 2-3 days or between sprints.
+> Refinement is **not a formal Scrum event**, but it's a **really good idea**. The old term was "grooming" (coined in North America); the new term is "refinement" (coined in the UK where "grooming" had a different connotation). They are the same practice.
+
+**Why refinement matters:** If you don't do regular refinement, all the discussion about breaking down work, writing stories, and understanding the backlog gets forced into Sprint Planning. The team shows up without understanding the backlog → Sprint Planning becomes **long and argumentative**.
+
+If you **do** do regular refinement:
+- The team shows up to Sprint Planning **understanding** the backlog (because you've talked about it for the last two weeks)
+- Sprint Planning becomes **straightforward and effective**
+- Good teams can bring Sprint Planning down to typically **no more than 1.5 hours**
+
+**How to run refinement:** Schedule a regular session (e.g., 1-2 hours every week). The team only talks about the product backlog. When time is up, the meeting ends. Do this on an ongoing, consistent basis.
+
+**What happens in refinement:**
+- Breaking down large bodies of work into smaller ones
+- Writing new user stories and acceptance criteria
+- Breaking down high-priority work into smaller chunks so the team better understands it
+- Re-estimating items where context has changed
 
 **Refinement checklist:**
 
@@ -271,6 +322,19 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 ---
 
 ## 📋 Quick Reference Cards
+
+### Before Any Action
+- [ ] **Read the backlog** — read BACKLOG.md and CONFIG.md to understand the current state and prioritization framework
+- [ ] **Check the product goal** — ensure the work traces back to the product goal
+- [ ] **Check dependencies** — review DEPENDENCIES.md before pulling an item
+- [ ] **Respect the rules** — always work in priority order (Rule 1); help others before pulling new work (Rule 3)
+
+### After Any Action
+- [ ] **Update BACKLOG.md** — reflect the new status of any item that changed
+- [ ] **Log decisions** — record prioritization decisions and refinement notes in REFINEMENT_LOG.md
+- [ ] **Update dependencies** — if new dependencies were discovered, add them to DEPENDENCIES.md
+- [ ] **Archive completed items** — acceptance criteria met + DoD satisfied → archive out of active backlog (Rule 4)
+- [ ] **Keep moving** — if items remain, pull the next highest-priority item (Rule 5)
 
 ### When Capturing a New Item
 - [ ] Give it a unique ID (ITEM-NNN)
