@@ -14,6 +14,8 @@ This skill provides a lightweight Kanban board for AI agents to visualize and ma
 
 > **Relationship to backlog-management:** The [backlog-management](../backlog-management/SKILL.md) skill manages the *product backlog* — what to build and in what priority order. This skill manages the *Kanban board* — visualizing and flowing work through the system. Together they form a complete pull-based workflow: backlog-management decides *what* to work on next; kanban-board controls *how much* is in progress and tracks flow.
 
+> **Gate to Done:** The [definition-of-done](../definition-of-done/SKILL.md) skill defines the quality checklist that every item must pass before it can leave the Kanban board. On this board, the DoD is the gate between **In Progress / Review** and **Done** — nothing moves to Done without passing the DoD checklist.
+
 ---
 
 ## 🚀 Quick Start
@@ -224,6 +226,13 @@ Cards move through columns by being **pulled** by the next stage, not pushed.
 
 **Rule:** Before moving, the script checks whether the target column has capacity under its WIP limit. If the column is full, the card stays where it is and the bottleneck is reported.
 
+> **Moving to Done requires DoD verification.** Before calling `move-card.sh CARD-003 "Done"`, run the [definition-of-done](../definition-of-done/SKILL.md) verification first:
+> ```bash
+> <SKILL_DIR_PARENT>/definition-of-done/scripts/verify-dod.sh CARD-003
+> ```
+> (Replace `<SKILL_DIR_PARENT>` with the parent of the skill directories, e.g., `~/skills`.)
+> If any DoD criterion is not met, the item cannot move to Done.
+
 ### 4. Checking WIP Status
 
 ```bash
@@ -333,6 +342,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 ### When Moving a Card
 - [ ] Verify target column is under its WIP limit
 - [ ] Record the move in BOARD.md
+- [ ] If moving to Done → first verify against the [Definition of Done](../definition-of-done/SKILL.md) with `verify-dod.sh`
 - [ ] If moving to Done → metrics (cycle time, lead time) are logged automatically in METRICS.md
 
 ### When Completing a Task
@@ -342,6 +352,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 
 ### When Completing a PBI
 - [ ] Verify every task under the PBI is in **Done**
+- [ ] Verify against the [Definition of Done](../definition-of-done/SKILL.md) with `verify-dod.sh` — all criteria must be met
 - [ ] Move the PBI to **Done** with `move-card.sh` — metrics are logged automatically
 - [ ] Archive the completed card with `archive-card.sh` to clean up the active board
 
