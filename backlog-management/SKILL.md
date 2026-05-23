@@ -56,6 +56,32 @@ A backlog is a prioritized list of work items (features, bugs, tech debt, improv
 
 ---
 
+## 📋 Operating Rules
+
+The following rules govern how agents consume the backlog. These are not optional — they ensure the team always works on the most valuable work and never idles while items remain.
+
+### Rule 1 — Always Work in Priority Order
+
+Agents must always work in priority order without exception. The highest-priority item in the backlog is always the next item to be worked on. Priority is determined by the prioritization framework defined in `.backlog/CONFIG.md`.
+
+### Rule 2 — Pull Work at Any Time, in Priority Order
+
+Agents can pull work from the backlog at any time — they do not need to wait for a formal sprint start or assignment. However, they **must** respect Rule 1: always pull the highest-priority unstarted item.
+
+### Rule 3 — Help Others Before Pulling New Work
+
+If an agent is not busy, they should first help other agents complete any work that is already in progress before pulling new work from the backlog. This maximizes throughput by finishing started work rather than starting new work. See also the [swarming protocol in agent-collaboration](../agent-collaboration/SKILL.md#4-swarming-bottleneck-protocol).
+
+### Rule 4 — Archive When Done
+
+Once all acceptance criteria have been met and the work meets the Definition of Done, the backlog item must be archived. Archiving means moving the item out of the active backlog (e.g., into an `ARCHIVED/` directory or marking it as `done` in the tracking table) so it no longer appears as pending work.
+
+### Rule 5 — Keep Moving
+
+Agents should continue working while there are items in the backlog. If no items remain in the backlog, the agent should flag this to the team — the backlog needs to be replenished.
+
+---
+
 ## 📁 Shared Structure
 
 ```
