@@ -94,7 +94,7 @@ project-root/
 │   │   └── ...
 │   ├── POLICIES.md             # Explicit column policies
 │   ├── METRICS.md              # Cycle time, lead time, throughput tracking
-│   └── BLOCKERS.md             # Stuck work log — records when cards were split and if help was requested
+│   └── BLOCKED.md              # Stuck work log — records when cards were split and if help was requested
 ├── pi-ext/                     # pi TUI extension (see TUI Extension section)
 │   ├── package.json
 │   └── index.ts
@@ -114,7 +114,7 @@ Work is pulled by the next column when it has capacity. Do not push work into a 
 
 ### Rule 3 — Split Before Stalling
 
-Never mark a card as blocked. If work is stuck, split the card into smaller pieces. If a smaller piece is still stuck after splitting, **ask another agent or the end user for help**. Log the split and help request in BLOCKERS.md. Do not let work sit idle.
+Never mark a card as blocked. If work is stuck, split the card into smaller pieces. If a smaller piece is still stuck after splitting, **ask another agent or the end user for help**. Log the split and help request in BLOCKED.md. Do not let work sit idle.
 
 ### Rule 4 — Finish Before Starting
 
@@ -255,12 +255,12 @@ Cards should never be blocked. When work cannot proceed, do not leave it sitting
 **The split approach:**
 1. Identify what part of the card IS achievable right now
 2. Split that achievable work into a new, smaller card
-3. Log the split reason and the remaining impediment in BLOCKERS.md
+3. Log the split reason and the remaining impediment in BLOCKED.md
 4. The smaller card moves forward; the remaining part stays visible
 
 **If still stuck after splitting:**
 
-If the smaller piece is also stuck, the agent should **ask for help** from another agent. Log the help request in BLOCKERS.md.
+If the smaller piece is also stuck, the agent should **ask for help** from another agent or the end user. Log the help request in BLOCKED.md.
 
 ```bash
 <SKILL_DIR>/scripts/split-card.sh CARD-003 "Still stuck after split — asking for help with email service integration"
@@ -349,9 +349,9 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 - [ ] **Do not block the card** — split it instead
 - [ ] Identify what part of the work CAN be done right now
 - [ ] Split that work into a new smaller card
-- [ ] Log the split reason in BLOCKERS.md
+- [ ] Log the split reason in BLOCKED.md
 - [ ] If the smaller piece is also stuck → **ask another agent or the end user for help**
-- [ ] Log the help request in BLOCKERS.md
+- [ ] Log the help request in BLOCKED.md
 
 ### When Reviewing Flow
 - [ ] Run `report-metrics.sh` to get the full picture
@@ -359,7 +359,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 - [ ] Review cycle times — are they trending up or down?
 - [ ] Review lead times — are requests taking too long end-to-end?
 - [ ] Check throughput — is delivery stable week over week?
-- [ ] Check BLOCKERS.md for stuck work — are cards being split promptly?
+- [ ] Check BLOCKED.md for stuck work — are cards being split promptly?
 - [ ] Make one process change based on the data
 
 ---

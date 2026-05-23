@@ -179,8 +179,8 @@ function readBoardState(cwd: string): BoardState {
     }
   }
 
-  // Read BLOCKERS.md
-  const blockersPath = join(kanbanDir, "BLOCKERS.md");
+  // Read BLOCKED.md
+  const blockersPath = join(kanbanDir, "BLOCKED.md");
   if (existsSync(blockersPath)) {
     const blockersContent = readFileSync(blockersPath, "utf-8");
     let inBlocked = false;
