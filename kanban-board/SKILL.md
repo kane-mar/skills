@@ -277,13 +277,13 @@ The report draws from archived card files and the board state to compute five me
 
 | # | Metric | What It Tells You |
 |---|--------|-------------------|
-| 1 | **WIP Count** | Active cards per column compared to WIP limits — shows bottlenecks immediately |
-| 2 | **Cycle Time** | Time from work started → completed — are you delivering fast? |
-| 3 | **Lead Time** | Time from backlog entry → completed — how long do requests take end-to-end? |
-| 4 | **Throughput** | Cards completed in last 7 and 30 days — is the team stable? |
-| 5 | **Blockers** | Currently blocked cards — what's stuck? |
+| 1 | **WIP Count** | Active PBIs per column compared to WIP limits — shows bottlenecks immediately |
+| 2 | **Cycle Time** | Time from PBI started → PBI completed — are you delivering fast? |
+| 3 | **Lead Time** | Time from PBI created → PBI completed — how long do requests take end-to-end? |
+| 4 | **Throughput** | PBIs completed in last 7 and 30 days — is the team stable? |
+| 5 | **Blockers** | Currently blocked PBIs — what's stuck? |
 
-**Metrics are logged immediately when a card moves to Done.** `move-card.sh` computes and records cycle time and lead time in `.kanban/METRICS.md` as soon as work completes. This ensures metrics are captured even if the PBI isn't fully finished and archived yet.
+**Metrics are measured at the PBI level, not at the task level.** A card file (`CARD-001`) represents one PBI. Individual tasks are bullet points on the board — their movements are visual updates only. When the PBI itself moves to **Done** (all tasks completed), `move-card.sh` computes and logs cycle time and lead time in `.kanban/METRICS.md` immediately.
 
 ```markdown
 ## Cycle Time Log
