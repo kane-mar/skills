@@ -216,23 +216,24 @@ except:
 fi
 echo ""
 
-# ── 5. Blockers ───────────────────────────────────
-echo "━━━ 5. Blocked Items ━━━"
+# ── 5. Stuck Work ───────────────────────────────────
+echo "━━━ 5. Stuck Work (split or help-requested) ━━━"
 echo ""
 
 if [ ! -f .kanban/BLOCKERS.md ]; then
-  echo "  No blockers logged."
+  echo "  No stuck work logged."
 else
-  CURRENT_BLOCKED=$(grep -c "Status: blocked" .kanban/BLOCKERS.md 2>/dev/null || echo 0)
-  echo "  Currently blocked cards: $CURRENT_BLOCKED"
+  SPLIT_COUNT=$(grep -c "Status: split" .kanban/BLOCKERS.md 2>/dev/null || echo 0)
+  HELP_COUNT=$(grep -c "Status: help-requested" .kanban/BLOCKERS.md 2>/dev/null || echo 0)
+  echo "  Cards split:       $SPLIT_COUNT"
+  echo "  Help requests:     $HELP_COUNT"
   echo ""
 
-  if [ "$CURRENT_BLOCKED" -gt 0 ]; then
-    echo "  Active blockers:"
+  if [ "$HELP_COUNT" -gt 0 ]; then
+    echo "  Open help requests:"
     echo ""
-    # Show recent blocker entries
-    awk '/## CARD/{id=$2; gsub(/--.*/,"",id)} /Status: blocked/{print "    " id}' .kanban/BLOCKERS.md | sort -u | while IFS= read -r blocker; do
-      echo "    ⏸️  $blocker"
+    awk '/## CARD/{id=$2; gsub(/--.*/,"",id)} /Status: help-requested/{print "    🆘 " id}' .kanban/BLOCKERS.md | sort -u | while IFS= read -r blocker; do
+      echo "    $blocker"
     done
     echo ""
   fi

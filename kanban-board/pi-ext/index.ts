@@ -185,7 +185,7 @@ function readBoardState(cwd: string): BoardState {
     const blockersContent = readFileSync(blockersPath, "utf-8");
     let inBlocked = false;
     for (const line of blockersContent.split("\n")) {
-      if (line.includes("**Status:** blocked")) {
+      if (line.includes("**Status:** split") || line.includes("**Status:** help-requested")) {
         inBlocked = true;
       }
       if (inBlocked && line.startsWith("## ")) {
@@ -400,11 +400,11 @@ class KanbanBoardComponent {
     lines.push("");
     const totalCards = cards.length;
     const doneCards = cards.filter((c) => c.column === "Done").length;
-    const blockedCount = blockers.length;
+    const stuckCount = this.state.blockers.length;
     const wipCards = cards.filter((c) => c.column !== "Backlog" && c.column !== "Done").length;
     const summary = th.fg(
       "muted",
-      `  ${totalCards} total  ·  ${wipCards} in progress  ·  ${doneCards} done  ·  ${blockedCount > 0 ? th.fg("warning", `${blockedCount} blocked`) : "0 blocked"}`
+      `  ${totalCards} total  ·  ${wipCards} in progress  ·  ${doneCards} done  ·  ${stuckCount > 0 ? th.fg("warning", `${stuckCount} split or help-requested`) : "0 stuck"}`
     );
     lines.push(truncateToWidth(summary, sw));
   }
@@ -447,18 +447,18 @@ class KanbanBoardComponent {
     }
   }
 
-  private renderBlockersView(lines: string[], sw: number, th: Theme): void {
+  private renderStuckView(lines: string[], sw: number, th: Theme): void {
     const { blockers, cards } = this.state;
 
     lines.push("");
     if (blockers.length === 0) {
-      lines.push(truncateToWidth(`  ${th.fg("success", "✓ No blocked items")}`, sw));
+      lines.push(truncateToWidth(`  ${th.fg("success", "✓ No stuck work")}`, sw));
     } else {
       for (const blockerId of blockers) {
         const card = cards.find((c) => c.id === blockerId);
         const title = card ? card.title : "Unknown";
         lines.push(truncateToWidth(
-          `  ${th.fg("warning", "⏸")} ${th.fg("accent", blockerId)} ${th.fg("text", truncate(title, sw - 20))}`,
+          `  ${th.fg("warning", "✂")} ${th.fg("accent", blockerId)} ${th.fg("text", truncate(title, sw - 20))}`,
           sw
         ));
       }
@@ -466,7 +466,7 @@ class KanbanBoardComponent {
 
     lines.push("");
     lines.push(truncateToWidth(
-      `  ${th.fg("dim", "Blocked cards remain on the board — they are not hidden.")}`,
+      `  ${th.fg("dim", "Cards should never be blocked — split first, ask for help second.")}`,
       sw
     ));
   }
@@ -492,10 +492,10 @@ export default function (pi: ExtensionAPI) {
 
       // Refresh state after closing
       const newState = readBoardState(ctx.cwd);
-      const blocked = newState.blockers.length;
+      const stuck = newState.blockers.length;
       const doneCards = newState.cards.filter((c) => c.column === "Done").length;
       ctx.ui.notify(
-        `Board: ${newState.cards.length} cards, ${newState.cards.filter((c) => c.column !== "Backlog" && c.column !== "Done").length} in progress, ${doneCards} done${blocked > 0 ? `, ${blocked} blocked` : ""}`,
+        `Board: ${newState.cards.length} cards, ${newState.cards.filter((c) => c.column !== "Backlog" && c.column !== "Done").length} in progress, ${doneCards} done${stuck > 0 ? `, ${stuck} split or help-requested` : ""}`,
         "info"
       );
     },
@@ -507,7 +507,7 @@ export default function (pi: ExtensionAPI) {
     label: "Kanban Board",
     description: "Show the current Kanban board state. Use to check WIP status, view cards, and monitor flow.",
     parameters: Type.Object({
-      view: Type.Optional(Type.String({ description: "View type: board (default), metrics, or blockers" })),
+      view: Type.Optional(Type.String({ description: "View type: board (default), metrics, or stuck" })),
     }),
 
     async execute(_toolCallId, params, _signal, _onUpdate, ctx) {
@@ -527,8 +527,8 @@ export default function (pi: ExtensionAPI) {
             out += "_(empty)_\n";
           } else {
             for (const card of colCards) {
-              const blocked = s.blockers.includes(card.id) ? " ⏸" : "";
-              out += `- ${card.title} [${card.priority}]${blocked}\n`;
+              const stuck = s.blockers.includes(card.id) ? " ✂" : "";
+              out += `- ${card.title} [${card.priority}]${stuck}\n`;
             }
           }
           out += "\n";
@@ -536,7 +536,7 @@ export default function (pi: ExtensionAPI) {
 
         const wip = s.cards.filter((c) => c.column !== "Backlog" && c.column !== "Done").length;
         const done = s.cards.filter((c) => c.column === "Done").length;
-        out += `---\n**${s.cards.length} total · ${wip} in progress · ${done} done · ${s.blockers.length} blocked**\n`;
+        out += `---\n**${s.cards.length} total · ${wip} in progress · ${done} done · ${s.blockers.length} split or help-requested**\n`;
         return out;
       },
     },
@@ -567,8 +567,8 @@ export default function (pi: ExtensionAPI) {
         lines.push(header);
 
         for (const card of colCards.slice(0, 3)) {
-          const blocked = board.blockers.includes(card.id);
-          const prefix = blocked ? theme.fg("warning", "⏸ ") : theme.fg("muted", "▪ ");
+          const stuck = board.blockers.includes(card.id);
+          const prefix = stuck ? theme.fg("warning", "✂ ") : theme.fg("muted", "▪ ");
           lines.push(`  ${prefix}${card.title}`);
         }
         if (colCards.length > 3) {
@@ -578,7 +578,7 @@ export default function (pi: ExtensionAPI) {
 
       const wip = board.cards.filter((c) => c.column !== "Backlog" && c.column !== "Done").length;
       const done = board.cards.filter((c) => c.column === "Done").length;
-      lines.push(theme.fg("muted", `${board.cards.length} cards · ${wip} WIP · ${done} done · ${board.blockers.length} blocked`));
+      lines.push(theme.fg("muted", `${board.cards.length} cards · ${wip} WIP · ${done} done · ${board.blockers.length} split or help-requested`));
 
       return new Text(lines.join("\n"), 0, 0);
     },

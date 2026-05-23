@@ -1,6 +1,6 @@
 ---
 name: kanban-board
-description: "Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle (add, move, block, archive), explicit policies, flow metrics (cycle time, lead time, throughput), and bottleneck detection. Use when tracking work in progress, limiting multitasking, or improving flow through the workflow."
+description: "Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle (add, move, split, archive), explicit policies, flow metrics (cycle time, lead time, throughput), and WIP monitoring. Use when tracking work in progress, limiting multitasking, or improving flow through the workflow."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
@@ -94,7 +94,7 @@ project-root/
 │   │   └── ...
 │   ├── POLICIES.md             # Explicit column policies
 │   ├── METRICS.md              # Cycle time, lead time, throughput tracking
-│   └── BLOCKERS.md             # Blocked items and their impediments
+│   └── BLOCKERS.md             # Stuck work log — records when cards were split and if help was requested
 ├── pi-ext/                     # pi TUI extension (see TUI Extension section)
 │   ├── package.json
 │   └── index.ts
@@ -112,9 +112,9 @@ Never exceed a column's WIP limit. Before moving a card into a column, count how
 
 Work is pulled by the next column when it has capacity. Do not push work into a column that is full. If the next column is at WIP capacity, focus on finishing work in the current column to create space.
 
-### Rule 3 — Visualize Blockers
+### Rule 3 — Split Before Stalling
 
-When a card is blocked, mark it immediately on the board. Log the blocker in BLOCKERS.md. Do not hide blocked work — it must remain visible.
+Never mark a card as blocked. If work is stuck, split the card into smaller pieces. If a smaller piece is still stuck after splitting, **ask another agent for help**. Log the split and help request in BLOCKERS.md. Do not let work sit idle.
 
 ### Rule 4 — Finish Before Starting
 
@@ -199,8 +199,8 @@ Users can reset their password via email.
 - [ ] Link expires after 15 minutes
 - [ ] Invalid link shows error message
 
-## Blockers
-(none)
+## Notes
+(Add notes)
 
 ## Cycle Time
 started: —
@@ -218,8 +218,8 @@ Cards move through columns by being **pulled** by the next stage, not pushed.
 # Move a card to a specific column
 <SKILL_DIR>/scripts/move-card.sh CARD-003 "Done"
 
-# Block a card
-<SKILL_DIR>/scripts/block-card.sh CARD-003 "Waiting for email service API key"
+# Split a stuck card (instead of blocking it)
+<SKILL_DIR>/scripts/split-card.sh CARD-003 "Waiting for email service API key"
 ```
 
 **Rule:** Before moving, the script checks whether the target column has capacity under its WIP limit. If the column is full, the card stays where it is and the bottleneck is reported.
@@ -244,21 +244,29 @@ Done         —   8 cards  (limit: ∞)
    → 1 card waiting in In Progress to enter Review.
 ```
 
-### 5. Blocking and Unblocking
+### 5. Splitting Stuck Work
 
-When work is blocked, it stays visible on the board but is flagged:
-
-```bash
-<SKILL_DIR>/scripts/block-card.sh CARD-003 "Waiting for email service API key from DevOps"
-```
-
-When the blocker is resolved:
+Cards should never be blocked. When work cannot proceed, do not leave it sitting — split it.
 
 ```bash
-<SKILL_DIR>/scripts/unblock-card.sh CARD-003
+<SKILL_DIR>/scripts/split-card.sh CARD-003 "Dependency on email service API key — split into frontend mock + backend integration"
 ```
 
-**Blockers are not hidden.** A blocked card remains on the board so the team can see the bottleneck. This is the practice of *visualizing the workflow* — hiding blocked work is anti-Kanban.
+**The split approach:**
+1. Identify what part of the card IS achievable right now
+2. Split that achievable work into a new, smaller card
+3. Log the split reason and the remaining impediment in BLOCKERS.md
+4. The smaller card moves forward; the remaining part stays visible
+
+**If still stuck after splitting:**
+
+If the smaller piece is also stuck, the agent should **ask for help** from another agent. Log the help request in BLOCKERS.md.
+
+```bash
+<SKILL_DIR>/scripts/split-card.sh CARD-003 "Still stuck after split — asking agent-beta for help with email service integration"
+```
+
+> **Rule:** Do not let work sit idle. Split first. Ask for help second. Never mark a card as "blocked" and walk away.
 
 ### 6. Archiving Completed Cards
 
@@ -286,7 +294,7 @@ The report draws from archived card files and the board state to compute five me
 | 2 | **Cycle Time** | Time from PBI started → PBI completed — are you delivering fast? |
 | 3 | **Lead Time** | Time from PBI created → PBI completed — how long do requests take end-to-end? |
 | 4 | **Throughput** | PBIs completed in last 7 and 30 days — is the team stable? |
-| 5 | **Blockers** | Currently blocked PBIs — what's stuck? |
+| 5 | **Stuck Work** | Cards that were split or where help was requested — what's preventing progress? |
 
 **Metrics are measured at the PBI level, not at the task level.** A card file (`CARD-001`) represents one PBI. Individual tasks are bullet points on the board — their movements are visual updates only. When the PBI itself moves to **Done** (all tasks completed), `move-card.sh` computes and logs cycle time and lead time in `.kanban/METRICS.md` immediately.
 
@@ -315,7 +323,6 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 ### Before Any Action
 - [ ] **Read the board** — read KANBAN.md, BOARD.md, and CONFIG.md to understand current state and policies
 - [ ] **Check WIP limits** — run `check-wip.sh` to see where there is capacity
-- [ ] **Check for blockers** — review BLOCKERS.md before starting work
 
 ### When Adding a Card
 - [ ] Give it a unique ID (CARD-NNN)
@@ -326,7 +333,6 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 ### When Moving a Card
 - [ ] Verify target column is under its WIP limit
 - [ ] Record the move in BOARD.md
-- [ ] If blocked in the target → flag in BLOCKERS.md
 - [ ] If moving to Done → metrics (cycle time, lead time) are logged automatically in METRICS.md
 
 ### When Completing a Task
@@ -339,11 +345,13 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 - [ ] Move the PBI to **Done** with `move-card.sh` — metrics are logged automatically
 - [ ] Archive the completed card with `archive-card.sh` to clean up the active board
 
-### When a Card Is Blocked
-- [ ] Flag it on the board — do not hide it
-- [ ] Log the blocker in BLOCKERS.md with the reason
-- [ ] Unblock as soon as the impediment is resolved
-- [ ] If blocked for too long → escalate or split the card
+### When Work Is Stuck
+- [ ] **Do not block the card** — split it instead
+- [ ] Identify what part of the work CAN be done right now
+- [ ] Split that work into a new smaller card
+- [ ] Log the split reason in BLOCKERS.md
+- [ ] If the smaller piece is also stuck → **ask another agent for help**
+- [ ] Log the help request in BLOCKERS.md
 
 ### When Reviewing Flow
 - [ ] Run `report-metrics.sh` to get the full picture
@@ -351,7 +359,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 - [ ] Review cycle times — are they trending up or down?
 - [ ] Review lead times — are requests taking too long end-to-end?
 - [ ] Check throughput — is delivery stable week over week?
-- [ ] Look at blockers — are cards stuck for too long?
+- [ ] Check BLOCKERS.md for stuck work — are cards being split promptly?
 - [ ] Make one process change based on the data
 
 ---
@@ -365,7 +373,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 
 ## 🖥️ TUI Extension
 
-A live-updating, keyboard-navigable Kanban board terminal UI is available as a pi extension. It renders the board, metrics, and blockers with color-coded columns and WIP bars.
+A live-updating, keyboard-navigable Kanban board terminal UI is available as a pi extension. It renders the board, metrics, and stuck work with color-coded columns and WIP bars.
 
 ### Install
 
@@ -388,7 +396,7 @@ ln -sf /path/to/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board
 1. Restart pi or run `/reload`
 2. Type `/kanban` and press enter
 3. The TUI board should render with your current board state
-4. Press `m` to see metrics, `k` for blockers, `b` to return to board view
+4. Press `m` to see metrics, `s` for stuck work, `b` to return to board view
 5. Press `q` or `esc` to close
 
 If `/kanban` is not recognized, check that the symlink points to the correct directory and that `pi-ext/index.ts` exists.
@@ -400,7 +408,7 @@ If `/kanban` is not recognized, check that the symlink points to the correct dir
 | `/kanban` | Open interactive TUI board |
 | `m` (in TUI) | Switch to metrics view |
 | `b` (in TUI) | Switch back to board view |
-| `k` (in TUI) | Switch to blockers view |
+| `s` (in TUI) | Switch to stuck work view |
 | `q` or `esc` | Close TUI |
 
 The extension also:
@@ -416,10 +424,9 @@ The extension also:
 | `init-board.sh` | Initialize the Kanban board structure |
 | `add-card.sh` | Add a new card to the backlog |
 | `move-card.sh` | Move a card between columns (respects WIP) |
-| `block-card.sh` | Mark a card as blocked |
-| `unblock-card.sh` | Unblock a previously blocked card |
+| `split-card.sh` | Split a stuck card instead of blocking it — logs the reason and help requests |
 | `check-wip.sh` | Display WIP status across all columns |
-| `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, blockers |
+| `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, stuck work |
 | `archive-card.sh` | Archive a completed card (cleanup — metrics were already logged by move-card.sh) |
 | `pi-ext/` | pi TUI extension — interactive `/kanban` board with live updates |
 
