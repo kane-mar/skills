@@ -95,6 +95,9 @@ project-root/
 │   ├── POLICIES.md             # Explicit column policies
 │   ├── METRICS.md              # Cycle time, lead time, throughput tracking
 │   └── BLOCKERS.md             # Blocked items and their impediments
+├── pi-ext/                     # pi TUI extension (see TUI Extension section)
+│   ├── package.json
+│   └── index.ts
 ```
 
 ---
@@ -367,6 +370,36 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 
 ---
 
+## 🖥️ TUI Extension
+
+A live-updating, keyboard-navigable Kanban board terminal UI is available as a pi extension. It renders the board, metrics, and blockers with color-coded columns and WIP bars.
+
+### Install
+
+```bash
+# Link the extension into pi's global extensions
+mkdir -p ~/.pi/agent/extensions
+ln -sf $(pwd)/pi-ext ~/.pi/agent/extensions/kanban-board
+
+# Restart pi or run /reload
+```
+
+### Usage
+
+| Command | Action |
+|---------|--------|
+| `/kanban` | Open interactive TUI board |
+| `m` (in TUI) | Switch to metrics view |
+| `b` (in TUI) | Switch back to board view |
+| `k` (in TUI) | Switch to blockers view |
+| `q` or `esc` | Close TUI |
+
+The extension also:
+- Shows a **summary widget** above the input editor with column counts and WIP status
+- Registers a **`kanban_board` tool** for the LLM to read board state inline
+
+---
+
 ## 🔧 Helper Scripts
 
 | Script | Purpose |
@@ -379,5 +412,6 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 | `check-wip.sh` | Display WIP status across all columns |
 | `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, blockers |
 | `archive-card.sh` | Archive a completed card (cleanup — metrics were already logged by move-card.sh) |
+| `pi-ext/` | pi TUI extension — interactive `/kanban` board with live updates |
 
 See [scripts/](scripts/) for implementation.
