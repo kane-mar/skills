@@ -10,7 +10,7 @@ REASON="${2:?"Usage: $0 <card-id> <reason>"}"
 DATE=$(date -Iseconds)
 
 # Check if this is a help request or a split
-if echo "$REASON" | grep -qi "asking.*for help\|help request\|asking.*agent"; then
+if echo "$REASON" | grep -qi "asking.*for help\|help request\|need help\|stuck"; then
   STATUS="help-requested"
   echo "🆘 Help requested for: $CARD"
 else
@@ -32,5 +32,5 @@ echo ""
 echo "Next: The split creates a smaller card that can move forward."
 if [ "$STATUS" = "split" ]; then
   echo "      If still stuck, split again or ask for help with:"
-  echo "      ./scripts/split-card.sh $CARD \"Still stuck — asking <agent> for help\""
+  echo "      ./scripts/split-card.sh $CARD \"Still stuck — asking for help\""
 fi

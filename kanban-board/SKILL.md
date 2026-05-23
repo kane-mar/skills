@@ -114,7 +114,7 @@ Work is pulled by the next column when it has capacity. Do not push work into a 
 
 ### Rule 3 — Split Before Stalling
 
-Never mark a card as blocked. If work is stuck, split the card into smaller pieces. If a smaller piece is still stuck after splitting, **ask another agent for help**. Log the split and help request in BLOCKERS.md. Do not let work sit idle.
+Never mark a card as blocked. If work is stuck, split the card into smaller pieces. If a smaller piece is still stuck after splitting, **ask another agent or the end user for help**. Log the split and help request in BLOCKERS.md. Do not let work sit idle.
 
 ### Rule 4 — Finish Before Starting
 
@@ -263,7 +263,7 @@ Cards should never be blocked. When work cannot proceed, do not leave it sitting
 If the smaller piece is also stuck, the agent should **ask for help** from another agent. Log the help request in BLOCKERS.md.
 
 ```bash
-<SKILL_DIR>/scripts/split-card.sh CARD-003 "Still stuck after split — asking agent-beta for help with email service integration"
+<SKILL_DIR>/scripts/split-card.sh CARD-003 "Still stuck after split — asking for help with email service integration"
 ```
 
 > **Rule:** Do not let work sit idle. Split first. Ask for help second. Never mark a card as "blocked" and walk away.
@@ -350,7 +350,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 - [ ] Identify what part of the work CAN be done right now
 - [ ] Split that work into a new smaller card
 - [ ] Log the split reason in BLOCKERS.md
-- [ ] If the smaller piece is also stuck → **ask another agent for help**
+- [ ] If the smaller piece is also stuck → **ask another agent or the end user for help**
 - [ ] Log the help request in BLOCKERS.md
 
 ### When Reviewing Flow
