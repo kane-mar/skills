@@ -58,6 +58,12 @@ Both must be satisfied. If the acceptance criteria are all met but the code wasn
 
 **Why it's bad:** The DoD is about completion, not readiness. A separate "Definition of Ready" covers what's needed to start work (e.g., acceptance criteria defined, estimated, dependencies clear).
 
+### Mistake 4: Adding item-specific rules to the DoD
+
+**Bad:** "The DoD must include a performance benchmark of < 200ms response time for this API endpoint."
+
+**Why it's bad:** The DoD applies **uniformly** to every item. If a requirement is specific to one item (a particular endpoint, a one-time migration, a niche compliance rule), it belongs in that item's **Acceptance Criteria**. Adding it to the DoD forces every future item to meet a requirement that only matters for one. The DoD must stay universal to remain useful.
+
 ---
 
 ## When Each Applies
