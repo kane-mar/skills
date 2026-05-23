@@ -27,6 +27,8 @@ The backlog changes — and this is a *good thing* from a Scrum point of view. I
 
 **Why the Sprint Review drives change:** The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most product owners can't fully conceptualize what they're trying to achieve — it's easier for them to see something and then make decisions. From Scrum's perspective, that's fine. If it's not what they want, they tell the team what they *do* want, add that work to the backlog, and reprioritize.
 
+> **For AI agents:** The backlog can change at **any time**. Do not wait for a scheduled "refinement meeting" or "sprint review" to add, reorder, or refine items. If new information arrives, capture it and reorder the backlog immediately. The dynamic nature of the backlog is not constrained by ceremony names or schedules.
+
 ### Single Ranked Order
 
 There is only **one item at the top**, one item underneath that, one item underneath that — a strict single-ranked order throughout.

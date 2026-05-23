@@ -62,6 +62,8 @@ The backlog changes constantly — and this is **a good thing**. It's how we ens
 - They add that work to the backlog and reorder it
 - **Why the Sprint Review drives change:** The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most people can't fully conceptualize what they're trying to achieve — it's easier to see something and then make decisions. That's fine. If it's not what they want, the team adjusts.
 
+> **For AI agents:** The backlog can change at **any time**. Do not wait for a scheduled "refinement meeting" or "sprint review" to add, reorder, or refine items. If new information arrives — from a stakeholder conversation, a production incident, a new insight, or any other source — capture it and reorder the backlog immediately. The dynamic nature of the backlog is not constrained by ceremony names or schedules.
+
 #### Single Ranked
 
 There is only **one item at the top**, one item underneath that, one item underneath that — a strict single-ranked order throughout. No ties, no "top 50 priorities."
