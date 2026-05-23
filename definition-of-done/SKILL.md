@@ -52,6 +52,8 @@ The Definition of Done is a **shared quality checklist** that the entire team ag
 
 > **Example:** A story's Acceptance Criteria say "User receives a reset link within 30 seconds." The DoD says "All unit tests pass, code reviewed, integration tests pass, documentation updated." Both must be satisfied for the item to be done.
 
+> **Guardrail:** The DoD applies **uniformly** to every item that crosses the finish line, regardless of its unique scope. If a validation step applies only to a specific task — a particular performance benchmark, a niche security requirement, a one-time data migration check — it belongs in that task's **Acceptance Criteria**, not the global DoD. Adding item-specific rules to the DoD breaks the universal contract and forces every item to meet criteria that don't apply to it.
+
 ### Why a DoD Matters
 
 - **Prevents technical debt** — no cutting corners on quality to meet a deadline
