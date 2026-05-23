@@ -119,7 +119,7 @@ When WIP limits are reached, do not start new work. Help finish what's already i
 
 ### Rule 5 — Measure and Improve
 
-Log cycle time for each completed card in METRICS.md. Review metrics regularly to identify improvement opportunities.
+Cycle time and lead time are logged automatically when a PBI moves to Done. Review metrics regularly with `report-metrics.sh` to identify improvement opportunities.
 
 ---
 
@@ -165,6 +165,8 @@ This creates the default board with standard columns:
 - **Done** (no WIP limit) — completed work
 
 Customize columns and WIP limits in `.kanban/CONFIG.md`.
+
+> **Visualization vs tracking:** The text board (Workflow 0) uses four columns — *PBI, Work Not Started, WIP, Done* — to show tasks within each PBI. The internal board above uses five columns — *Backlog, Ready, In Progress, Review, Done* — to track where each PBI card is in the workflow. They are different views of the same system: the visualization shows task-level detail within each PBI; the tracking board shows the PBI's overall stage.
 
 ### 2. Adding a Card
 
@@ -257,13 +259,13 @@ When the blocker is resolved:
 
 ### 6. Archiving Completed Cards
 
-When a card reaches Done, archive it to keep the board clean:
+Archiving is a cleanup step — it removes the card from the active board once the PBI is fully done. Metrics (cycle time, lead time) were already logged automatically by `move-card.sh` when the PBI moved to Done.
 
 ```bash
 <SKILL_DIR>/scripts/archive-card.sh CARD-003
 ```
 
-Archiving moves the card to `.kanban/ARCHIVED/` and logs the cycle time.
+Archiving moves the card file from `.kanban/CARDS/` to `.kanban/ARCHIVED/`.
 
 ### 7. Reporting Metrics
 
@@ -338,8 +340,8 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 
 ### When Completing a PBI
 - [ ] Verify every task under the PBI is in **Done**
-- [ ] Move the PBI row entirely into the **Done** column
-- [ ] Archive the completed card with `archive-card.sh` to log cycle time and lead time
+- [ ] Move the PBI to **Done** with `move-card.sh` — metrics are logged automatically
+- [ ] Archive the completed card with `archive-card.sh` to clean up the active board
 
 ### When a Card Is Blocked
 - [ ] Flag it on the board — do not hide it
@@ -376,6 +378,6 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 | `unblock-card.sh` | Unblock a previously blocked card |
 | `check-wip.sh` | Display WIP status across all columns |
 | `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, blockers |
-| `archive-card.sh` | Archive a completed card and log cycle time + lead time |
+| `archive-card.sh` | Archive a completed card (cleanup — metrics were already logged by move-card.sh) |
 
 See [scripts/](scripts/) for implementation.
