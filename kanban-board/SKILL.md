@@ -141,6 +141,14 @@ When asked to show the current board state, generate a text-based visualization 
 
 Each row is one PBI. Columns go in this order: PBI name → Work Not Started → Work in Progress → Done.
 
+**PBI lifecycle on the board:**
+1. When a PBI is broken down into individual tasks, those tasks appear in the **Work Not Started** column
+2. As a task is started, it moves into the **Work in Progress (WIP)** column
+3. As a task is completed, it moves into the **Done** column
+4. The PBI itself only moves to **Done** when **all** of its tasks are completed — not before
+
+> **Rule:** A PBI stays in its current column until every task under it is finished. Partially done PBIs remain visible so the team can see what's still outstanding.
+
 ---
 
 ### 1. Initializing the Board
@@ -322,6 +330,16 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 - [ ] Record the move in BOARD.md
 - [ ] If blocked in the target → flag in BLOCKERS.md
 - [ ] If moving to Done → log cycle time in METRICS.md
+
+### When Completing a Task
+- [ ] Move the task to the **Done** column
+- [ ] Check if **all tasks** for the parent PBI are now done
+- [ ] If all tasks are done → move the PBI itself to **Done** alongside its tasks
+
+### When Completing a PBI
+- [ ] Verify every task under the PBI is in **Done**
+- [ ] Move the PBI row entirely into the **Done** column
+- [ ] Archive the completed card with `archive-card.sh` to log cycle time and lead time
 
 ### When a Card Is Blocked
 - [ ] Flag it on the board — do not hide it
