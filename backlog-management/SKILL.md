@@ -131,7 +131,15 @@ project-root/
 │   ├── DEPENDENCIES.md          # Dependency map between items
 │   └── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
 
-> **Caution on epics and features:** From a pure Scrum perspective, there is no such thing as an epic or a feature. Scrum only requires a single-ranked ordered list. Be cautious about introducing hierarchy. The only structure you need is: **small, fine-grained work at the top; larger, chunkier work at the bottom**. Don't overload the backlog with unnecessary layers. Items get broken down naturally as they rise in priority.
+> **Avoid epics and features.** From a pure Scrum perspective, there is no such thing as an epic or a feature — Scrum only requires a single-ranked ordered list. There are two reasons to avoid introducing these terms into your backlog:
+>
+> 1. **No formal definition.** There is no universally agreed definition of "epic" or "feature." Different teams interpret the same words in different ways, which leads to confusion and misalignment. One team's "epic" is another team's "feature."
+>
+> 2. **Both terms introduce waste** in two ways:
+>    - **Premature breakdown:** Epics and features pressure teams to break down large bodies of work *before they rise in priority*, violating the principle of progressive granularity. You end up decomposing low-value work you may never reach.
+>    - **False completion pressure:** Teams feel compelled to get an epic to 100% completion, even if the remaining items are low value. This pulls focus away from higher-value work that's waiting.
+>
+> **Instead:** Keep it simple. The only structure you need is **small, fine-grained work at the top; larger, chunkier work at the bottom**. Items get broken down naturally as they rise in priority.
 ```
 
 ---

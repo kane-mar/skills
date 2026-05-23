@@ -77,15 +77,27 @@ Many teams create each PBI as a user story. The most common template:
 
 **Important:** Always write acceptance criteria for every single user story.
 
-### Epics and Features — A Caution
+### Epics and Features — Avoid Them
 
-From a pure Scrum perspective, there is no such thing as an epic or a feature. Scrum only says you need a product backlog ordered in a single rank order. How you do it is up to you.
+From a pure Scrum perspective, there is no such thing as an epic or a feature. Scrum only requires a product backlog ordered in a single rank order. There are two reasons to avoid introducing these terms:
 
-**However:** Be cautious about introducing hierarchy (epics, features). The only thing you want in your product backlog is:
+#### 1. No Formal Definition
+
+There is no universally agreed definition of "epic" or "feature." Different teams interpret the same words in different ways, which leads to confusion and misalignment. One team's "epic" is another team's "feature." This ambiguity undermines the clarity that the backlog is meant to provide.
+
+#### 2. Both Terms Introduce Waste
+
+**Premature breakdown:** Epics and features pressure teams to break down large bodies of work *before they rise in priority*. This violates the principle of progressive granularity — you end up decomposing low-value work you may never reach. That effort is waste.
+
+**False completion pressure:** Teams feel compelled to get an epic to 100% completion, even if the remaining items are low value. This pulls focus away from higher-value work that's waiting in the backlog. The team optimizes for closing the epic rather than maximizing delivered value.
+
+#### The Alternative
+
+Keep it simple. The only structure you need in your product backlog is:
 - Small, fine-grained work at the top
 - Larger, chunkier work at the bottom
 
-Don't overload the structure with unnecessary hierarchy.
+Don't overload the backlog with unnecessary hierarchy. Items get broken down naturally as they rise in priority.
 
 ---
 
