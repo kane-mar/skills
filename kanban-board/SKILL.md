@@ -1,6 +1,6 @@
 ---
 name: kanban-board
-description: "Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle (add, move, block, archive), swimlanes, explicit policies, flow metrics (cycle time, lead time, throughput), and bottleneck detection. Use when tracking work in progress, limiting multitasking, or improving flow through the workflow."
+description: "Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle (add, move, block, archive), explicit policies, flow metrics (cycle time, lead time, throughput), and bottleneck detection. Use when tracking work in progress, limiting multitasking, or improving flow through the workflow."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
@@ -302,18 +302,11 @@ The report draws from archived card files and the board state to compute five me
 | CARD-003 | Password Reset | 2026-05-15 | 2026-05-23 | 8d 0h |
 ```
 
-### 8. Swimlanes (Optional)
+### 8. Work in Strict Priority Order
 
-For teams handling multiple work streams, cards can be organized into **swimlanes** — horizontal rows on the board that separate different types of work:
+All work must be pulled in strict priority order, with no exceptions. The highest-priority card in the backlog is always the next card to be worked on. Do not create separate tracks, swimlanes, or categories of work that bypass the priority order — this undermines the entire Kanban system.
 
-| Swimlane | Purpose |
-|----------|---------|
-| **Features** | New feature development |
-| **Bugs** | Defect fixes |
-| **Tech Debt** | Refactoring, infrastructure |
-| **Chores** | Maintenance, minor tasks |
-
-Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of columns with optional per-swimlane WIP limits.
+> **Rule:** Priority is a single ranked list. There is no "high priority lane" and "low priority lane." There is only the next most important item.
 
 ---
 
