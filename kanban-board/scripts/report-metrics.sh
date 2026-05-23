@@ -220,11 +220,11 @@ echo ""
 echo "━━━ 5. Stuck Work (split or help-requested) ━━━"
 echo ""
 
-if [ ! -f .kanban/BLOCKERS.md ]; then
+if [ ! -f .kanban/BLOCKED.md ]; then
   echo "  No stuck work logged."
 else
-  SPLIT_COUNT=$(grep -c "Status: split" .kanban/BLOCKERS.md 2>/dev/null || echo 0)
-  HELP_COUNT=$(grep -c "Status: help-requested" .kanban/BLOCKERS.md 2>/dev/null || echo 0)
+  SPLIT_COUNT=$(grep -c "Status: split" .kanban/BLOCKED.md 2>/dev/null || echo 0)
+  HELP_COUNT=$(grep -c "Status: help-requested" .kanban/BLOCKED.md 2>/dev/null || echo 0)
   echo "  Cards split:       $SPLIT_COUNT"
   echo "  Help requests:     $HELP_COUNT"
   echo ""
@@ -232,7 +232,7 @@ else
   if [ "$HELP_COUNT" -gt 0 ]; then
     echo "  Open help requests:"
     echo ""
-    awk '/## CARD/{id=$2; gsub(/--.*/,"",id)} /Status: help-requested/{print "    🆘 " id}' .kanban/BLOCKERS.md | sort -u | while IFS= read -r blocker; do
+    awk '/## CARD/{id=$2; gsub(/--.*/,"",id)} /Status: help-requested/{print "    🆘 " id}' .kanban/BLOCKED.md | sort -u | while IFS= read -r blocker; do
       echo "    $blocker"
     done
     echo ""

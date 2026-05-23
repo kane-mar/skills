@@ -24,10 +24,10 @@ fi
   echo ""
   echo "**Reason:** $REASON"
   echo "**Status:** $STATUS"
-} >> .kanban/BLOCKERS.md
+} >> .kanban/BLOCKED.md
 
 echo "   Reason: $REASON"
-echo "   Logged in .kanban/BLOCKERS.md"
+echo "   Logged in .kanban/BLOCKED.md"
 echo ""
 echo "Next: The split creates a smaller card that can move forward."
 if [ "$STATUS" = "split" ]; then

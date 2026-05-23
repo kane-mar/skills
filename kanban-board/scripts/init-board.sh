@@ -115,7 +115,7 @@ cat > .kanban/POLICIES.md << 'POLICIES_EOF'
 - Cards should never be blocked — split them instead
 - If a card cannot proceed, split off the achievable part into a smaller card
 - If still stuck after splitting, ask another agent or the end user for help
-- Log the split or help request in BLOCKERS.md
+- Log the split or help request in BLOCKED.md
 POLICIES_EOF
 echo "📄 Created .kanban/POLICIES.md"
 
@@ -149,11 +149,11 @@ _Initialized: $DATE_
 METRICS_EOF
 echo "📄 Created .kanban/METRICS.md"
 
-# .kanban/BLOCKERS.md
-echo "# Stuck Work Log" > .kanban/BLOCKERS.md
-echo "" >> .kanban/BLOCKERS.md
-echo "- $DATE: Board initialized — no stuck work" >> .kanban/BLOCKERS.md
-echo "📄 Created .kanban/BLOCKERS.md"
+# .kanban/BLOCKED.md
+echo "# Stuck Work Log" > .kanban/BLOCKED.md
+echo "" >> .kanban/BLOCKED.md
+echo "- $DATE: Board initialized — no stuck work" >> .kanban/BLOCKED.md
+echo "📄 Created .kanban/BLOCKED.md"
 
 echo ""
 echo "✅ Kanban board initialized!"
