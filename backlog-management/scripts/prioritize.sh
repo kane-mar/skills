@@ -68,7 +68,7 @@ case "$METHOD" in
       do) CATEGORY_LABEL="Do first (Important + Urgent)" ;;
       schedule) CATEGORY_LABEL="Schedule (Important + Not Urgent)" ;;
       delegate) CATEGORY_LABEL="Delegate (Not Important + Urgent)" ;;
-      delete) CATEGORY_LABEL="Delete/Icebox (Not Important + Not Urgent)" ;;
+      delete) CATEGORY_LABEL="Delete/Revisit later (Not Important + Not Urgent)" ;;
       *) echo "Invalid category: $CATEGORY (use do, schedule, delegate, delete)"; exit 1 ;;
     esac
     echo "📊 Eisenhower: $ITEM → $CATEGORY_LABEL"
