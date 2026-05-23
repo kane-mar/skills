@@ -377,12 +377,28 @@ A live-updating, keyboard-navigable Kanban board terminal UI is available as a p
 ### Install
 
 ```bash
-# Link the extension into pi's global extensions
+# Link the extension into pi's global extensions:
 mkdir -p ~/.pi/agent/extensions
-ln -sf $(pwd)/pi-ext ~/.pi/agent/extensions/kanban-board
+ln -sf /path/to/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board
 
-# Restart pi or run /reload
+# Then restart pi or run /reload
 ```
+
+> **Tip:** Replace `/path/to/kanban-board` with the actual path to this skill directory. If you cloned the skills repo to `~/skills`, use:
+> `ln -sf ~/skills/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board`
+> 
+> Or from inside the `kanban-board` directory:
+> `ln -sf $(pwd)/pi-ext ~/.pi/agent/extensions/kanban-board`
+
+### Verify
+
+1. Restart pi or run `/reload`
+2. Type `/kanban` and press enter
+3. The TUI board should render with your current board state
+4. Press `m` to see metrics, `k` for blockers, `b` to return to board view
+5. Press `q` or `esc` to close
+
+If `/kanban` is not recognized, check that the symlink points to the correct directory and that `pi-ext/index.ts` exists.
 
 ### Usage
 
