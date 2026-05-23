@@ -1,6 +1,6 @@
 ---
 name: backlog-management
-description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down only as items rise in priority). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
+description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
@@ -76,7 +76,9 @@ The backlog is structured with **small, fine-grained bodies of work at the top**
 - Large bodies of work at the bottom are **low value** — why spend time breaking down work you may never reach?
 - The product owner may only have funding for items above a certain point. Breaking down items below that line is effort thrown away.
 
-**When does work get broken down?** As the team takes work off the top each sprint, the remaining work **shuffles up** in priority order. Large items only get broken down as they **rise in priority**. If an item stays low priority forever, it never needs to be broken down.
+**When does work get broken down?** As the team takes work off the top each sprint, the remaining work **shuffles up** in priority order. When a large item reaches the **top of the backlog**, it must be broken down into smaller, fine-grained items before the team can work on it. Items that stay low priority never need to be broken down.
+
+> **Rule of thumb:** If the top item on the backlog is too large to complete in a single sprint, it's not yet ready. Break it down first.
 
 > **Guardrail:** Do not treat the backlog like a requirements document. Requirements documents are held static through reviews and sign-offs — they resist change. The backlog must be freely changeable. Requirements documents also break everything down to roughly the same size upfront — the backlog keeps small work at top and large work at bottom to avoid waste. These are fundamentally different artifacts.
 
@@ -281,6 +283,7 @@ If you **do** do regular refinement:
 
 **Refinement checklist:**
 
+- [ ] **Top items are small enough** — the item at the very top of the backlog should be small enough to complete in a single sprint. If not, it needs further breakdown
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
 - [ ] **No zombies** — items older than 3 months without activity → remove or flag for review
 - [ ] **Dependencies mapped** — items that block each other are linked in DEPENDENCIES.md
