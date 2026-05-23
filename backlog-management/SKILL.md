@@ -300,6 +300,12 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 
 ---
 
+## 📚 References
+
+- [CSM Course Notes — The Product Backlog](references/csm-course-notes.md) — Kane Mar's Certified Scrum Master training on the definition, structure, and refinement of the product backlog.
+
+---
+
 ## 🔧 Helper Scripts
 
 | Script | Purpose |
