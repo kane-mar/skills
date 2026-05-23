@@ -125,6 +125,24 @@ Log cycle time for each completed card in METRICS.md. Review metrics regularly t
 
 ## 🛠️ Kanban Workflows
 
+### 0. Drawing the Board
+
+When asked to show the current board state, generate a text-based visualization using the format described in [references/board-visualization.md](references/board-visualization.md).
+
+```
++------------------------------------+------------------------------------------+------------------------------------+------------------------------------+
+| Product Backlog Item (PBI)         | Work Not Started                         | Work in Progress (WIP)             | Done                               |
++------------------------------------+------------------------------------------+------------------------------------+------------------------------------+
+| Secure Customer Portal Access      | - Draft identity verification reqs       | - Establish secure login protocol  | - System baseline security review  |
+|                                    | - Map password recovery journey          |                                    |                                    |
+...
++------------------------------------+------------------------------------------+------------------------------------+------------------------------------+
+```
+
+Each row is one PBI. Columns go in this order: PBI name → Work Not Started → Work in Progress → Done.
+
+---
+
 ### 1. Initializing the Board
 
 ```bash
@@ -301,6 +319,7 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 
 ## 📚 References
 
+- [Kanban Board Visualization](references/board-visualization.md) — Text-based board format. When asked to draw the current board, generate output matching this template.
 - [Kanban Method Overview](references/kanban-overview.md) — The six core Kanban practices explained for AI agents.
 
 ---
