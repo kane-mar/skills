@@ -121,7 +121,7 @@ except: print('—')
       echo "| $CARD | $TITLE | ${CREATED:0:10} | ${DATE:0:10} | $LEAD_TIME |"
     } >> .kanban/METRICS.md
 
-    echo "   📊 Metrics logged: cycle=$CYCLE_TIME, lead=$LEAD_TIME"
+    echo "   📊 PBI metrics logged: cycle=$CYCLE_TIME, lead=$LEAD_TIME"
   fi
 fi
 

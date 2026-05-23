@@ -7,7 +7,7 @@ set -euo pipefail
 
 echo ""
 echo "═══════════════════════════════════════════════"
-echo "  📊 Kanban Board Metrics Report"
+echo "  📊 Kanban Board Metrics Report (PBI-level)"
 echo "═══════════════════════════════════════════════"
 echo ""
 
