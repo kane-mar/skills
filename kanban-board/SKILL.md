@@ -257,16 +257,36 @@ When a card reaches Done, archive it to keep the board clean:
 
 Archiving moves the card to `.kanban/ARCHIVED/` and logs the cycle time.
 
-### 7. Logging Cycle Time
+### 7. Reporting Metrics
 
-When a card is archived, the script records its cycle time in METRICS.md:
+Generate a comprehensive metrics report at any time to understand flow health:
+
+```bash
+<SKILL_DIR>/scripts/report-metrics.sh
+```
+
+The report draws from archived card files and the board state to compute five metrics:
+
+| # | Metric | What It Tells You |
+|---|--------|-------------------|
+| 1 | **WIP Count** | Active cards per column compared to WIP limits — shows bottlenecks immediately |
+| 2 | **Cycle Time** | Time from work started → completed — are you delivering fast? |
+| 3 | **Lead Time** | Time from backlog entry → completed — how long do requests take end-to-end? |
+| 4 | **Throughput** | Cards completed in last 7 and 30 days — is the team stable? |
+| 5 | **Blockers** | Currently blocked cards — what's stuck? |
+
+**Metrics are logged automatically by `archive-card.sh`.** Each archived card records its cycle time and lead time in `.kanban/METRICS.md`.
 
 ```markdown
 ## Cycle Time Log
+| Card | Title | Started | Completed | Cycle Time |
+|------|-------|---------|-----------|------------|
+| CARD-003 | Password Reset | 2026-05-20 | 2026-05-23 | 3d 0h |
 
-| Card | Started | Completed | Cycle Time |
-|------|---------|-----------|------------|
-| CARD-003: Password Reset | 2026-05-20 | 2026-05-23 | 3 days |
+## Lead Time Log
+| Card | Title | Created | Completed | Lead Time |
+|------|-------|---------|-----------|-----------|
+| CARD-003 | Password Reset | 2026-05-15 | 2026-05-23 | 8d 0h |
 ```
 
 ### 8. Swimlanes (Optional)
@@ -310,9 +330,12 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 - [ ] If blocked for too long → escalate or split the card
 
 ### When Reviewing Flow
-- [ ] Check which columns are at WIP limit
-- [ ] Look for items piling up in one column (bottleneck)
-- [ ] Review cycle times in METRICS.md — are they trending up or down?
+- [ ] Run `report-metrics.sh` to get the full picture
+- [ ] Check which columns are at WIP limit — where is the bottleneck?
+- [ ] Review cycle times — are they trending up or down?
+- [ ] Review lead times — are requests taking too long end-to-end?
+- [ ] Check throughput — is delivery stable week over week?
+- [ ] Look at blockers — are cards stuck for too long?
 - [ ] Make one process change based on the data
 
 ---
@@ -334,6 +357,7 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 | `block-card.sh` | Mark a card as blocked |
 | `unblock-card.sh` | Unblock a previously blocked card |
 | `check-wip.sh` | Display WIP status across all columns |
-| `archive-card.sh` | Archive a completed card and log cycle time |
+| `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, blockers |
+| `archive-card.sh` | Archive a completed card and log cycle time + lead time |
 
 See [scripts/](scripts/) for implementation.
