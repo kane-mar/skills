@@ -111,10 +111,11 @@ cat > .kanban/POLICIES.md << 'POLICIES_EOF'
 - Reviewed and signed off
 - Documentation updated (if applicable)
 
-## Blocked
-- Any card that cannot proceed should be flagged immediately
-- Blocked cards remain visible on the board
-- Log the blocker reason in BLOCKERS.md
+## Stuck Work
+- Cards should never be blocked — split them instead
+- If a card cannot proceed, split off the achievable part into a smaller card
+- If still stuck after splitting, ask another agent for help
+- Log the split or help request in BLOCKERS.md
 POLICIES_EOF
 echo "📄 Created .kanban/POLICIES.md"
 
@@ -149,9 +150,9 @@ METRICS_EOF
 echo "📄 Created .kanban/METRICS.md"
 
 # .kanban/BLOCKERS.md
-echo "# Blocked Items" > .kanban/BLOCKERS.md
+echo "# Stuck Work Log" > .kanban/BLOCKERS.md
 echo "" >> .kanban/BLOCKERS.md
-echo "- $DATE: Board initialized — no blockers" >> .kanban/BLOCKERS.md
+echo "- $DATE: Board initialized — no stuck work" >> .kanban/BLOCKERS.md
 echo "📄 Created .kanban/BLOCKERS.md"
 
 echo ""

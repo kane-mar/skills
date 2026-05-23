@@ -31,8 +31,8 @@ created: $DATE
 ## Acceptance Criteria
 - [ ] (add criteria)
 
-## Blockers
-(none)
+## Notes
+(Add notes)
 
 ## Cycle Time
 started: —

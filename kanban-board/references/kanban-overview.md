@@ -63,15 +63,4 @@ Use the data from the board to make small, incremental process improvements.
 
 ---
 
-## Kanban vs Scrum
 
-| Aspect | Kanban | Scrum |
-|--------|--------|-------|
-| **Cadence** | Continuous flow | Timeboxed sprints |
-| **Roles** | No prescribed roles | PO, SM, Dev Team |
-| **Changes** | Any time | Between sprints |
-| **WIP limits** | Required per column | Optional (sprint backlog acts as limit) |
-| **Metrics** | Cycle time, lead time, throughput | Velocity, burndown |
-| **Best for** | Support, maintenance, continuous delivery | Product development with clear goals |
-
-Kanban and Scrum are complementary. Many teams use Scrum for sprint rhythm and Kanban for visualizing their workflow within the sprint.
