@@ -133,6 +133,7 @@ project-root/
 │   ├── EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
 │   ├── DEPENDENCIES.md          # Dependency map between items
 │   └── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
+```
 
 > **Avoid epics and features.** From a pure Scrum perspective, there is no such thing as an epic or a feature — Scrum only requires a single-ranked ordered list. There are two reasons to avoid introducing these terms into your backlog:
 >
@@ -143,7 +144,6 @@ project-root/
 >    - **False completion pressure:** Teams feel compelled to get an epic to 100% completion, even if the remaining items are low value. This pulls focus away from higher-value work that's waiting.
 >
 > **Instead:** Keep it simple. The only structure you need is **small, fine-grained work at the top; larger, chunkier work at the bottom**. Items get broken down naturally as they rise in priority.
-```
 
 ---
 
@@ -273,7 +273,7 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 - Breaking down high-priority work into smaller chunks so the team better understands it
 - Re-estimating items where context has changed
 
-**Refinement checklist:
+**Refinement checklist:**
 
 - [ ] **Top items are small enough** — the item at the very top of the backlog should be small enough to complete in a single sprint. If not, it needs further breakdown
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
