@@ -50,6 +50,17 @@ Always use these four columns, in this order:
 - Bullet points under each column show individual tasks within that PBI
 - An empty column means no tasks are in that stage for that PBI
 
+### PBI Lifecycle
+
+Tasks under a PBI move through columns independently, but the PBI itself follows strict rules:
+
+1. **PBI broken down** → tasks appear in **Work Not Started**
+2. **Task started** → moves to **Work in Progress (WIP)**
+3. **Task completed** → moves to **Done**
+4. **PBI completed** → only moves to **Done** when **all** its tasks are done
+
+> **Rule:** A PBI stays in its current column until every task under it is finished. Partially done PBIs remain visible so the team can see what's still outstanding.
+
 ### WIP Priority
 
 Within the **Work in Progress (WIP)** column, tasks should be listed in priority order — the most important active task first.
