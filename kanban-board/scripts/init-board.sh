@@ -48,14 +48,6 @@ columns:
   - Review:2
   - Done:-1
 
-## Swimlanes (optional)
-# Uncomment and customize if using swimlanes:
-# swimlanes:
-#   - Features
-#   - Bugs
-#   - Tech Debt
-#   - Chores
-
 ## Card Types
 # feature, bug, tech-debt, improvement, chore, spike
 CONFIG_EOF
@@ -166,7 +158,7 @@ echo ""
 echo "✅ Kanban board initialized!"
 echo ""
 echo "Next steps:"
-echo "  1. Edit .kanban/CONFIG.md — customize columns, WIP limits, and swimlanes"
+echo "  1. Edit .kanban/CONFIG.md — customize columns and WIP limits"
 echo "  2. Add cards to the backlog with ./scripts/add-card.sh"
 echo "  3. Check WIP status with ./scripts/check-wip.sh"
 echo "  4. Move cards through columns with ./scripts/move-card.sh"
