@@ -57,12 +57,11 @@ The formal CSM definition: the product backlog is a **dynamic, single-ranked, or
 
 The backlog changes constantly — and this is **a good thing**. It's how we ensure we deliver something that meets customer needs.
 
-- At a **minimum**, the backlog changes once per sprint, driven by the Sprint Review
-- In practice, it changes **every few days** — product owners talk to stakeholders, senior management, end users, and subject matter experts regularly, returning with new ideas, features, and needs
+- Product owners talk to stakeholders, senior management, end users, and subject matter experts regularly, returning with new ideas, features, and needs
 - They add that work to the backlog and reorder it
-- **Why the Sprint Review drives change:** The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most people can't fully conceptualize what they're trying to achieve — it's easier to see something and then make decisions. That's fine. If it's not what they want, the team adjusts.
+- The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most people can't fully conceptualize what they're trying to achieve — it's easier to see something and then make decisions. That's fine. If it's not what they want, the team adjusts.
 
-> **For AI agents:** The backlog can change at **any time**. Do not wait for a scheduled "refinement meeting" or "sprint review" to add, reorder, or refine items. If new information arrives — from a stakeholder conversation, a production incident, a new insight, or any other source — capture it and reorder the backlog immediately. The dynamic nature of the backlog is not constrained by ceremony names or schedules.
+> **For AI agents:** The backlog can change at **any time**. If new information arrives — from a stakeholder conversation, a production incident, a new insight, or any other source — capture it and reorder the backlog immediately. Do not wait for a scheduled event or ceremony.
 
 #### Single Ranked
 
