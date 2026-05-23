@@ -65,6 +65,63 @@ if [ -n "$CARD_FILE" ]; then
   fi
   if [ "$TARGET" = "Done" ]; then
     sed -i '' "s/^completed:.*/completed: $DATE/" "$CARD_FILE"
+
+    # ── Log metrics immediately ──
+    TITLE=$(grep "^title:" "$CARD_FILE" | sed 's/.*: "//' | sed 's/"$//')
+    CREATED=$(grep "^created:" "$CARD_FILE" | sed 's/.*: //')
+    STARTED=$(grep "^started:" "$CARD_FILE" | sed 's/.*: //')
+
+    compute_diff() {
+      local START="$1"
+      local END="$2"
+      if [ "$START" = "—" ] || [ "$END" = "—" ] || ! command -v python3 &>/dev/null; then
+        echo "—"
+        return
+      fi
+      python3 -c "
+from datetime import datetime, timezone
+try:
+  s = datetime.fromisoformat('$START')
+  e = datetime.fromisoformat('$END')
+  if s.tzinfo is None: s = s.replace(tzinfo=timezone.utc)
+  if e.tzinfo is None: e = e.replace(tzinfo=timezone.utc)
+  diff = e - s
+  days = diff.days
+  hours = diff.seconds // 3600
+  mins = (diff.seconds % 3600) // 60
+  if days > 0: print(f'{days}d {hours}h')
+  elif hours > 0: print(f'{hours}h {mins}m')
+  else: print(f'{mins}m')
+except: print('—')
+"
+    }
+
+    CYCLE_TIME=$(compute_diff "$STARTED" "$DATE")
+    LEAD_TIME=$(compute_diff "$CREATED" "$DATE")
+
+    # Append to METRICS.md cycle time log
+    mkdir -p .kanban
+    if [ ! -f .kanban/METRICS.md ]; then
+      echo "# Flow Metrics" > .kanban/METRICS.md
+      echo "" >> .kanban/METRICS.md
+      echo "## Cycle Time Log" >> .kanban/METRICS.md
+      echo "| Card | Title | Started | Completed | Cycle Time |" >> .kanban/METRICS.md
+      echo "|------|-------|---------|-----------|------------|" >> .kanban/METRICS.md
+      echo "" >> .kanban/METRICS.md
+      echo "## Lead Time Log" >> .kanban/METRICS.md
+      echo "| Card | Title | Created | Completed | Lead Time |" >> .kanban/METRICS.md
+      echo "|------|-------|---------|-----------|-----------|" >> .kanban/METRICS.md
+    fi
+
+    {
+      echo "| $CARD | $TITLE | ${STARTED:0:10} | ${DATE:0:10} | $CYCLE_TIME |"
+    } >> .kanban/METRICS.md
+
+    {
+      echo "| $CARD | $TITLE | ${CREATED:0:10} | ${DATE:0:10} | $LEAD_TIME |"
+    } >> .kanban/METRICS.md
+
+    echo "   📊 Metrics logged: cycle=$CYCLE_TIME, lead=$LEAD_TIME"
   fi
 fi
 

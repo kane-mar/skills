@@ -283,7 +283,7 @@ The report draws from archived card files and the board state to compute five me
 | 4 | **Throughput** | Cards completed in last 7 and 30 days — is the team stable? |
 | 5 | **Blockers** | Currently blocked cards — what's stuck? |
 
-**Metrics are logged automatically by `archive-card.sh`.** Each archived card records its cycle time and lead time in `.kanban/METRICS.md`.
+**Metrics are logged immediately when a card moves to Done.** `move-card.sh` computes and records cycle time and lead time in `.kanban/METRICS.md` as soon as work completes. This ensures metrics are captured even if the PBI isn't fully finished and archived yet.
 
 ```markdown
 ## Cycle Time Log
@@ -329,7 +329,7 @@ Swimlanes are defined in `.kanban/CONFIG.md`. Each swimlane has its own set of c
 - [ ] Verify target column is under its WIP limit
 - [ ] Record the move in BOARD.md
 - [ ] If blocked in the target → flag in BLOCKERS.md
-- [ ] If moving to Done → log cycle time in METRICS.md
+- [ ] If moving to Done → metrics (cycle time, lead time) are logged automatically in METRICS.md
 
 ### When Completing a Task
 - [ ] Move the task to the **Done** column
