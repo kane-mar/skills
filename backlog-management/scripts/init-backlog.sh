@@ -46,7 +46,7 @@ scale: fibonacci
 # feature, bug, tech-debt, improvement, chore, spike
 
 ## Workflow States
-# icebox → backlog → refined → ready → in-progress → done
+# captured → backlog → refined → ready → in-progress → done
 CONFIG_EOF
 echo "📄 Created .backlog/CONFIG.md"
 
@@ -82,20 +82,7 @@ echo "" >> .backlog/REFINEMENT_LOG.md
 echo "- $DATE: Backlog initialized" >> .backlog/REFINEMENT_LOG.md
 echo "📄 Created .backlog/REFINEMENT_LOG.md"
 
-# .backlog/ICEBOX.md
-if [ ! -f .backlog/ICEBOX.md ]; then
-  cat > .backlog/ICEBOX.md << 'ICEBOX_EOF'
-# Icebox
 
-Deferred ideas — not dead, just not happening right now.
-Review periodically for revival or deletion.
-
-| Item | Notes | Date Added |
-|------|-------|------------|
-| (add icebox items here) | | |
-ICEBOX_EOF
-  echo "📄 Created .backlog/ICEBOX.md"
-fi
 
 echo ""
 echo "✅ Backlog structure initialized!"

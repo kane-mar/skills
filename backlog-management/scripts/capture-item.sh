@@ -22,7 +22,7 @@ id: $ITEM_ID
 title: "$TITLE"
 type: $TYPE
 priority: $PRIORITY
-status: icebox
+status: captured
 created: $DATE
 ---
 
@@ -43,7 +43,7 @@ ITEM_EOF
 
 # Also append to BACKLOG.md
 {
-  echo "| $ITEM_ID | $TITLE | $TYPE | $PRIORITY | — | icebox |"
+  echo "| $ITEM_ID | $TITLE | $TYPE | $PRIORITY | — | captured |"
 } >> BACKLOG.md
 
 echo "✅ Captured: $ITEM_ID — $TITLE"

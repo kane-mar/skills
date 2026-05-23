@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # refine.sh
 # Log a backlog refinement session.
-# Usage: ./scripts/refine.sh "Refined top 10 items, moved 3 stale items to icebox"
+# Usage: ./scripts/refine.sh "Refined top 10 items, split ITEM-005 into 3 stories"
 
 set -euo pipefail
 

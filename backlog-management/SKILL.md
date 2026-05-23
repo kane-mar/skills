@@ -52,7 +52,6 @@ A backlog is a prioritized list of work items (features, bugs, tech debt, improv
 |------|---------|---------|-------|
 | **Product Backlog** | All work the team might do | Weeks to months | Product Owner / PM agent |
 | **Sprint Backlog** | Work committed for one sprint | 1-2 weeks | Development team |
-| **Icebox** | Ideas deferred indefinitely | Unknown | Anyone |
 | **Bug Backlog** | Known defects | Varies | QA / Dev agents |
 
 ---
@@ -70,8 +69,7 @@ project-root/
 │   │   └── ...
 │   ├── EPICS.md                 # Epics (large initiatives broken into items)
 │   ├── DEPENDENCIES.md          # Dependency map between items
-│   ├── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
-│   └── ICEBOX.md                # Deferred ideas
+│   └── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
 ```
 
 ---
@@ -87,7 +85,7 @@ When a new idea, feature request, or bug is identified, capture it as a backlog 
 <SKILL_DIR>/scripts/capture-item.sh "User can reset password via email" "feature" "high"
 ```
 
-**Minimum viable capture** (log directly to BACKLOG.md or ICEBOX.md):
+**Minimum viable capture** (log directly to BACKLOG.md):
 
 ```markdown
 | Item | Type | Priority | Notes |
@@ -147,7 +145,7 @@ The CONFIG.md defines which framework the team uses. Supported frameworks:
 | **M**ust have | Non-negotiable for launch | Top of backlog |
 | **S**hould have | Important but not critical | High priority |
 | **C**ould have | Nice to have | Medium priority |
-| **W**on't have | Explicitly out of scope | Icebox or next release |
+| **W**on't have | Explicitly out of scope | Next release or revisit later |
 
 ```bash
 # Prioritize using MoSCoW
@@ -168,7 +166,7 @@ Formula: `WSJF = (Business Value + Time Criticality + Risk Reduction) / Job Size
 | | Urgent | Not Urgent |
 |---|--------|------------|
 | **Important** | Do first (Sprint) | Schedule (Backlog) |
-| **Not Important** | Delegate | Delete / Icebox |
+| **Not Important** | Delegate | Delete / revisit later |
 
 ### 4. Estimation
 
@@ -199,7 +197,7 @@ Regular refinement keeps the backlog healthy. Run every 2-3 days or between spri
 **Refinement checklist:**
 
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
-- [ ] **No zombies** — items older than 3 months without activity → move to ICEBOX.md or delete
+- [ ] **No zombies** — items older than 3 months without activity → remove or flag for review
 - [ ] **Dependencies mapped** — items that block each other are linked in DEPENDENCIES.md
 - [ ] **Estimates current** — re-estimate items if context has changed significantly
 - [ ] **Splitting done** — items > 13 points are broken down
@@ -208,7 +206,7 @@ Regular refinement keeps the backlog healthy. Run every 2-3 days or between spri
 
 ```bash
 # Log a refinement session
-<SKILL_DIR>/scripts/refine.sh "Refined top 10 items, moved 3 stale items to icebox, split ITEM-005 into 3 stories"
+<SKILL_DIR>/scripts/refine.sh "Refined top 10 items, split ITEM-005 into 3 stories, re-estimated 4 items"
 ```
 
 ### 6. Sprint Backlog Preparation
@@ -252,7 +250,7 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 - [ ] Give it a unique ID (ITEM-NNN)
 - [ ] Record: description, type (feature/bug/tech-debt/improvement), source
 - [ ] Assign a rough priority now; refine later
-- [ ] If unclear → put in ICEBOX.md, not the main backlog
+- [ ] If unclear → log as a note and flag for refinement
 
 ### When Refining an Item
 - [ ] Write a user story (As a... I want... So that...)
@@ -264,7 +262,7 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 ### Before Sprint Planning
 - [ ] Top items have stories + AC + estimates
 - [ ] Dependencies are clear
-- [ ] Stale items are moved to ICEBOX.md
+- [ ] Stale items are removed or flagged for review
 - [ ] Team capacity is known
 - [ ] CONFIG.md reflects current prioritization framework
 
