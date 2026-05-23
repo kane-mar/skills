@@ -127,9 +127,33 @@ POLICIES_EOF
 echo "📄 Created .kanban/POLICIES.md"
 
 # .kanban/METRICS.md
-echo "# Flow Metrics" > .kanban/METRICS.md
-echo "" >> .kanban/METRICS.md
-echo "- $DATE: Board initialized" >> .kanban/METRICS.md
+cat > .kanban/METRICS.md << METRICS_EOF
+# Flow Metrics
+
+## Cycle Time Log
+Time from work started to work completed.
+
+| Card | Title | Started | Completed | Cycle Time |
+|------|-------|---------|-----------|------------|
+| (logged by archive-card.sh) | | | | |
+
+## Lead Time Log
+Time from backlog entry to work completed.
+
+| Card | Title | Created | Completed | Lead Time |
+|------|-------|---------|-----------|-----------|
+| (logged by archive-card.sh) | | | | |
+
+## Throughput
+Cards completed per period.
+
+| Period | Count |
+|--------|-------|
+| (computed by report-metrics.sh) | | |
+
+---
+_Initialized: $DATE_
+METRICS_EOF
 echo "📄 Created .kanban/METRICS.md"
 
 # .kanban/BLOCKERS.md
