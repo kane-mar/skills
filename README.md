@@ -12,6 +12,20 @@ A collection of AI agent skills.
 
 ## Install
 
+### Install all skills
+
 ```bash
 npx skills add kane-mar/skills
+```
+
+### Install a specific skill
+
+```bash
+npx skills add kane-mar/skills --skill agent-collaboration
+```
+
+### List available skills
+
+```bash
+npx skills add kane-mar/skills --list
 ```
