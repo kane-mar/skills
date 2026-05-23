@@ -263,26 +263,17 @@ Estimate items using a consistent scale defined in CONFIG.md:
 - Items < 1 story point (or XS) are often chores, not stories
 - If two estimators disagree by > 2x, discuss assumptions before averaging
 
-### 5. Backlog Refinement (Grooming)
+### 5. Backlog Refinement
 
-> Refinement is **not a formal Scrum event**, but it's a **really good idea**. The old term was "grooming" (coined in North America); the new term is "refinement" (coined in the UK where "grooming" had a different connotation). They are the same practice.
+Refinement is the ongoing activity of keeping the backlog healthy. It is not a scheduled meeting — it happens continuously as new information arrives and as items rise in priority.
 
-**Why refinement matters:** If you don't do regular refinement, all the discussion about breaking down work, writing stories, and understanding the backlog gets forced into Sprint Planning. The team shows up without understanding the backlog → Sprint Planning becomes **long and argumentative**.
-
-If you **do** do regular refinement:
-- The team shows up to Sprint Planning **understanding** the backlog (because you've talked about it for the last two weeks)
-- Sprint Planning becomes **straightforward and effective**
-- Good teams can bring Sprint Planning down to typically **no more than 1.5 hours**
-
-**How to run refinement:** Schedule a regular session (e.g., 1-2 hours every week). The team only talks about the product backlog. When time is up, the meeting ends. Do this on an ongoing, consistent basis.
-
-**What happens in refinement:**
+**What refinement involves:**
 - Breaking down large bodies of work into smaller ones
 - Writing new user stories and acceptance criteria
 - Breaking down high-priority work into smaller chunks so the team better understands it
 - Re-estimating items where context has changed
 
-**Refinement checklist:**
+**Refinement checklist:
 
 - [ ] **Top items are small enough** — the item at the very top of the backlog should be small enough to complete in a single sprint. If not, it needs further breakdown
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria

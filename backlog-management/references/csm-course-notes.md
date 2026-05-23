@@ -126,40 +126,16 @@ We want the backlog to be freely changeable. Requirements documents do everythin
 
 ---
 
-## Backlog Refinement (Grooming)
+## Backlog Refinement
 
-Refinement (formerly called "grooming") is **not a formal Scrum event**, but it's a **really good idea**.
+Refinement is the ongoing activity of keeping the backlog healthy. It happens continuously as items rise in priority and new information arrives — it is not constrained to a scheduled meeting.
 
-- **Old term:** Grooming meeting (coined in North America)
-- **New term:** Refinement meeting (coined in the UK, where "grooming" had a different connotation)
-
-### How to Run Refinement
-
-- Schedule a regular meeting — e.g., a couple of hours every Thursday afternoon
-- The team **only talks about the product backlog**
-- When the time is up, the meeting ends
-- Do this every week on an ongoing, consistent basis
-
-### What Happens in Refinement
+### What Refinement Involves
 
 - Breaking down large bodies of work into smaller ones
 - Writing new user stories
 - Breaking down high-priority work into smaller chunks so the team better understands it
-
-### Why Refinement Matters
-
-If you **don't** do regular refinement, you'll have to have all those discussions anyway — but forced into the **Sprint Planning** meeting:
-
-- The team shows up to Sprint Planning without understanding the backlog
-- You end up debating breakdowns, stories, and priorities during planning
-- Sprint Planning becomes **long and argumentative**
-
-If you **do** do regular refinement:
-- The team shows up to Sprint Planning understanding the backlog (because you've talked about it for the last two weeks)
-- Sprint Planning becomes **straightforward and effective**
-- Good teams can bring Sprint Planning down to typically **no more than 1.5 hours**
-
-> **Strong recommendation:** Do a refinement meeting on an ongoing, consistent basis.
+- Re-estimating items where context has changed
 
 ---
 
