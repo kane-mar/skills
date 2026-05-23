@@ -48,7 +48,7 @@ Every column should have clear, written policies about what it means to be in th
 Review the board and metrics regularly to identify what to improve.
 
 **For AI agents:**
-- After archiving a card, check if cycle time is improving
+- After moving a PBI to Done, check if cycle time is improving
 - After hitting a WIP limit, ask: *"Is this limit right, or is there a bottleneck?"*
 - Log observations in METRICS.md
 
