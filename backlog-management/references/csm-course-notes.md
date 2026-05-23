@@ -52,7 +52,9 @@ The fundamental reason is **waste**:
 
 #### When does work get broken down?
 
-As the team takes work off the top each sprint, the remaining work **shuffles up** in priority order. Large items only get broken down as they **rise in priority**. If an item stays low priority forever, it never needs to be broken down.
+As the team takes work off the top each sprint, the remaining work **shuffles up** in priority order. When a large item reaches the **top of the backlog**, it must be broken down into smaller, fine-grained items before the team can work on it. Items that stay low priority never need to be broken down.
+
+> **Rule of thumb:** If the top item on the backlog is too large to complete in a single sprint, it's not yet ready. Break it down first.
 
 ---
 
