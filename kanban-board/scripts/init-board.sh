@@ -114,7 +114,7 @@ cat > .kanban/POLICIES.md << 'POLICIES_EOF'
 ## Stuck Work
 - Cards should never be blocked — split them instead
 - If a card cannot proceed, split off the achievable part into a smaller card
-- If still stuck after splitting, ask another agent for help
+- If still stuck after splitting, ask another agent or the end user for help
 - Log the split or help request in BLOCKERS.md
 POLICIES_EOF
 echo "📄 Created .kanban/POLICIES.md"
