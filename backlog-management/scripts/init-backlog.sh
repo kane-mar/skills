@@ -16,8 +16,8 @@ if [ ! -f BACKLOG.md ]; then
  cat > BACKLOG.md << 'EOF'
 # Product Backlog
 
-Prioritized list of work items. Top items are ready for sprint planning.
-See `.backlog/CONFIG.md` for prioritization framework and estimation scale.
+Prioritized list of work items. Top items are ready to be pulled into the sprint backlog.
+See `.backlog/CONFIG.md` for workflow states and item types.
 
 | ID | Title | Type | Priority | Status |
 |----|-------|------|----------|----------|--------|
@@ -68,6 +68,6 @@ echo ""
 echo "Backlog structure initialized!"
 echo ""
 echo "Next steps:"
-echo " 1. Edit .backlog/CONFIG.md — choose prioritization framework and estimation scale"
+echo " 1. Edit .backlog/CONFIG.md — customize workflow states and item types"
 echo " 2. Start capturing items in BACKLOG.md or use ./scripts/capture-item.sh"
 echo " 3. Refine top items with stories and AC before sprint planning"
