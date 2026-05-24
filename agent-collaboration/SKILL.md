@@ -1,11 +1,11 @@
 ---
 name: agent-collaboration
-description: "Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, pair on high-risk tasks, or run sprint cycles with planning/syncs/reviews/retros. Grounded in the five Scrum values: Commitment, Focus, Openness, Respect, Courage."
+description: "Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, or pair on high-risk tasks. Grounded in the five Scrum values: Commitment, Focus, Openness, Respect, Courage."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands. No special tools required."
 metadata:
   version: "2.1.0"
   inspired-by: "Scrum values (Commitment, Focus, Openness, Respect, Courage) + Cross-functional teams — shared ownership, T-shaped skills, continuous feedback"
-  patterns: "scrum-values, cross-functional, swarming, pair-programming, sprint, continuous-feedback"
+  patterns: "scrum-values, cross-functional, swarming, pair-programming, continuous-feedback"
 ---
 
 # Agent Collaboration — Cross-Functional Scrum Team
@@ -13,6 +13,8 @@ metadata:
 This skill enables multiple AI agents to work together as a **cross-functional Scrum team**. Instead of passing work like a hot potato from agent to agent (serial handoffs), agents with different expertise collaborate **simultaneously or in tight iterative loops** on a shared Sprint Goal.
 
 > **Core shift:** "That's not my job" → "How do we get this over the finish line together?"
+
+> **For AI agents:** Traditional Scrum events — Sprint Planning, Sprint Review, Daily Scrum — are designed for human teams that need scheduled synchronization. AI agents work continuously and can coordinate instantly, making these ceremonies redundant. The 2-week sprint cadence does not apply. Instead, use the continuous flow model: pull work from the backlog whenever capacity allows, sync via shared artifacts (DAILY_LOG.md, DECISIONS.md), and swarm on bottlenecks immediately. The Scrum values and collaboration patterns (swarming, pairing, guardrails) remain valuable — only the calendar-based ceremonies are unnecessary.
 
 ## Quick Start
 
