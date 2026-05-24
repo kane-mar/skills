@@ -32,21 +32,11 @@ fi
 cat > .backlog/CONFIG.md << 'CONFIG_EOF'
 # Backlog Configuration
 
-## Prioritization Framework
-# Options: moscow, wsjf, eisenhower
-framework: moscow
-
-## Estimation Scale
-# Options: fibonacci, tshirt, time, complexity
-scale: fibonacci
-# Fibonacci values: 1, 2, 3, 5, 8, 13, 21
-# T-Shirt values: XS, S, M, L, XL, XXL
+## Workflow States
+# captured → backlog → refined → ready → in-progress → done
 
 ## Item Types
 # feature, bug, tech-debt, improvement, chore, spike
-
-## Workflow States
-# captured → backlog → refined → ready → in-progress → done
 CONFIG_EOF
 echo "Created .backlog/CONFIG.md"
 
@@ -90,4 +80,4 @@ echo ""
 echo "Next steps:"
 echo " 1. Edit .backlog/CONFIG.md — choose prioritization framework and estimation scale"
 echo " 2. Start capturing items in BACKLOG.md or use ./scripts/capture-item.sh"
-echo " 3. Refine top items with stories, AC, and estimates before sprint planning"
+echo " 3. Refine top items with stories and AC before sprint planning"

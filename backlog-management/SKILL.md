@@ -1,10 +1,10 @@
 ---
 name: backlog-management
-description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
+description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, backlog refinement, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
-  patterns: "backlog-refinement, prioritization, estimation, user-stories, acceptance-criteria, dependency-mapping"
+  patterns: "backlog-refinement, user-stories, acceptance-criteria, dependency-mapping"
 ---
 
 # Backlog Management
@@ -125,7 +125,7 @@ Agents should continue working while there are items in the backlog. If no items
 project-root/
  BACKLOG.md                   # ← READ THIS FIRST. The product backlog.
  .backlog/
-    CONFIG.md                # Prioritization framework, estimation scale, workflow rules
+    CONFIG.md                # Workflow states and item types
     ITEMS/                   # Individual backlog items (one file per item)
        ITEM-001--user-auth.md
        ITEM-002--password-reset.md
@@ -203,67 +203,9 @@ When an item is refined for sprint planning, write it as a full user story:
 - Email service has 10 req/min rate limit → needs client cooldown + server queue
 - Reset tokens stored hashed in DB
 - Rate limit: max 3 reset requests per email per hour
-
-**Estimate:** 5 story points
 ```
 
-### 3. Prioritization Frameworks
-
-The CONFIG.md defines which framework the team uses. Supported frameworks:
-
-#### MoSCoW (Simple, common)
-
-| Category | Meaning | Backlog Action |
-|----------|---------|---------------|
-| **M**ust have | Non-negotiable for launch | Top of backlog |
-| **S**hould have | Important but not critical | High priority |
-| **C**ould have | Nice to have | Medium priority |
-| **W**on't have | Explicitly out of scope | Next release or revisit later |
-
-```bash
-# Prioritize using MoSCoW
-<SKILL_DIR>/scripts/prioritize.sh --method moscow --item ITEM-003 --category M
-```
-
-#### WSJF (Weighted Shortest Job First — SAFe)
-
-Formula: `WSJF = (Business Value + Time Criticality + Risk Reduction) / Job Size`
-
-```bash
-# Score an item using WSJF
-<SKILL_DIR>/scripts/prioritize.sh --method wsjf --item ITEM-003 --value 8 --criticality 5 --risk 3 --size 5
-```
-
-#### Eisenhower Matrix (For triaging incoming work)
-
-| | Urgent | Not Urgent |
-|---|--------|------------|
-| **Important** | Do first (Sprint) | Schedule (Backlog) |
-| **Not Important** | Delegate | Delete / revisit later |
-
-### 4. Estimation
-
-Estimate items using a consistent scale defined in CONFIG.md:
-
-```bash
-<SKILL_DIR>/scripts/estimate.sh ITEM-003 5
-```
-
-**Common estimation scales:**
-
-| Scale | Values | Best For |
-|-------|--------|----------|
-| **Story Points (Fibonacci)** | 1, 2, 3, 5, 8, 13, 21 | Scrum teams |
-| **T-Shirt Sizes** | XS, S, M, L, XL, XXL | Quick, rough estimates |
-| **Time (hours/days)** | 1h, 4h, 1d, 2d, 3d, 5d+ | Teams new to agile |
-| **Complexity (1-5)** | 1=trivial, 5=very complex | Technical teams |
-
-**Estimation guidelines:**
-- Items > 13 story points (or XL) should be **split** into smaller items
-- Items < 1 story point (or XS) are often chores, not stories
-- If two estimators disagree by > 2x, discuss assumptions before averaging
-
-### 5. Backlog Refinement
+### 3. Backlog Refinement
 
 Refinement is the ongoing activity of keeping the backlog healthy. It is not a scheduled meeting — it happens continuously as new information arrives and as items rise in priority.
 
@@ -279,17 +221,15 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
 - [ ] **No zombies** — items older than 3 months without activity → remove or flag for review
 - [ ] **Dependencies mapped** — items that block each other are linked in DEPENDENCIES.md
-- [ ] **Estimates current** — re-estimate items if context has changed significantly
 - [ ] **Splitting done** — items > 13 points are broken down
 - [ ] **Duplicates merged** — search for overlapping items
-- [ ] **Priorities updated** — re-prioritize based on latest context
 
 ```bash
 # Log a refinement session
 <SKILL_DIR>/scripts/refine.sh "Refined top 10 items, split ITEM-005 into 3 stories, re-estimated 4 items"
 ```
 
-### 6. Sprint Backlog Preparation
+### 4. Sprint Backlog Preparation
 
 When preparing for sprint planning, pull the top N items from the backlog that fit in the sprint:
 
@@ -304,7 +244,7 @@ When preparing for sprint planning, pull the top N items from the backlog that f
 3. Ensure no hard dependency is missing (check DEPENDENCIES.md)
 4. Include at least one bug fix if bugs exist in the backlog
 
-### 7. Dependency Mapping
+### 5. Dependency Mapping
 
 Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 
@@ -348,22 +288,14 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 ### When Refining an Item
 - [ ] Write a user story (As a... I want... So that...)
 - [ ] Define acceptance criteria (happy path + edge cases + error cases)
-- [ ] Estimate effort
 - [ ] Map dependencies
 - [ ] Check for duplicates
 
 ### Before Sprint Planning
-- [ ] Top items have stories + AC + estimates
+- [ ] Top items have stories + AC
 - [ ] Dependencies are clear
 - [ ] Stale items are removed or flagged for review
-- [ ] Team capacity is known
-- [ ] CONFIG.md reflects current prioritization framework
-
-### When Prioritizing
-- [ ] Choose a framework (MoSCoW / WSJF / Eisenhower) and be consistent
-- [ ] Prioritize by value delivered, not effort required (unless using WSJF)
-- [ ] Re-prioritize when new information arrives
-- [ ] Log priority decisions in REFINEMENT_LOG.md
+- [ ] CONFIG.md reflects current workflow rules
 
 ---
 
@@ -375,12 +307,8 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 
 ## Helper Scripts
 
-| Script | Purpose |
-|--------|---------|
 | `init-backlog.sh` | Initialize the backlog directory structure |
 | `capture-item.sh` | Quick-capture a new backlog item |
-| `prioritize.sh` | Score/re-prioritize an item using a framework |
-| `estimate.sh` | Assign/update an estimate to an item |
 | `refine.sh` | Log a refinement session |
 | `select-for-sprint.sh` | Pull items from backlog into sprint scope |
 | `add-dependency.sh` | Add a dependency link between items |
