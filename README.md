@@ -8,9 +8,9 @@ A collection of AI agent skills.
 
 | Skill | Description |
 |-------|-------------|
-| [agent-collaboration](agent-collaboration/SKILL.md) | Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, pair on high-risk tasks, or run sprint cycles with planning/syncs/reviews/retros. |
-| [backlog-management](backlog-management/SKILL.md) | Manage product and sprint backlogs: writing user stories, acceptance criteria, prioritization frameworks (MoSCoW, WSJF, Eisenhower), backlog refinement, estimation, and dependency mapping. |
-| [kanban-board](kanban-board/SKILL.md) | Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle, swimlanes, explicit policies, and flow metrics. Includes a pi TUI extension for interactive board visualization with `/kanban`. |
+| [agent-collaboration](agent-collaboration/SKILL.md) | Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, or pair on high-risk tasks. Grounded in the five Scrum values: Commitment, Focus, Openness, Respect, Courage. |
+| [backlog-management](backlog-management/SKILL.md) | Manage product and sprint backlogs: writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large at bottom — break down only as items rise in priority). |
+| [kanban-board](kanban-board/SKILL.md) | Visualize and manage work using a Kanban board: columns with WIP limits, card lifecycle, explicit policies, and flow metrics. Includes a pi TUI extension for interactive board visualization with `/kanban`. |
 | [definition-of-done](definition-of-done/SKILL.md) | Define, enforce, and evolve the Definition of Done (DoD): shared quality checklist, DoD vs Acceptance Criteria, verification workflows, and periodic review. |
 
 ## Install

@@ -92,7 +92,7 @@ Values shape *intentions*. These operating rules shape *behavior* — they make 
 # Before pulling new work, count in-progress items. If at limit, swarm instead.
 ```
 
-> **See also:** [Protocol 4 — Swarming](#4-swarming-bottleneck-protocol) for detailed swarming mechanics.
+> **See also:** [Workflow 4 — Swarming](#4-swarming-bottleneck-protocol) for detailed swarming mechanics.
 
 ### Rule 2 — Shared Definition of Done (Cross-Functional Binding)
 
@@ -130,7 +130,7 @@ Values shape *intentions*. These operating rules shape *behavior* — they make 
 **Still stuck → asking agent-beta for help**
 ```
 
-> **See also:** [Protocol 5 — Pair Programming](#5-pair-programming) for when a teammate responds and you pair on the solution.
+> **See also:** [Workflow 5 — Pair Programming](#5-pair-programming) for when a teammate responds and you pair on the solution.
 
 ### Rule 5 — Guilds (Cross-Team Alignment)
 
@@ -164,10 +164,10 @@ Formalize all guardrails into **`.collaboration/WORKING_AGREEMENT.md`**:
 |---------|--------|
 | Multiple agents share a project | Initialize collaboration structure + define a Sprint Goal |
 | Work is being passed serially (A → B → C) | Break the chain — use swarming + Three Amigos instead |
-| A bottleneck is forming | Check WIP limits → swarm (see [Protocol 4](#4-swarming-bottleneck-protocol)) |
-| High-risk or security-sensitive task | Pair program (see [Protocol 5](#5-pair-programming)) |
+| A bottleneck is forming | Check WIP limits → swarm (see [Workflow 4](#4-swarming-bottleneck-protocol)) |
+| High-risk or security-sensitive task | Pair program (see [Workflow 5](#5-pair-programming)) |
 | An agent is stuck for 15+ minutes | Invoke the 15-minute rule → ask for help → micro-pair |
-| Sprint needs structure | Run planning → daily syncs → review → retro (see [Protocols 2-7](#2-sprint-planning)) |
+| Sprint needs structure | Run planning, daily syncs, review, retro (see workflows below) |
 | Teams need technical alignment | Form a Guild (see [Rule 5](#rule-5--guilds-cross-team-alignment)) |
 
 ## Shared Structure
