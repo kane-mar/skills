@@ -15,20 +15,20 @@ VALUES="${5:-}"
 DATE=$(date +%Y-%m-%d)
 
 {
-  echo ""
-  echo "## $DATE"
-  echo ""
-  echo "**$AGENT:** $WHAT"
-  echo "  - Blockers: $BLOCKERS"
-  if [ -n "$NEXT" ]; then
-    echo "  - Next: $NEXT"
-  fi
-  if [ -n "$VALUES" ]; then
-    echo "  - Values: $VALUES"
-  fi
+ echo ""
+ echo "## $DATE"
+ echo ""
+ echo "**$AGENT:** $WHAT"
+ echo " - Blockers: $BLOCKERS"
+ if [ -n "$NEXT" ]; then
+  echo " - Next: $NEXT"
+ fi
+ if [ -n "$VALUES" ]; then
+  echo " - Values: $VALUES"
+ fi
 } >> .collaboration/DAILY_LOG.md
 
-echo "✅ Daily sync entry added for $AGENT"
+echo "Daily sync entry added for $AGENT"
 echo ""
 echo "Tip: Use the 5th argument to log a Scrum values reflection:"
-echo "  ./daily-sync.sh \"agent-alpha\" \"Did API work\" \"none\" \"Help beta\" \"Courage: flagged rate limit early\""
+echo " ./daily-sync.sh \"agent-alpha\" \"Did API work\" \"none\" \"Help beta\" \"Courage: flagged rate limit early\""

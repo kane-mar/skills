@@ -7,13 +7,13 @@ set -euo pipefail
 
 DATE=$(date -Iseconds)
 
-echo "📋 Initializing backlog management structure..."
+echo "Initializing backlog management structure..."
 
 mkdir -p .backlog/ITEMS
 
 # BACKLOG.md
 if [ ! -f BACKLOG.md ]; then
-  cat > BACKLOG.md << 'EOF'
+ cat > BACKLOG.md << 'EOF'
 # Product Backlog
 
 Prioritized list of work items. Top items are ready for sprint planning.
@@ -25,7 +25,7 @@ See `.backlog/CONFIG.md` for prioritization framework and estimation scale.
 
 _Last updated:_
 EOF
-  echo "📄 Created BACKLOG.md"
+ echo "Created BACKLOG.md"
 fi
 
 # .backlog/CONFIG.md
@@ -48,11 +48,11 @@ scale: fibonacci
 ## Workflow States
 # captured → backlog → refined → ready → in-progress → done
 CONFIG_EOF
-echo "📄 Created .backlog/CONFIG.md"
+echo "Created .backlog/CONFIG.md"
 
 # .backlog/EPICS.md
 if [ ! -f .backlog/EPICS.md ]; then
-  cat > .backlog/EPICS.md << 'EPICS_EOF'
+ cat > .backlog/EPICS.md << 'EPICS_EOF'
 # Epics
 
 Large initiatives broken into multiple backlog items.
@@ -63,7 +63,7 @@ Large initiatives broken into multiple backlog items.
 
 _An epic is complete when all its child items are done._
 EPICS_EOF
-  echo "📄 Created .backlog/EPICS.md"
+ echo "Created .backlog/EPICS.md"
 fi
 
 # .backlog/DEPENDENCIES.md
@@ -74,20 +74,20 @@ cat > .backlog/DEPENDENCIES.md << 'DEPS_EOF'
 |------|-----------|--------|-------|
 | (add dependencies here) | | | |
 DEPS_EOF
-echo "📄 Created .backlog/DEPENDENCIES.md"
+echo "Created .backlog/DEPENDENCIES.md"
 
 # .backlog/REFINEMENT_LOG.md
 echo "# Refinement Log" > .backlog/REFINEMENT_LOG.md
 echo "" >> .backlog/REFINEMENT_LOG.md
 echo "- $DATE: Backlog initialized" >> .backlog/REFINEMENT_LOG.md
-echo "📄 Created .backlog/REFINEMENT_LOG.md"
+echo "Created .backlog/REFINEMENT_LOG.md"
 
 
 
 echo ""
-echo "✅ Backlog structure initialized!"
+echo "Backlog structure initialized!"
 echo ""
 echo "Next steps:"
-echo "  1. Edit .backlog/CONFIG.md — choose prioritization framework and estimation scale"
-echo "  2. Start capturing items in BACKLOG.md or use ./scripts/capture-item.sh"
-echo "  3. Refine top items with stories, AC, and estimates before sprint planning"
+echo " 1. Edit .backlog/CONFIG.md — choose prioritization framework and estimation scale"
+echo " 2. Start capturing items in BACKLOG.md or use ./scripts/capture-item.sh"
+echo " 3. Refine top items with stories, AC, and estimates before sprint planning"

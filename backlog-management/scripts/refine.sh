@@ -9,10 +9,10 @@ NOTES="${1:?"Usage: $0 <refinement-notes>"}"
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "## Refinement — $DATE"
-  echo ""
-  echo "$NOTES"
+ echo ""
+ echo "## Refinement — $DATE"
+ echo ""
+ echo "$NOTES"
 } >> .backlog/REFINEMENT_LOG.md
 
-echo "✅ Refinement logged: $NOTES"
+echo "Refinement logged: $NOTES"

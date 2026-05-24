@@ -17,7 +17,7 @@ The **Definition of Done (DoD)** is a shared, explicit checklist of quality crit
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 If you're entering a project that already has a DoD:
 
@@ -36,7 +36,7 @@ If no DoD exists, initialize one:
 
 ---
 
-## 🧠 Core Concepts
+## Core Concepts
 
 ### What is a Definition of Done?
 
@@ -72,21 +72,21 @@ The DoD is about the exit door. "Ready" is about the entry door. They are comple
 
 ---
 
-## 📁 Shared Structure
+## Shared Structure
 
 ```
 project-root/
-├── DEFINITION_OF_DONE.md        # ← READ THIS FIRST. The team's DoD.
-├── .dod/
-│   ├── CONFIG.md                # DoD scope, exceptions, review cadence
-│   ├── CHECKLIST.md             # The full DoD checklist (machine-readable)
-│   ├── VERIFICATION_LOG.md      # Records of items verified against the DoD
-│   └── REVIEW_LOG.md            # DoD review/evolution history
+ DEFINITION_OF_DONE.md        # ← READ THIS FIRST. The team's DoD.
+ .dod/
+    CONFIG.md                # DoD scope, exceptions, review cadence
+    CHECKLIST.md             # The full DoD checklist (machine-readable)
+    VERIFICATION_LOG.md      # Records of items verified against the DoD
+    REVIEW_LOG.md            # DoD review/evolution history
 ```
 
 ---
 
-## 📋 Example DoD Criteria (Software Team)
+## Example DoD Criteria (Software Team)
 
 > **DoD varies by context.** The example below works for a software development team building and deploying services. A team building a physical product, a marketing campaign, or a regulatory filing will have a completely different DoD. **Define your own DoD** — use this as inspiration, not as a mandate.
 
@@ -130,7 +130,7 @@ Below is an example for a software team building and deploying production servic
 
 ---
 
-## 🛠️ DoD Workflows
+## DoD Workflows
 
 ### 1. Initializing the DoD
 
@@ -153,17 +153,17 @@ Before marking any work as Done, verify it against every active criterion in the
 The script reads the checklist from `.dod/CHECKLIST.md` and walks through each criterion:
 
 ```
-🔍 Verifying CARD-003 against Definition of Done...
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-✅ Code reviewed
-✅ Unit tests pass
-✅ New unit tests added
-❌ Integration tests pass  ← NOT MET
-✅ Edge cases tested
-✅ Code documented
-✅ No regressions
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Result: ❌ NOT DONE — 1 criterion not met
+ Verifying CARD-003 against Definition of Done...
+
+ Code reviewed
+ Unit tests pass
+ New unit tests added
+ Integration tests pass  ← NOT MET
+ Edge cases tested
+ Code documented
+ No regressions
+
+Result:  NOT DONE — 1 criterion not met
 ```
 
 If any criterion is not met, the item cannot be moved to Done. Log the verification result in `.dod/VERIFICATION_LOG.md`.
@@ -192,7 +192,7 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 
 ---
 
-## 📋 Quick Reference Cards
+## Quick Reference Cards
 
 ### Before Marking an Item as Done
 - [ ] Run `verify-dod.sh <item-id>` to check every DoD criterion
@@ -217,21 +217,21 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 
 | Question | DoD | AC |
 |----------|-----|----|
-| Does this apply to every item? | ✅ Yes | ❌ Per item |
-| Can an agent decide to skip it? | ❌ No | ✅ With PO |
+| Does this apply to every item? |  Yes |  Per item |
+| Can an agent decide to skip it? |  No |  With PO |
 | Is it about quality or behavior? | Quality | Behavior |
 | Who defines it? | Team | Product Owner |
 
 ---
 
-## 📚 References
+## References
 
 - [DoD vs Acceptance Criteria Deep Dive](references/dod-vs-ac.md) — Detailed explanation with examples of when each applies.
 - [Example DoD: Software Team](references/production-dod-template.md) — A production-ready DoD example for a software team (adapt to your own context).
 
 ---
 
-## 🔧 Helper Scripts
+## Helper Scripts
 
 | Script | Purpose |
 |--------|---------|

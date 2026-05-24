@@ -39,7 +39,7 @@ started: —
 completed: —
 CARD_EOF
 
-echo "✅ Card created: $CARD_ID — $TITLE"
-echo "   File: $FILENAME"
-echo "   Type: $TYPE | Priority: $PRIORITY"
-echo "   Status: backlog"
+echo "Card created: $CARD_ID — $TITLE"
+echo " File: $FILENAME"
+echo " Type: $TYPE | Priority: $PRIORITY"
+echo " Status: backlog"

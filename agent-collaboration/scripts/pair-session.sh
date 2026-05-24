@@ -41,8 +41,8 @@ status: in-progress
 (What was accomplished)
 PAIR_EOF
 
-echo "✅ Pair session created: $FILENAME"
-echo "   Driver: $DRIVER | Navigator: $NAVIGATOR"
-echo "   Task: $TASK"
+echo "Pair session created: $FILENAME"
+echo " Driver: $DRIVER | Navigator: $NAVIGATOR"
+echo " Task: $TASK"
 echo ""
 echo "Remember to update status when the session ends."

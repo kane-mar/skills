@@ -14,7 +14,7 @@ This skill enables multiple AI agents to work together as a **cross-functional S
 
 > **Core shift:** "That's not my job" → "How do we get this over the finish line together?"
 
-## 🚀 Quick Start
+## Quick Start
 
 If you're an agent entering a project that already has collaboration set up:
 
@@ -47,9 +47,9 @@ Then read the rest of this skill to understand the values, guardrails, and proto
 
 ---
 
-> ⚡ **Two modes of operation:** This skill works for both real-time multi-agent teams (agents running simultaneously) and sequential sessions (one agent at a time, handing off via artifacts). Protocols are the same — real-time teams use syncs and swarming more aggressively; sequential sessions rely more on DECISIONS.md and DAILY_LOG.md for handoffs.
+>  **Two modes of operation:** This skill works for both real-time multi-agent teams (agents running simultaneously) and sequential sessions (one agent at a time, handing off via artifacts). Protocols are the same — real-time teams use syncs and swarming more aggressively; sequential sessions rely more on DECISIONS.md and DAILY_LOG.md for handoffs.
 
-## 🧠 The Five Scrum Values (The Behavioral Backbone)
+## The Five Scrum Values (The Behavioral Backbone)
 
 The processes in this skill (planning, daily syncs, swarming, pairing, retros) are tools. They work **only when the five Scrum values are genuinely adopted** by every agent. Without these values, the practices become empty, robotic rituals. With them, the team creates **psychological safety** — the exact environment required for true cross-functional collaboration to happen naturally.
 
@@ -75,7 +75,7 @@ These values interlock. When a developer realizes a feature is twice as complex 
 
 **For detailed exploration of each value** (what it looks like, what it doesn't mean, signs of weakness) see [references/patterns-deep-dive.md](references/patterns-deep-dive.md#1-the-five-scrum-values--deep-dive).
 
-## 🛡️ Structural Guardrails (Rules That Enforce Collaboration)
+## Structural Guardrails
 
 Values shape *intentions*. These structural guardrails shape *behavior* — they make collaboration the path of least resistance rather than an afterthought. High-performing teams formalize these into a **Team Working Agreement** (see `.collaboration/WORKING_AGREEMENT.md`).
 
@@ -168,22 +168,22 @@ Formalize all guardrails into **`.collaboration/WORKING_AGREEMENT.md`**:
 | Sprint needs structure | Run planning → daily syncs → review → retro (see [Protocols 2-7](#2-sprint-planning)) |
 | Teams need technical alignment | Form a Guild (see [Guardrail 5](#5-guilds-cross-team-alignment)) |
 
-## 📁 Shared Team Structure
+## Shared Team Structure
 
 ```
 project-root/
-├── SPRINT.md                     # ← READ THIS FIRST. Sprint Goal, DoD, team roles
-├── .collaboration/
-│   ├── WORKING_AGREEMENT.md      # WIP limits, DoD, Three Amigos, 15-min rule, etc.
-│   ├── BACKLOG.md                # Refined backlog items
-│   ├── SPRINT_BACKLOG.md         # Sprint items + WIP limit header
-│   ├── DAILY_LOG.md              # Syncs, Three Amigos, 15-min attempts
-│   ├── DECISIONS.md              # Key decisions + Guild alignment log
-│   ├── PAIRS/                    # Pair session notes
-│   └── RETROS/                   # Sprint retrospectives
+ SPRINT.md                     # ← READ THIS FIRST. Sprint Goal, DoD, team roles
+ .collaboration/
+    WORKING_AGREEMENT.md      # WIP limits, DoD, Three Amigos, 15-min rule, etc.
+    BACKLOG.md                # Refined backlog items
+    SPRINT_BACKLOG.md         # Sprint items + WIP limit header
+    DAILY_LOG.md              # Syncs, Three Amigos, 15-min attempts
+    DECISIONS.md              # Key decisions + Guild alignment log
+    PAIRS/                    # Pair session notes
+    RETROS/                   # Sprint retrospectives
 ```
 
-## 🚀 Protocols
+## Protocols
 
 ### 0. Ground Rules (Every Agent Must Follow)
 
@@ -356,7 +356,7 @@ See [references/templates.md](references/templates.md#sprint-retrospective-with-
 - **Knowledge gaps** — What expertise is the team missing?
 - **Communication quality** — Are agents being explicit enough in logs and decisions?
 
-## 🎯 Complete Sprint Example
+## Complete Sprint Example
 
 ```
 Sprint 3 Goal: "Users can reset their password via email"
@@ -391,7 +391,7 @@ Team demoes end-to-end password reset. PO agent confirms acceptance criteria met
 - Improve: Should have identified email rate limiting earlier (in refinement, not planning)
 ```
 
-## 📋 Quick Reference Cards
+## Quick Reference Cards
 
 ### Before Any Action
 - [ ] **Values check:** Am I acting with Commitment, Focus, Openness, Respect, Courage?
@@ -430,6 +430,27 @@ Team demoes end-to-end password reset. PO agent confirms acceptance criteria met
 - [ ] Review and update WORKING_AGREEMENT.md (it's a living document — improve it based on what you learned)
 - [ ] Prepare for next Sprint Planning
 
-## 🔧 Helper Scripts
+## References
 
-See [scripts/](scripts/) for utility scripts that automate collaboration setup and management.
+- [Patterns Deep Dive](references/patterns-deep-dive.md) — Detailed exploration of the five Scrum values, sprint planning best practices, swarming, pair programming, running retros, and T-shaped skill development.
+- [Templates](references/templates.md) — Ready-to-use templates for all collaboration artifacts: Working Agreement, Three Amigos, 15-minute rule, SPRINT.md, sprint backlog, daily sync, swarm events, pair programming, decision log, and sprint retros.
+- [backlog-management](../backlog-management/SKILL.md) — Managing the product backlog: user stories, acceptance criteria, prioritization, estimation, refinement.
+- [definition-of-done](../definition-of-done/SKILL.md) — Defining and enforcing the Definition of Done: the quality gate everything must pass.
+- [kanban-board](../kanban-board/SKILL.md) — Visualizing workflow with a Kanban board: WIP limits, flow metrics, card lifecycle.
+
+---
+
+## Helper Scripts
+
+| Script | Purpose |
+|--------|---------|
+| `init-sprint.sh` | Initialize the collaboration structure for a sprint |
+| `daily-sync.sh` | Log a daily sync entry with optional Scrum values reflection |
+| `three-amigos.sh` | Log a Three Amigos session (PO + Developer + QA) |
+| `stuck-15.sh` | Log a 15-minute rule attempt (stuck on a problem, asking for help) |
+| `swarm.sh` | Log a swarming event — multiple agents converging on a bottleneck |
+| `pair-session.sh` | Initialize a pair programming session log |
+| `decision.sh` | Log a key decision to DECISIONS.md |
+| `retro.sh` | Initialize a sprint retrospective document with Scrum values check |
+
+See [scripts/](scripts/) for implementation.

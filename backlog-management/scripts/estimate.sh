@@ -9,10 +9,10 @@ ITEM="${1:?"Usage: $0 <item-id> <estimate>"}"
 ESTIMATE="${2:?"Usage: $0 <item-id> <estimate>"}"
 DATE=$(date -Iseconds)
 
-echo "📐 Estimated $ITEM: $ESTIMATE"
-echo "   Logged to .backlog/REFINEMENT_LOG.md"
+echo "Estimated $ITEM: $ESTIMATE"
+echo " Logged to .backlog/REFINEMENT_LOG.md"
 
 {
-  echo ""
-  echo "- $DATE: Estimated $ITEM → $ESTIMATE"
+ echo ""
+ echo "- $DATE: Estimated $ITEM → $ESTIMATE"
 } >> .backlog/REFINEMENT_LOG.md
