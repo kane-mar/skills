@@ -1,6 +1,8 @@
-# Production Definition of Done Template
+# Example DoD: Software Development Team
 
-A robust, production-ready Definition of Done structured as a plain-text checklist. It balances source-level quality, runtime validation, and organizational compliance.
+> **This is an example, not a universal template.** A software team deploying services has different quality criteria than a team building physical products, marketing campaigns, or regulatory filings. Use this as inspiration to define your own DoD.
+
+A production-ready Definition of Done for a software team, balancing source-level quality, runtime validation, and organizational compliance.
 
 ## Code Quality
 - [ ] **No known defects** — all identified bugs are fixed or explicitly deferred
