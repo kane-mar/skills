@@ -85,11 +85,12 @@ The backlog is structured with **small, fine-grained bodies of work at the top**
 
 ### Backlog Types
 
-| Type | Purpose | Horizon | Owner |
-|------|---------|---------|-------|
-| **Product Backlog** | All work the team might do | Weeks to months | Product Owner / PM agent |
-| **Sprint Backlog** | Work committed for one sprint | 1-2 weeks | Development team |
-| **Bug Backlog** | Known defects | Varies | QA / Dev agents |
+| Type | Purpose |
+|------|---------|
+| **Product Backlog** | All work the team might do — features, bugs, tech debt, improvements. A prioritized to-do list of everything needed to achieve the product goal. |
+| **Sprint Backlog** | Work currently being flowed through the [Kanban board](../kanban-board/SKILL.md) — the active items being worked on, reviewed, or completed this cycle. |
+
+All work lives in one of these two backlogs. There is no separate bug backlog, blockers backlog, or icebox — bugs and other items are simply entries in the product backlog, prioritized alongside everything else.
 
 ---
 
