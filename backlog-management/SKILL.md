@@ -87,10 +87,10 @@ The backlog is structured with **small, fine-grained bodies of work at the top**
 
 | Type | Purpose |
 |------|---------|
-| **Product Backlog** | All work the team might do — features, bugs, tech debt, improvements. A prioritized to-do list of everything needed to achieve the product goal. |
-| **Sprint Backlog** | Work currently being flowed through the [Kanban board](../kanban-board/SKILL.md) — the active items being worked on, reviewed, or completed this cycle. |
+| **Product Backlog** | All planned work the team might do — features, improvements, and **production defects** (bugs identified in a live environment that represent new work). |
+| **Sprint Backlog** | Active work currently flowing through the [Kanban board](../kanban-board/SKILL.md) — items being worked on, reviewed, or completed this cycle. **Bugs discovered during development** go here: they must be fixed before the item is done, aligned with the Definition of Done (no known defects). |
 
-All work lives in one of these two backlogs. There is no separate bug backlog, blockers backlog, or icebox — bugs and other items are simply entries in the product backlog, prioritized alongside everything else.
+**Rule of thumb:** If a bug is discovered while building something, fix it now — it goes on the sprint backlog. If a bug is reported from production after release, it goes on the product backlog as new work to be prioritized.
 
 ---
 
