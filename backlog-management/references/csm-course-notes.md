@@ -25,7 +25,7 @@ The backlog changes — and this is a *good thing* from a Scrum point of view. I
 - Early on, it's common for the backlog to change every couple of days
 - The product owner often says *"That's not what I want. It's what I asked for, but it's not what I want."* Most people can't fully conceptualize what they're trying to achieve — it's easier to see something and then make decisions. That's fine. If it's not what they want, the team adjusts.
 
-> **For AI agents:** The backlog can change at **any time**. If new information arrives, capture it and reorder the backlog immediately. Do not wait for a scheduled event or ceremony.
+> **For AI agents:** The backlog can change at **any time**. If new information arrives, capture it and reorder the backlog immediately. Do not wait for a scheduled event.
 
 ### Single Ranked Order
 
