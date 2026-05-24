@@ -11,15 +11,15 @@ ASKING="${3:?"Usage: $0 <problem> <tried> <asking>"}"
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "## 15-min attempt — $DATE"
-  echo ""
-  echo "**Problem:** $PROBLEM"
-  echo "**Tried:**"
-  echo "  - $TRIED" | sed 's/; /\n  - /g'
-  echo "**Still stuck after 15min → asking $ASKING for help**"
+ echo ""
+ echo "## 15-min attempt — $DATE"
+ echo ""
+ echo "**Problem:** $PROBLEM"
+ echo "**Tried:**"
+ echo " - $TRIED" | sed 's/; /\n - /g'
+ echo "**Still stuck after 15min → asking $ASKING for help**"
 } >> .collaboration/DAILY_LOG.md
 
-echo "✅ 15-min attempt logged. Asking $ASKING for help with: $PROBLEM"
+echo "15-min attempt logged. Asking $ASKING for help with: $PROBLEM"
 echo ""
 echo "Remember: Getting stuck is normal. Asking for help is Courage + Openness in action."

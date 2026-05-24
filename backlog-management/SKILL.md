@@ -19,7 +19,7 @@ It covers the full lifecycle: defining the product goal, capturing items, writin
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 If you're entering a project that already has backlog management set up:
 
@@ -39,7 +39,7 @@ If no backlog exists, initialize one:
 
 ---
 
-## 🧠 Core Concepts
+## Core Concepts
 
 ### The Product Goal
 
@@ -93,7 +93,7 @@ The backlog is structured with **small, fine-grained bodies of work at the top**
 
 ---
 
-## 📋 Operating Rules
+## Operating Rules
 
 The following rules govern how agents consume the backlog. These are not optional — they ensure the team always works on the most valuable work and never idles while items remain.
 
@@ -119,20 +119,20 @@ Agents should continue working while there are items in the backlog. If no items
 
 ---
 
-## 📁 Shared Structure
+## Shared Structure
 
 ```
 project-root/
-├── BACKLOG.md                   # ← READ THIS FIRST. The product backlog.
-├── .backlog/
-│   ├── CONFIG.md                # Prioritization framework, estimation scale, workflow rules
-│   ├── ITEMS/                   # Individual backlog items (one file per item)
-│   │   ├── ITEM-001--user-auth.md
-│   │   ├── ITEM-002--password-reset.md
-│   │   └── ...
-│   ├── EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
-│   ├── DEPENDENCIES.md          # Dependency map between items
-│   └── REFINEMENT_LOG.md        # Notes from backlog refinement sessions
+ BACKLOG.md                   # ← READ THIS FIRST. The product backlog.
+ .backlog/
+    CONFIG.md                # Prioritization framework, estimation scale, workflow rules
+    ITEMS/                   # Individual backlog items (one file per item)
+       ITEM-001--user-auth.md
+       ITEM-002--password-reset.md
+       ...
+    EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
+    DEPENDENCIES.md          # Dependency map between items
+    REFINEMENT_LOG.md        # Notes from backlog refinement sessions
 ```
 
 > **Avoid epics and features.** From a pure Scrum perspective, there is no such thing as an epic or a feature — Scrum only requires a single-ranked ordered list. There are two reasons to avoid introducing these terms into your backlog:
@@ -147,7 +147,7 @@ project-root/
 
 ---
 
-## 🛠️ Backlog Workflows
+## Backlog Workflows
 
 ### 1. Capturing a New Item
 
@@ -324,7 +324,7 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 
 ---
 
-## 📋 Quick Reference Cards
+## Quick Reference Cards
 
 ### Before Any Action
 - [ ] **Read the backlog** — read BACKLOG.md and CONFIG.md to understand the current state and prioritization framework
@@ -367,13 +367,13 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 
 ---
 
-## 📚 References
+## References
 
 - [CSM Course Notes — The Product Backlog](references/csm-course-notes.md) — Kane Mar's Certified Scrum Master training on the definition, structure, and refinement of the product backlog.
 
 ---
 
-## 🔧 Helper Scripts
+## Helper Scripts
 
 | Script | Purpose |
 |--------|---------|

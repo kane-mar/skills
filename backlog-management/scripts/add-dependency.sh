@@ -10,16 +10,16 @@ RELATION="${2:?"Usage: $0 <item> <relation> <target>"}"
 TARGET="${3:?"Usage: $0 <item> <relation> <target>"}"
 
 if [ "$RELATION" != "depends-on" ] && [ "$RELATION" != "blocks" ]; then
-  echo "Error: relation must be 'depends-on' or 'blocks'"
-  exit 1
+ echo "Error: relation must be 'depends-on' or 'blocks'"
+ exit 1
 fi
 
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "- $DATE: $ITEM $RELATION $TARGET"
+ echo ""
+ echo "- $DATE: $ITEM $RELATION $TARGET"
 } >> .backlog/DEPENDENCIES.md
 
-echo "🔗 Recorded: $ITEM $RELATION $TARGET"
-echo "   Check .backlog/DEPENDENCIES.md for the full map."
+echo "Recorded: $ITEM $RELATION $TARGET"
+echo " Check .backlog/DEPENDENCIES.md for the full map."

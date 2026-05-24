@@ -7,13 +7,13 @@ set -euo pipefail
 
 DATE=$(date -Iseconds)
 
-echo "📋 Initializing Kanban board..."
+echo "Initializing Kanban board..."
 
 mkdir -p .kanban/CARDS .kanban/ARCHIVED
 
 # KANBAN.md
 if [ ! -f KANBAN.md ]; then
-  cat > KANBAN.md << 'EOF'
+ cat > KANBAN.md << 'EOF'
 # Kanban Board
 
 Active work items and their current status on the Kanban board.
@@ -31,7 +31,7 @@ See `.kanban/BOARD.md` for the full board state.
 
 _Last updated:_
 EOF
-  echo "📄 Created KANBAN.md"
+ echo "Created KANBAN.md"
 fi
 
 # .kanban/CONFIG.md
@@ -42,20 +42,20 @@ cat > .kanban/CONFIG.md << 'CONFIG_EOF'
 # Format: name:wip_limit
 # Use -1 for no limit (e.g., Backlog and Done)
 columns:
-  - Backlog:-1
-  - Ready:3
-  - In Progress:3
-  - Review:2
-  - Done:-1
+ - Backlog:-1
+ - Ready:3
+ - In Progress:3
+ - Review:2
+ - Done:-1
 
 ## Card Types
 # feature, bug, tech-debt, improvement, chore, spike
 CONFIG_EOF
-echo "📄 Created .kanban/CONFIG.md"
+echo "Created .kanban/CONFIG.md"
 
 # .kanban/BOARD.md
 if [ ! -f .kanban/BOARD.md ]; then
-  cat > .kanban/BOARD.md << 'BOARD_EOF'
+ cat > .kanban/BOARD.md << 'BOARD_EOF'
 # Board State
 
 ## Backlog
@@ -83,7 +83,7 @@ if [ ! -f .kanban/BOARD.md ]; then
 |------|-------|-----------|
 | (add cards here) | | |
 BOARD_EOF
-  echo "📄 Created .kanban/BOARD.md"
+ echo "Created .kanban/BOARD.md"
 fi
 
 # .kanban/POLICIES.md
@@ -117,7 +117,7 @@ cat > .kanban/POLICIES.md << 'POLICIES_EOF'
 - If still stuck after splitting, ask another agent or the end user for help
 - Log the split or help request in BLOCKED.md
 POLICIES_EOF
-echo "📄 Created .kanban/POLICIES.md"
+echo "Created .kanban/POLICIES.md"
 
 # .kanban/METRICS.md
 cat > .kanban/METRICS.md << METRICS_EOF
@@ -147,19 +147,19 @@ Cards completed per period.
 ---
 _Initialized: $DATE_
 METRICS_EOF
-echo "📄 Created .kanban/METRICS.md"
+echo "Created .kanban/METRICS.md"
 
 # .kanban/BLOCKED.md
 echo "# Stuck Work Log" > .kanban/BLOCKED.md
 echo "" >> .kanban/BLOCKED.md
 echo "- $DATE: Board initialized — no stuck work" >> .kanban/BLOCKED.md
-echo "📄 Created .kanban/BLOCKED.md"
+echo "Created .kanban/BLOCKED.md"
 
 echo ""
-echo "✅ Kanban board initialized!"
+echo "Kanban board initialized!"
 echo ""
 echo "Next steps:"
-echo "  1. Edit .kanban/CONFIG.md — customize columns and WIP limits"
-echo "  2. Add cards to the backlog with ./scripts/add-card.sh"
-echo "  3. Check WIP status with ./scripts/check-wip.sh"
-echo "  4. Move cards through columns with ./scripts/move-card.sh"
+echo " 1. Edit .kanban/CONFIG.md — customize columns and WIP limits"
+echo " 2. Add cards to the backlog with ./scripts/add-card.sh"
+echo " 3. Check WIP status with ./scripts/check-wip.sh"
+echo " 4. Move cards through columns with ./scripts/move-card.sh"

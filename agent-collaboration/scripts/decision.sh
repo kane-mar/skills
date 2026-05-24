@@ -12,13 +12,13 @@ ALTERNATIVES="${4:-N/A}"
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "## $(date +%Y-%m-%d): $CONTEXT"
-  echo ""
-  echo "- **Decision:** $DECISION"
-  echo "- **Rationale:** $RATIONALE"
-  echo "- **Alternatives considered:** $ALTERNATIVES"
-  echo "- **Logged by:** (agent)"
+ echo ""
+ echo "## $(date +%Y-%m-%d): $CONTEXT"
+ echo ""
+ echo "- **Decision:** $DECISION"
+ echo "- **Rationale:** $RATIONALE"
+ echo "- **Alternatives considered:** $ALTERNATIVES"
+ echo "- **Logged by:** (agent)"
 } >> .collaboration/DECISIONS.md
 
-echo "📝 Decision logged: $DECISION"
+echo "Decision logged: $DECISION"

@@ -11,12 +11,12 @@ PLAN="${3:?"Usage: $0 <bottleneck> <agents> <plan>"}"
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "## Swarm Event — $DATE"
-  echo ""
-  echo "**Bottleneck:** $BOTTLENECK"
-  echo "**Agents involved:** $AGENTS"
-  echo "**Plan:** $PLAN"
+ echo ""
+ echo "## Swarm Event — $DATE"
+ echo ""
+ echo "**Bottleneck:** $BOTTLENECK"
+ echo "**Agents involved:** $AGENTS"
+ echo "**Plan:** $PLAN"
 } >> .collaboration/DAILY_LOG.md
 
-echo "🐝 Swarm logged — $AGENTS converging on: $BOTTLENECK"
+echo "Swarm logged — $AGENTS converging on: $BOTTLENECK"

@@ -18,7 +18,7 @@ This skill provides a lightweight Kanban board for AI agents to visualize and ma
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 If you're entering a project that already has a Kanban board set up:
 
@@ -39,7 +39,7 @@ If no board exists, initialize one:
 
 ---
 
-## 🧠 Core Concepts
+## Core Concepts
 
 ### The Six Kanban Practices
 
@@ -82,29 +82,29 @@ Every column has a Work-in-Progress (WIP) limit — a cap on how many items can 
 
 ---
 
-## 📁 Shared Structure
+## Shared Structure
 
 ```
 project-root/
-├── KANBAN.md                   # ← READ THIS FIRST. Board overview and active cards.
-├── .kanban/
-│   ├── CONFIG.md               # Column definitions, WIP limits, policies
-│   ├── BOARD.md                # Current board state (card positions)
-│   ├── CARDS/                  # Individual card files
-│   │   ├── CARD-001--user-auth.md
-│   │   ├── CARD-002--password-reset.md
-│   │   └── ...
-│   ├── POLICIES.md             # Explicit column policies
-│   ├── METRICS.md              # Cycle time, lead time, throughput tracking
-│   └── BLOCKED.md              # Stuck work log — records when cards were split and if help was requested
-├── pi-ext/                     # pi TUI extension (see TUI Extension section)
-│   ├── package.json
-│   └── index.ts
+ KANBAN.md                   # ← READ THIS FIRST. Board overview and active cards.
+ .kanban/
+    CONFIG.md               # Column definitions, WIP limits, policies
+    BOARD.md                # Current board state (card positions)
+    CARDS/                  # Individual card files
+       CARD-001--user-auth.md
+       CARD-002--password-reset.md
+       ...
+    POLICIES.md             # Explicit column policies
+    METRICS.md              # Cycle time, lead time, throughput tracking
+    BLOCKED.md              # Stuck work log — records when cards were split and if help was requested
+ pi-ext/                     # pi TUI extension (see TUI Extension section)
+    package.json
+    index.ts
 ```
 
 ---
 
-## 📋 Operating Rules
+## Operating Rules
 
 ### Rule 1 — Respect WIP Limits
 
@@ -128,7 +128,7 @@ Cycle time and lead time are logged automatically when a PBI moves to Done. Revi
 
 ---
 
-## 🛠️ Kanban Workflows
+## Kanban Workflows
 
 ### 0. Drawing the Board
 
@@ -241,15 +241,15 @@ Cards move through columns by being **pulled** by the next stage, not pushed.
 
 Output example:
 ```
-📊 WIP Status
-━━━━━━━━━━━━━━━
+ WIP Status
+
 Backlog      —  12 cards  (limit: ∞)
-Ready        —   3 cards  (limit:  3) ⚠️ AT LIMIT
-In Progress  —   2 cards  (limit:  3) ✅
-Review       —   2 cards  (limit:  2) ⚠️ AT LIMIT
+Ready        —   3 cards  (limit:  3)  AT LIMIT
+In Progress  —   2 cards  (limit:  3) 
+Review       —   2 cards  (limit:  2)  AT LIMIT
 Done         —   8 cards  (limit: ∞)
-━━━━━━━━━━━━━━━
-🔴 Bottleneck detected: Review column is at WIP limit.
+
+ Bottleneck detected: Review column is at WIP limit.
    → 1 card waiting in In Progress to enter Review.
 ```
 
@@ -327,7 +327,7 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 
 ---
 
-## 📋 Quick Reference Cards
+## Quick Reference Cards
 
 ### Before Any Action
 - [ ] **Read the board** — read KANBAN.md, BOARD.md, and CONFIG.md to understand current state and policies
@@ -375,14 +375,14 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 
 ---
 
-## 📚 References
+## References
 
 - [Kanban Board Visualization](references/board-visualization.md) — Text-based board format. When asked to draw the current board, generate output matching this template.
 - [Kanban Method Overview](references/kanban-overview.md) — The six core Kanban practices explained for AI agents.
 
 ---
 
-## 🖥️ TUI Extension
+## TUI Extension
 
 A live-updating, keyboard-navigable Kanban board terminal UI is available as a pi extension. It renders the board, metrics, and stuck work with color-coded columns and WIP bars.
 
@@ -428,7 +428,7 @@ The extension also:
 
 ---
 
-## 🔧 Helper Scripts
+## Helper Scripts
 
 | Script | Purpose |
 |--------|---------|

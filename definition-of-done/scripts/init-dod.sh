@@ -7,13 +7,13 @@ set -euo pipefail
 
 DATE=$(date -Iseconds)
 
-echo "📋 Initializing Definition of Done..."
+echo "Initializing Definition of Done..."
 
 mkdir -p .dod
 
 # DEFINITION_OF_DONE.md
 if [ ! -f DEFINITION_OF_DONE.md ]; then
-  cat > DEFINITION_OF_DONE.md << 'DOD_EOF'
+ cat > DEFINITION_OF_DONE.md << 'DOD_EOF'
 # Definition of Done
 
 > Every item must meet ALL of these criteria before it can be marked as Done.
@@ -49,7 +49,7 @@ if [ ! -f DEFINITION_OF_DONE.md ]; then
 ---
 _Last reviewed: —_
 DOD_EOF
-  echo "📄 Created DEFINITION_OF_DONE.md"
+ echo "Created DEFINITION_OF_DONE.md"
 fi
 
 # .dod/CONFIG.md
@@ -73,7 +73,7 @@ review_cadence: quarterly
 # Can DoD items be overridden? If so, who decides?
 override_policy: "Team decision — logged in VERIFICATION_LOG.md"
 CONFIG_EOF
-echo "📄 Created .dod/CONFIG.md"
+echo "Created .dod/CONFIG.md"
 
 # .dod/CHECKLIST.md
 cat > .dod/CHECKLIST.md << 'CHECK_EOF'
@@ -105,24 +105,24 @@ enabled: Compliance documentation completed
 ## Deployment
 enabled: Docker instance rebuilt and deployed
 CHECK_EOF
-echo "📄 Created .dod/CHECKLIST.md"
+echo "Created .dod/CHECKLIST.md"
 
 # .dod/VERIFICATION_LOG.md
 echo "# Verification Log" > .dod/VERIFICATION_LOG.md
 echo "" >> .dod/VERIFICATION_LOG.md
 echo "- $DATE: DoD initialized" >> .dod/VERIFICATION_LOG.md
-echo "📄 Created .dod/VERIFICATION_LOG.md"
+echo "Created .dod/VERIFICATION_LOG.md"
 
 # .dod/REVIEW_LOG.md
 echo "# DoD Review Log" > .dod/REVIEW_LOG.md
 echo "" >> .dod/REVIEW_LOG.md
 echo "- $DATE: Initial DoD created" >> .dod/REVIEW_LOG.md
-echo "📄 Created .dod/REVIEW_LOG.md"
+echo "Created .dod/REVIEW_LOG.md"
 
 echo ""
-echo "✅ Definition of Done initialized!"
+echo "Definition of Done initialized!"
 echo ""
 echo "Next steps:"
-echo "  1. Review DEFINITION_OF_DONE.md and customize the criteria"
-echo "  2. Enable/disable checklist items in .dod/CHECKLIST.md"
-echo "  3. Before marking work as Done, run ./scripts/verify-dod.sh <item-id>"
+echo " 1. Review DEFINITION_OF_DONE.md and customize the criteria"
+echo " 2. Enable/disable checklist items in .dod/CHECKLIST.md"
+echo " 3. Before marking work as Done, run ./scripts/verify-dod.sh <item-id>"

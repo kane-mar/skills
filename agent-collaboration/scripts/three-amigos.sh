@@ -13,14 +13,14 @@ RESOLUTION="${5:?"Usage: $0 <story-name> <po-view> <dev-view> <qa-view> <resolut
 DATE=$(date -Iseconds)
 
 {
-  echo ""
-  echo "## Three Amigos — Story: $STORY ($DATE)"
-  echo ""
-  echo "**PO:** \"$PO\""
-  echo "**Developer:** \"$DEV\""
-  echo "**QA:** \"$QA\""
-  echo "**Resolution:** $RESOLUTION"
+ echo ""
+ echo "## Three Amigos — Story: $STORY ($DATE)"
+ echo ""
+ echo "**PO:** \"$PO\""
+ echo "**Developer:** \"$DEV\""
+ echo "**QA:** \"$QA\""
+ echo "**Resolution:** $RESOLUTION"
 } >> .collaboration/DAILY_LOG.md
 
-echo "✅ Three Amigos session logged for: $STORY"
-echo "   Resolution: $RESOLUTION"
+echo "Three Amigos session logged for: $STORY"
+echo " Resolution: $RESOLUTION"

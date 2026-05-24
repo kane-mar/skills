@@ -43,11 +43,11 @@ ITEM_EOF
 
 # Also append to BACKLOG.md
 {
-  echo "| $ITEM_ID | $TITLE | $TYPE | $PRIORITY | — | captured |"
+ echo "| $ITEM_ID | $TITLE | $TYPE | $PRIORITY | — | captured |"
 } >> BACKLOG.md
 
-echo "✅ Captured: $ITEM_ID — $TITLE"
-echo "   File: $FILENAME"
-echo "   Type: $TYPE | Priority: $PRIORITY"
+echo "Captured: $ITEM_ID — $TITLE"
+echo " File: $FILENAME"
+echo " Type: $TYPE | Priority: $PRIORITY"
 echo ""
 echo "Next: Refine with story, AC, and estimate when ready for sprint planning."

@@ -10,8 +10,8 @@ CARD="${1:?"Usage: $0 <card-id>"}"
 CARD_FILE=$(find .kanban/CARDS/ -name "${CARD}--*.md" 2>/dev/null | head -1)
 
 if [ -z "$CARD_FILE" ]; then
-  echo "Error: Card $CARD not found in .kanban/CARDS/"
-  exit 1
+ echo "Error: Card $CARD not found in .kanban/CARDS/"
+ exit 1
 fi
 
 TITLE=$(grep "^title:" "$CARD_FILE" | sed 's/.*: "//' | sed 's/"$//')
@@ -20,6 +20,6 @@ TITLE=$(grep "^title:" "$CARD_FILE" | sed 's/.*: "//' | sed 's/"$//')
 mkdir -p .kanban/ARCHIVED
 mv "$CARD_FILE" ".kanban/ARCHIVED/"
 
-echo "✅ Archived: $CARD — $TITLE"
-echo "   Card moved to .kanban/ARCHIVED/"
-echo "   (Metrics were already logged by move-card.sh when this PBI moved to Done)"
+echo "Archived: $CARD — $TITLE"
+echo " Card moved to .kanban/ARCHIVED/"
+echo " (Metrics were already logged by move-card.sh when this PBI moved to Done)"

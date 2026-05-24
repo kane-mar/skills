@@ -67,7 +67,7 @@ _Key points from the retrospective conversation._
 | | | |
 RETRO_EOF
 
-echo "✅ Retrospective created: $FILENAME"
+echo "Retrospective created: $FILENAME"
 echo ""
 echo "Fill in the Values Check first (5 min), then discuss what went well and what to improve."
 echo "Commit to 1-3 concrete action items for the next sprint."
