@@ -49,15 +49,15 @@ Then read the rest of this skill to understand the values, guardrails, and proto
 
 >  **Two modes of operation:** This skill works for both real-time multi-agent teams (agents running simultaneously) and sequential sessions (one agent at a time, handing off via artifacts). Protocols are the same — real-time teams use syncs and swarming more aggressively; sequential sessions rely more on DECISIONS.md and DAILY_LOG.md for handoffs.
 
-## The Five Scrum Values (The Behavioral Backbone)
+## Core Concepts
 
 The processes in this skill (planning, daily syncs, swarming, pairing, retros) are tools. They work **only when the five Scrum values are genuinely adopted** by every agent. Without these values, the practices become empty, robotic rituals. With them, the team creates **psychological safety** — the exact environment required for true cross-functional collaboration to happen naturally.
 
-### 1. Commitment — to the Sprint Goal, each other, and quality.
-### 2. Focus — on the Sprint, not distractions.
-### 3. Openness — full transparency about work, progress, and challenges.
-### 4. Respect — every agent is a capable professional with unique strengths.
-### 5. Courage — speak up, tackle hard problems, admit uncertainty.
+### Commitment — to the Sprint Goal, each other, and quality
+### Focus — on the Sprint, not distractions
+### Openness — full transparency about work, progress, and challenges
+### Respect — every agent is a capable professional with unique strengths
+### Courage — speak up, tackle hard problems, admit uncertainty
 
 ### The Values in Action
 
@@ -75,11 +75,11 @@ These values interlock. When a developer realizes a feature is twice as complex 
 
 **For detailed exploration of each value** (what it looks like, what it doesn't mean, signs of weakness) see [references/patterns-deep-dive.md](references/patterns-deep-dive.md#1-the-five-scrum-values--deep-dive).
 
-## Structural Guardrails
+## Operating Rules
 
-Values shape *intentions*. These structural guardrails shape *behavior* — they make collaboration the path of least resistance rather than an afterthought. High-performing teams formalize these into a **Team Working Agreement** (see `.collaboration/WORKING_AGREEMENT.md`).
+Values shape *intentions*. These operating rules shape *behavior* — they make collaboration the path of least resistance rather than an afterthought. High-performing teams formalize these into a **Team Working Agreement** (see `.collaboration/WORKING_AGREEMENT.md`).
 
-### 1. WIP Limits (Swarming Enforcer)
+### Rule 1 — WIP Limits (Swarming Enforcer)
 
 **The rule:** Set a hard Work-in-Progress (WIP) limit on SPRINT_BACKLOG.md. For a team of 3-5 agents, limit active stories to 2-3 total.
 
@@ -92,7 +92,7 @@ Values shape *intentions*. These structural guardrails shape *behavior* — they
 
 > **See also:** [Protocol 4 — Swarming](#4-swarming-bottleneck-protocol) for detailed swarming mechanics.
 
-### 2. Shared Definition of Done (Cross-Functional Binding)
+### Rule 2 — Shared Definition of Done (Cross-Functional Binding)
 
 **The rule:** An item is not "Done" until *all* criteria are met — no agent can declare victory unilaterally. Include cross-functional gates:
 - *"Requires peer review from another discipline"* (backend reviews frontend, QA signs off on backend, etc.)
@@ -100,7 +100,7 @@ Values shape *intentions*. These structural guardrails shape *behavior* — they
 
 **Define your DoD in WORKING_AGREEMENT.md and reference it in SPRINT.md.**
 
-### 3. Three Amigos (Design Before Code)
+### Rule 3 — Three Amigos (Design Before Code)
 
 **The rule:** Before coding a story, hold a mini-kickoff with three perspectives:
 - **Business** (PO agent) — explains the *what*
@@ -116,7 +116,7 @@ Values shape *intentions*. These structural guardrails shape *behavior* — they
 **Resolution:** Added client cooldown + server queue + error UI. AC updated.
 ```
 
-### 4. The 15-Minute Rule (Normalizing Help-Seeking)
+### Rule 4 — The 15-Minute Rule (Normalizing Help-Seeking)
 
 **The rule:** If stuck on a problem, spend **15 minutes** trying to solve it (documenting attempts). If still stuck, **must** ask a teammate for help.
 
@@ -130,7 +130,7 @@ Values shape *intentions*. These structural guardrails shape *behavior* — they
 
 > **See also:** [Protocol 5 — Pair Programming](#5-pair-programming) for when a teammate responds and you pair on the solution.
 
-### 5. Guilds (Cross-Team Alignment)
+### Rule 5 — Guilds (Cross-Team Alignment)
 
 **The rule:** Establish cross-cutting groups from different sub-teams who share a discipline (e.g., Frontend Guild, Security Guild) to align on global standards.
 
@@ -141,7 +141,7 @@ Values shape *intentions*. These structural guardrails shape *behavior* — they
 **Decision:** All new components use shared design system. No component-specific CSS outside `src/shared/`.
 ```
 
-### 6. Team Working Agreement
+### Rule 6 — Team Working Agreement
 
 Formalize all guardrails into **`.collaboration/WORKING_AGREEMENT.md`**:
 
@@ -166,9 +166,9 @@ Formalize all guardrails into **`.collaboration/WORKING_AGREEMENT.md`**:
 | High-risk or security-sensitive task | Pair program (see [Protocol 5](#5-pair-programming)) |
 | An agent is stuck for 15+ minutes | Invoke the 15-minute rule → ask for help → micro-pair |
 | Sprint needs structure | Run planning → daily syncs → review → retro (see [Protocols 2-7](#2-sprint-planning)) |
-| Teams need technical alignment | Form a Guild (see [Guardrail 5](#5-guilds-cross-team-alignment)) |
+| Teams need technical alignment | Form a Guild (see [Rule 5](#rule-5--guilds-cross-team-alignment)) |
 
-## Shared Team Structure
+## Shared Structure
 
 ```
 project-root/
@@ -183,7 +183,7 @@ project-root/
     RETROS/                   # Sprint retrospectives
 ```
 
-## Protocols
+## Collaboration Workflows
 
 ### 0. Ground Rules (Every Agent Must Follow)
 
@@ -357,6 +357,8 @@ See [references/templates.md](references/templates.md#sprint-retrospective-with-
 - **Communication quality** — Are agents being explicit enough in logs and decisions?
 
 ## Complete Sprint Example
+
+The following example shows how all the above workflows work together in practice:
 
 ```
 Sprint 3 Goal: "Users can reset their password via email"
