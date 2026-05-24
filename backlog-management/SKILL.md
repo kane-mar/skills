@@ -13,7 +13,7 @@ This skill provides structured workflows for managing product and sprint backlog
 
 It covers the full lifecycle: defining the product goal, capturing items, writing user stories with acceptance criteria, prioritizing using established frameworks, estimating effort, refining items, and maintaining a healthy backlog.
 
-> **Relationship to agent-collaboration:** This skill focuses on the *backlog artifact itself* — its structure, quality, and prioritization. The [agent-collaboration](../agent-collaboration/SKILL.md) skill focuses on *team ceremonies* (sprint planning, daily syncs, retros). They work well together: use backlog-management to keep your backlog healthy, and agent-collaboration to run the sprint rhythm.
+> **Relationship to agent-collaboration:** This skill focuses on the *backlog artifact itself* — its structure, quality, and prioritization. The [agent-collaboration](../agent-collaboration/SKILL.md) skill focuses on *team collaboration patterns* — the five Scrum values, swarming on bottlenecks, pair programming, and the structural guardrails (WIP limits, Three Amigos, Definition of Done, 15-minute rule). They work well together: use backlog-management to keep your backlog healthy, and agent-collaboration to resolve bottlenecks and coordinate multi-agent work.
 
 > **CSM reference:** See [references/csm-course-notes.md](references/csm-course-notes.md) for the full Certified Scrum Master training on the product backlog by Kane Mar.
 
@@ -100,7 +100,7 @@ The following rules govern how agents consume the backlog. These are not optiona
 
 ### Rule 1 — Always Work in Priority Order
 
-Agents must always work in priority order without exception. The highest-priority item in the backlog is always the next item to be worked on. Priority is determined by the prioritization framework defined in `.backlog/CONFIG.md`.
+Agents must always work in priority order without exception. The highest-priority item in the backlog is always the next item to be worked on. Priority is determined by the product owner and the backlog's single-ranked order.
 
 ### Rule 2 — Pull Work at Any Time, in Priority Order
 
@@ -292,6 +292,8 @@ If a dependency does arise, the simplest resolution is **backlog order**: the de
 
 ## Helper Scripts
 
+| Script | Purpose |
+|--------|---------|
 | `init-backlog.sh` | Initialize the backlog directory structure |
 | `capture-item.sh` | Quick-capture a new backlog item |
 | `refine.sh` | Log a refinement session |
