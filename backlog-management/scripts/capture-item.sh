@@ -36,9 +36,6 @@ created: $DATE
 
 ## Technical Notes
 (Add notes)
-
-## Estimate
-(Not yet estimated)
 ITEM_EOF
 
 # Also append to BACKLOG.md
@@ -50,4 +47,4 @@ echo "Captured: $ITEM_ID — $TITLE"
 echo " File: $FILENAME"
 echo " Type: $TYPE | Priority: $PRIORITY"
 echo ""
-echo "Next: Refine with story, AC, and estimate when ready for sprint planning."
+echo "Next: Refine with story and AC when ready for sprint planning."
