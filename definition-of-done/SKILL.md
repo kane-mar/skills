@@ -86,9 +86,22 @@ project-root/
 
 ---
 
-## 📋 Standard DoD Criteria
+## 📋 Example DoD Criteria (Software Team)
 
-Below is a robust, production-ready Definition of Done structured as a plain-text checklist. It balances source-level quality, runtime validation, and organizational compliance.
+> **DoD varies by context.** The example below works for a software development team building and deploying services. A team building a physical product, a marketing campaign, or a regulatory filing will have a completely different DoD. **Define your own DoD** — use this as inspiration, not as a mandate.
+
+The criteria that matter depend on what you're building:
+
+| Team Context | Example DoD Criteria |
+|-------------|---------------------|
+| **Software** | Tests pass, code reviewed, deployed, logged |
+| **Physical product** | Prototype tested, materials sourced, safety certified, assembly documented |
+| **Marketing** | Copy reviewed, assets approved, campaign scheduled, analytics tagged |
+| **Regulatory** | Filing reviewed, evidence compiled, signatures obtained, submitted |
+
+**The principle is the same regardless of context:** the DoD is a shared, universal quality checklist that applies to every item. What goes on that checklist depends entirely on what "quality" means for your team.
+
+Below is an example for a software team building and deploying production services:
 
 ### Code Quality
 - [ ] **No known defects** — all identified bugs are fixed or explicitly deferred
@@ -214,7 +227,7 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 ## 📚 References
 
 - [DoD vs Acceptance Criteria Deep Dive](references/dod-vs-ac.md) — Detailed explanation with examples of when each applies.
-- [Production DoD Template](references/production-dod-template.md) — The full production-ready DoD checklist used in the init script.
+- [Example DoD: Software Team](references/production-dod-template.md) — A production-ready DoD example for a software team (adapt to your own context).
 
 ---
 

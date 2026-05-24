@@ -18,6 +18,10 @@ if [ ! -f DEFINITION_OF_DONE.md ]; then
 
 > Every item must meet ALL of these criteria before it can be marked as Done.
 > See `.dod/CHECKLIST.md` for the machine-readable checklist.
+>
+> **This is an example for a software team.** Adapt it to your own context.
+> Physical products, marketing, regulatory, and other domains will need
+> completely different criteria.
 
 ## Code Quality
 - [ ] No known defects
