@@ -20,29 +20,27 @@ if [ ! -f DEFINITION_OF_DONE.md ]; then
 > See `.dod/CHECKLIST.md` for the machine-readable checklist.
 
 ## Code Quality
-- [ ] Code reviewed
 - [ ] No known defects
-- [ ] Coding standards met
-- [ ] Error handling complete
+- [ ] Code has been refactored to reduce technical debt
+- [ ] Static Analysis: Code passes all local linting, syntax verification, and static security analysis tool baselines
+- [ ] Peer Review: The pull request (PR) has been reviewed and approved by at least one other engineer, ensuring adherence to structural and architectural patterns
+- [ ] Mainline Integration: Code branch is cleanly merged into the integration line with all build flags passing
 
 ## Testing
-- [ ] Unit tests pass
-- [ ] New unit tests added (≥ 80% coverage)
-- [ ] Integration tests pass
-- [ ] Edge cases tested
+- [ ] Unit Testing: Automated unit tests execute successfully with no failures
+- [ ] Integration Verification: API contracts, database migrations, and cross-service dependencies validate successfully in an automated staging sweep
+- [ ] End-to-end functionality tested with no failures
+- [ ] Acceptance Criteria: The implemented logic satisfies all business-defined acceptance criteria mapped out in the parent backlog item
+
+## Observability
+- [ ] Telemetry & Logging: Structured application logs and performance markers are exposed for system monitoring tools
 
 ## Documentation
-- [ ] Code documented (APIs, complex logic)
-- [ ] Decision rationale logged
+- [ ] Documentation Update: System design changes, new API schemas, or configuration flag alterations are accurately cataloged in the team's shared knowledge base, FAQs, Support Guides
+- [ ] Compliance documentation completed (for regulated industries)
 
-## Operations
-- [ ] No regressions
-- [ ] Performance verified
-- [ ] Logging added
-
-## Collaboration
-- [ ] Peer verified (another agent or human)
-- [ ] Stakeholder sign-off (PO or end user)
+## Deployment
+- [ ] Docker instance has been rebuilt and deployed
 
 ---
 _Last reviewed: —_
@@ -81,34 +79,27 @@ cat > .dod/CHECKLIST.md << 'CHECK_EOF'
 # Disabled items are skipped during verification.
 
 ## Code Quality
-enabled: Code reviewed
 enabled: No known defects
-enabled: Coding standards met
-enabled: Error handling complete
-disabled: No dead code
-disabled: Security reviewed
+enabled: Technical debt addressed
+enabled: Static analysis passed
+enabled: Peer review completed
+enabled: Mainline integration
 
 ## Testing
 enabled: Unit tests pass
-enabled: New unit tests added
-enabled: Integration tests pass
-enabled: Edge cases tested
-disabled: Accessibility checked
+enabled: Integration verification passed
+enabled: End-to-end tests pass
+enabled: Acceptance criteria satisfied
+
+## Observability
+enabled: Telemetry and logging added
 
 ## Documentation
-enabled: Code documented
-enabled: Decision rationale logged
-disabled: README updated
+enabled: Documentation updated
+enabled: Compliance documentation completed
 
-## Operations
-enabled: No regressions
-enabled: Performance verified
-disabled: Security reviewed
-enabled: Logging added
-
-## Collaboration
-enabled: Peer verified
-enabled: Stakeholder sign-off
+## Deployment
+enabled: Docker instance rebuilt and deployed
 CHECK_EOF
 echo "📄 Created .dod/CHECKLIST.md"
 

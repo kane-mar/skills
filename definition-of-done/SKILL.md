@@ -88,36 +88,30 @@ project-root/
 
 ## 📋 Standard DoD Criteria
 
-Below is a comprehensive set of common DoD criteria organized by category. Teams should select the criteria that apply to their context and add any team-specific ones.
+Below is a robust, production-ready Definition of Done structured as a plain-text checklist. It balances source-level quality, runtime validation, and organizational compliance.
 
 ### Code Quality
-- [ ] **Code reviewed** — reviewed by at least one other agent (or human)
 - [ ] **No known defects** — all identified bugs are fixed or explicitly deferred
-- [ ] **Coding standards met** — follows the team's agreed style and conventions
-- [ ] **No dead code** — no commented-out code, unused imports, or dead branches
-- [ ] **Error handling complete** — all error paths are handled gracefully
+- [ ] **Technical debt addressed** — code has been refactored to reduce technical debt
+- [ ] **Static analysis passed** — code passes all local linting, syntax verification, and static security analysis tool baselines
+- [ ] **Peer review completed** — the pull request has been reviewed and approved by at least one other engineer, ensuring adherence to structural and architectural patterns
+- [ ] **Mainline integration** — code branch is cleanly merged into the integration line with all build flags passing
 
 ### Testing
-- [ ] **Unit tests pass** — all existing + new unit tests pass
-- [ ] **New unit tests added** — coverage for new code (aim for ≥ 80%)
-- [ ] **Integration tests pass** — end-to-end flows verified
-- [ ] **Edge cases tested** — boundary conditions, empty states, error states
-- [ ] **Accessibility checked** — meets WCAG standards (if applicable)
+- [ ] **Unit tests pass** — automated unit tests execute successfully with no failures
+- [ ] **Integration verification passed** — API contracts, database migrations, and cross-service dependencies validate successfully in an automated staging sweep
+- [ ] **End-to-end functionality tested** — full E2E tests pass with no failures
+- [ ] **Acceptance criteria satisfied** — the implemented logic satisfies all business-defined acceptance criteria mapped out in the parent backlog item
+
+### Observability
+- [ ] **Telemetry and logging added** — structured application logs and performance markers are exposed for system monitoring tools
 
 ### Documentation
-- [ ] **Code documented** — public APIs, complex logic, and configuration explained
-- [ ] **README updated** — if the item changes setup, usage, or architecture
-- [ ] **Decision rationale logged** — architectural or design decisions recorded
+- [ ] **Documentation updated** — system design changes, new API schemas, or configuration flag alterations are accurately cataloged in the team's shared knowledge base, FAQs, support guides
+- [ ] **Compliance documentation completed** (for regulated industries)
 
-### Operations
-- [ ] **No regressions** — existing functionality still works
-- [ ] **Performance verified** — no degradation beyond accepted thresholds
-- [ ] **Security reviewed** — no new vulnerabilities introduced
-- [ ] **Logging added** — sufficient observability for production
-
-### Collaboration
-- [ ] **Peer verified** — another agent or human confirms the work meets Acceptance Criteria
-- [ ] **Stakeholder sign-off** — PO or end user accepts the work
+### Deployment
+- [ ] **Docker instance rebuilt and deployed** — the Docker image has been rebuilt and deployed to the target environment
 
 > **Not all criteria apply to all teams.** Customize the checklist in `.dod/CHECKLIST.md` to match your team's context. A small team building a prototype may have a lightweight DoD. A regulated industry team may have an extensive one.
 
@@ -220,6 +214,7 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 ## 📚 References
 
 - [DoD vs Acceptance Criteria Deep Dive](references/dod-vs-ac.md) — Detailed explanation with examples of when each applies.
+- [Production DoD Template](references/production-dod-template.md) — The full production-ready DoD checklist used in the init script.
 
 ---
 
