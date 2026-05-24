@@ -19,7 +19,7 @@ if [ ! -f BACKLOG.md ]; then
 Prioritized list of work items. Top items are ready for sprint planning.
 See `.backlog/CONFIG.md` for prioritization framework and estimation scale.
 
-| ID | Title | Type | Priority | Estimate | Status |
+| ID | Title | Type | Priority | Status |
 |----|-------|------|----------|----------|--------|
 | (add items here) | | | | | |
 
@@ -55,16 +55,6 @@ _An epic is complete when all its child items are done._
 EPICS_EOF
  echo "Created .backlog/EPICS.md"
 fi
-
-# .backlog/DEPENDENCIES.md
-cat > .backlog/DEPENDENCIES.md << 'DEPS_EOF'
-# Dependency Map
-
-| Item | Depends On | Blocks | Notes |
-|------|-----------|--------|-------|
-| (add dependencies here) | | | |
-DEPS_EOF
-echo "Created .backlog/DEPENDENCIES.md"
 
 # .backlog/REFINEMENT_LOG.md
 echo "# Refinement Log" > .backlog/REFINEMENT_LOG.md

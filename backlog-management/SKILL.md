@@ -1,10 +1,10 @@
 ---
 name: backlog-management
-description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, backlog refinement, dependency mapping, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
+description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
-  patterns: "backlog-refinement, user-stories, acceptance-criteria, dependency-mapping"
+  patterns: "backlog-refinement, user-stories, acceptance-criteria"
 ---
 
 # Backlog Management
@@ -131,7 +131,6 @@ project-root/
        ITEM-002--password-reset.md
        ...
     EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
-    DEPENDENCIES.md          # Dependency map between items
     REFINEMENT_LOG.md        # Notes from backlog refinement sessions
 ```
 
@@ -220,7 +219,7 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 - [ ] **Top items are small enough** — the item at the very top of the backlog should be small enough to complete in a single sprint. If not, it needs further breakdown
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
 - [ ] **No zombies** — items older than 3 months without activity → remove or flag for review
-- [ ] **Dependencies mapped** — items that block each other are linked in DEPENDENCIES.md
+- [ ] **Split into vertical slices** — items should be as independent as possible
 - [ ] **Splitting done** — items > 13 points are broken down
 - [ ] **Duplicates merged** — search for overlapping items
 
@@ -241,41 +240,26 @@ When preparing for sprint planning, pull the top N items from the backlog that f
 **Selection rules:**
 1. Take items from the top of the prioritized backlog
 2. Stop when total estimated effort reaches team capacity
-3. Ensure no hard dependency is missing (check DEPENDENCIES.md)
-4. Include at least one bug fix if bugs exist in the backlog
+3. Include at least one bug fix if bugs exist in the backlog
 
-### 5. Dependency Mapping
+### 5. Work in Vertical Slices
 
-Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
+Break down work into **vertical slices** — small, independent items that deliver end-to-end value on their own. Each item should be as independent as possible, requiring no other item to be complete before it can be delivered.
 
-```markdown
-## Dependency Map
-
-| Item | Depends On | Blocks | Notes |
-|------|-----------|--------|-------|
-| ITEM-003: Password Reset | ITEM-001: User Auth | — | Needs auth system first |
-| ITEM-007: Email Template | — | ITEM-003 | Must be done before password reset emails |
-```
-
-```bash
-# Add a dependency
-<SKILL_DIR>/scripts/add-dependency.sh ITEM-003 "depends-on" ITEM-001
-```
+If a dependency does arise, the simplest resolution is **backlog order**: the depended-upon item naturally comes first in priority, so it gets pulled and completed before the dependent item. No explicit dependency tracking is needed — the single ranked order handles it.
 
 ---
 
 ## Quick Reference Cards
 
 ### Before Any Action
-- [ ] **Read the backlog** — read BACKLOG.md and CONFIG.md to understand the current state and prioritization framework
+- [ ] **Read the backlog** — read BACKLOG.md and CONFIG.md to understand the current state
 - [ ] **Check the product goal** — ensure the work traces back to the product goal
-- [ ] **Check dependencies** — review DEPENDENCIES.md before pulling an item
-- [ ] **Respect the rules** — always work in priority order (Rule 1); help others before pulling new work (Rule 3)
+- [ ] **Work in priority order** — always pull the highest-priority unstarted item (Rule 1); help others before pulling new work (Rule 3)
 
 ### After Any Action
 - [ ] **Update BACKLOG.md** — reflect the new status of any item that changed
-- [ ] **Log decisions** — record prioritization decisions and refinement notes in REFINEMENT_LOG.md
-- [ ] **Update dependencies** — if new dependencies were discovered, add them to DEPENDENCIES.md
+- [ ] **Log decisions** — record refinement notes in REFINEMENT_LOG.md
 - [ ] **Archive completed items** — acceptance criteria met + DoD satisfied → archive out of active backlog (Rule 4)
 - [ ] **Keep moving** — if items remain, pull the next highest-priority item (Rule 5)
 
@@ -288,14 +272,14 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 ### When Refining an Item
 - [ ] Write a user story (As a... I want... So that...)
 - [ ] Define acceptance criteria (happy path + edge cases + error cases)
-- [ ] Map dependencies
+- [ ] Split into vertical slices — each item should be independent
 - [ ] Check for duplicates
 
 ### Before Sprint Planning
 - [ ] Top items have stories + AC
-- [ ] Dependencies are clear
+- [ ] Dependencies are clear (backlog order handles them naturally)
 - [ ] Stale items are removed or flagged for review
-- [ ] CONFIG.md reflects current workflow rules
+- [ ] CONFIG.md reflects current workflow states
 
 ---
 
@@ -311,6 +295,5 @@ Items often depend on each other. Track these in `.backlog/DEPENDENCIES.md`:
 | `capture-item.sh` | Quick-capture a new backlog item |
 | `refine.sh` | Log a refinement session |
 | `select-for-sprint.sh` | Pull items from backlog into sprint scope |
-| `add-dependency.sh` | Add a dependency link between items |
 
 See [scripts/](scripts/) for implementation.
