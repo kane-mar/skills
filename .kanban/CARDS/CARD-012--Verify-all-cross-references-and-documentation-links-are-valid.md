@@ -3,7 +3,7 @@ id: CARD-012
 title: "Verify all cross-references and documentation links are valid"
 type: chore
 priority: medium
-status: backlog
+status: done
 created: 2026-06-02T20:15:45+10:00
 ---
 

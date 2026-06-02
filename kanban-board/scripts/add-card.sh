@@ -39,6 +39,28 @@ started: —
 completed: —
 CARD_EOF
 
+# Update BOARD.md — add to Backlog section
+BOARD="${KANBAN_DIR:-.}/BOARD.md"
+if [ ! -f "$BOARD" ]; then
+ BOARD=".kanban/BOARD.md"
+fi
+
+CARD_LINE="- **${CARD_ID}** ${TITLE}"
+
+if [ -f "$BOARD" ]; then
+ # Add card line after the ## Backlog section heading
+ if grep -q "^## Backlog" "$BOARD"; then
+  awk '
+   /^## Backlog/ { print; backlog=1; next }
+   backlog && /^## / { print card_line; print; backlog=0; next }
+   { print }
+   END { if (backlog) print card_line }
+  ' card_line="$CARD_LINE" "$BOARD" > "${BOARD}.tmp" && mv "${BOARD}.tmp" "$BOARD"
+ else
+  echo -e "\n## Backlog\n$CARD_LINE" >> "$BOARD"
+ fi
+fi
+
 echo "Card created: $CARD_ID — $TITLE"
 echo " File: $FILENAME"
 echo " Type: $TYPE | Priority: $PRIORITY"

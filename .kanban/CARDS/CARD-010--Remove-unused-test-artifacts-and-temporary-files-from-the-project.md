@@ -3,7 +3,7 @@ id: CARD-010
 title: "Remove unused test artifacts and temporary files from the project"
 type: chore
 priority: high
-status: backlog
+status: done
 created: 2026-06-02T20:15:45+10:00
 ---
 

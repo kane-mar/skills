@@ -15,26 +15,46 @@ echo "WIP Status"
 echo ""
 
 BOTTLENECKS=""
+HAS_BOTTLENECK=false
 
 # Parse columns from CONFIG and count cards in BOARD.md
-grep "^\s*-\s*" .kanban/CONFIG.md | while IFS= read -r line; do
- COLUMN=$(echo "$line" | sed 's/.*-\s*//' | sed 's/:.*//')
- LIMIT=$(echo "$line" | sed 's/.*://' | tr -d ' ')
+while IFS= read -r line; do
+ # Match lines like "- Column Name: limit"
+ case "$line" in
+  -*:*)
+   # Strip leading "- " to get the rest
+   rest="${line#*- }"
+   # Extract column name (everything before last ": ")
+   COLUMN="${rest%:*}"
+   COLUMN="${COLUMN%"${COLUMN##*[! ]}"}" # trim trailing spaces
+   # Extract limit (everything after last ": ")
+   LIMIT="${rest##*: }"
+   LIMIT="${LIMIT%"${LIMIT##*[! ]}"}" # trim trailing spaces
+   ;;
+  *)
+   continue
+   ;;
+ esac
+
+ if [ -z "$COLUMN" ] || [ -z "$LIMIT" ]; then
+  continue
+ fi
 
  # Count cards in this column from BOARD.md
  COUNT=0
  if [ -f .kanban/BOARD.md ]; then
   IN_SECTION=false
   while IFS= read -r board_line; do
-   if echo "$board_line" | grep -q "^## $COLUMN"; then
+   if [[ "$board_line" == "## $COLUMN" ]]; then
     IN_SECTION=true
     continue
    fi
    if $IN_SECTION; then
-    if echo "$board_line" | grep -q "^## "; then
+    if [[ "$board_line" == "## "* ]]; then
      break
     fi
-    if echo "$board_line" | grep -q "| \*\*"; then
+    # Match lines like "- **CARD-001** Title"
+    if [[ "$board_line" == *"**CARD-"* ]]; then
      COUNT=$((COUNT + 1))
     fi
    fi
@@ -45,18 +65,21 @@ grep "^\s*-\s*" .kanban/CONFIG.md | while IFS= read -r line; do
   LIMIT_DISPLAY="∞"
   STATUS=""
  elif [ "$COUNT" -ge "$LIMIT" ]; then
-  STATUS=" AT LIMIT"
+  LIMIT_DISPLAY="$LIMIT"
+  STATUS="AT LIMIT"
   BOTTLENECKS="$BOTTLENECKS\n → $COLUMN is at WIP limit ($COUNT/$LIMIT)"
+  HAS_BOTTLENECK=true
  else
+  LIMIT_DISPLAY="$LIMIT"
   STATUS=""
  fi
 
  printf "%-15s %3s cards (limit: %3s) %s\n" "$COLUMN" "$COUNT" "$LIMIT_DISPLAY" "$STATUS"
-done
+done < .kanban/CONFIG.md
 
 echo ""
 
-if [ -n "$BOTTLENECKS" ]; then
+if $HAS_BOTTLENECK; then
  echo -e " Bottleneck detected:$BOTTLENECKS"
 fi
 

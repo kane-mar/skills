@@ -6,10 +6,10 @@
 - **CARD-001** Password Reset UI
 
 ## In Progress
-- **CARD-002** Session Management
 - **CARD-003** User Authentication
 - **CARD-004** Dashboard Layout
 
+- **CARD-002** Session Management
 ## Review
 
 ## Done

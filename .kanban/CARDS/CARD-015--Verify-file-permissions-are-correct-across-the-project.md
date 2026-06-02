@@ -3,7 +3,7 @@ id: CARD-015
 title: "Verify file permissions are correct across the project"
 type: chore
 priority: medium
-status: backlog
+status: done
 created: 2026-06-02T20:15:48+10:00
 ---
 
