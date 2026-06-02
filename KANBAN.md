@@ -7,10 +7,10 @@ See `.kanban/BOARD.md` for the full board state.
 
 | Column | Count | WIP Limit |
 |--------|-------|-----------|
-| Backlog | 12 | ∞ |
-| Ready | 1 | 3 |
-| In Progress | 3 | 3 |
+| Backlog | 0 | ∞ |
+| Ready | 0 | 3 |
+| In Progress | 0 | 3 |
 | Review | 0 | 2 |
-| Done | 1 | ∞ |
+| Done | 0 | ∞ |
 
 _Last updated: 2026-06-02_
