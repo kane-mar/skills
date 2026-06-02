@@ -3,7 +3,7 @@ id: CARD-017
 title: "Write clear commit messages for each logical commit"
 type: chore
 priority: medium
-status: done
+status: backlog
 created: 2026-06-02T20:15:48+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:48+10:00
 (Add notes)
 
 ## Cycle Time
-started: 2026-06-02T20:19:53+10:00
-completed: 2026-06-02T20:20:14+10:00
+started: —
+completed: —

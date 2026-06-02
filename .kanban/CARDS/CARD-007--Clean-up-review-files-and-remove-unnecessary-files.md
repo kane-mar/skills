@@ -3,7 +3,7 @@ id: CARD-007
 title: "Clean up review files and remove unnecessary files"
 type: chore
 priority: high
-status: done
+status: backlog
 created: 2026-06-02T20:14:49+10:00
 ---
 
@@ -18,4 +18,4 @@ created: 2026-06-02T20:14:49+10:00
 
 ## Cycle Time
 started: —
-completed: 2026-06-02T20:20:17+10:00
+completed: —

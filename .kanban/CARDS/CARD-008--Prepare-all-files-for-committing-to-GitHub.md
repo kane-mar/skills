@@ -3,7 +3,7 @@ id: CARD-008
 title: "Prepare all files for committing to GitHub"
 type: chore
 priority: high
-status: done
+status: backlog
 created: 2026-06-02T20:14:51+10:00
 ---
 
@@ -18,4 +18,4 @@ created: 2026-06-02T20:14:51+10:00
 
 ## Cycle Time
 started: —
-completed: 2026-06-02T20:20:17+10:00
+completed: —
