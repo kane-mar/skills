@@ -45,13 +45,29 @@ npx skills add kane-mar/skills --skill definition-of-done
 npx skills add kane-mar/skills --list
 ```
 
-## TUI Extensions
+## TUI Options
 
-The kanban-board skill includes a [pi TUI extension](kanban-board/pi-ext/) for a live-updating, keyboard-navigable Kanban board. See the [TUI Extension section](kanban-board/SKILL.md#tui-extension) in the skill for install and usage instructions.
+The kanban-board skill includes two terminal UI options:
+
+### 1. Standalone TUI (no pi dependency)
+
+A real-time, keyboard-navigable Kanban board that runs in its own terminal tab.
 
 ```bash
-# Quick install (from the skills repo root):
+cd skills/kanban-board/tui
+npm install
+cd /path/to/your-project
+node /path/to/skills/kanban-board/tui/index.js
+```
+
+### 2. pi TUI Extension
+
+A live-updating Kanban board inside pi with the `/kanban` command.
+
+```bash
 mkdir -p ~/.pi/agent/extensions
 ln -sf $(pwd)/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board
 # Then run /reload in pi or restart
 ```
+
+See the [TUI Options section](kanban-board/SKILL.md#tui-options) for full documentation.
