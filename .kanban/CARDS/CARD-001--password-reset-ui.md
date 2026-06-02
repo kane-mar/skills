@@ -3,10 +3,10 @@ id: CARD-001
 title: "Password Reset UI"
 type: feature
 priority: high
-status: ready
+status: done
 created: 2026-06-01T10:00:00
-started: —
-completed: —
+started: 2026-06-02T20:35:35+10:00
+completed: 2026-06-02T20:35:39+10:00
 ---
 
 ## Description

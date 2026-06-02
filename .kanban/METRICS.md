@@ -49,3 +49,15 @@
 | CARD-006 | Security Audit | 2026-05-15 | 2026-06-02 | 18d 0h |
 | CARD-016 | Review the full diff and organize changes into logical commits | 2026-06-02 | 2026-06-02 | 0m |
 | CARD-016 | Review the full diff and organize changes into logical commits | 2026-06-02 | 2026-06-02 | 17m |
+| CARD-017 | Write clear commit messages for each logical commit | 2026-06-02 | 2026-06-02 | 0m |
+| CARD-017 | Write clear commit messages for each logical commit | 2026-06-02 | 2026-06-02 | 17m |
+| CARD-007 | Clean up review files and remove unnecessary files | — | 2026-06-02 | — |
+| CARD-007 | Clean up review files and remove unnecessary files | 2026-06-02 | 2026-06-02 | 18m |
+| CARD-008 | Prepare all files for committing to GitHub | — | 2026-06-02 | — |
+| CARD-008 | Prepare all files for committing to GitHub | 2026-06-02 | 2026-06-02 | 18m |
+| CARD-002 | Session Management | 2026-06-01 | 2026-06-02 | 1d 1h |
+| CARD-002 | Session Management | 2026-05-30 | 2026-06-02 | 2d 23h |
+| CARD-004 | Dashboard Layout | 2026-05-26 | 2026-06-02 | 7d 1h |
+| CARD-004 | Dashboard Layout | 2026-05-25 | 2026-06-02 | 8d 0h |
+| CARD-001 | Password Reset UI | 2026-06-02 | 2026-06-02 | 0m |
+| CARD-001 | Password Reset UI | 2026-06-01 | 2026-06-02 | 1d 0h |
