@@ -100,6 +100,10 @@ project-root/
  pi-ext/                     # pi TUI extension (see TUI Extension section)
     package.json
     index.ts
+ tui/                        # Standalone TUI — runs in its own terminal, no pi dependency
+    package.json
+    index.js
+    README.md
 ```
 
 ---
@@ -379,12 +383,112 @@ All work must be pulled in strict priority order, with no exceptions. The highes
 
 - [Kanban Board Visualization](references/board-visualization.md) — Text-based board format. When asked to draw the current board, generate output matching this template.
 - [Kanban Method Overview](references/kanban-overview.md) — The six core Kanban practices explained for AI agents.
+- [The Seven Wastes (Muda) — Taiichi Ohno](references/seven-wastes.md) — Lean manufacturing's seven forms of waste and how Kanban practices eliminate them. Use as a mental model to identify and remove waste from the workflow.
 
 ---
 
-## TUI Extension
+## TUI Options
 
-A live-updating, keyboard-navigable Kanban board terminal UI is available as a pi extension. It renders the board, metrics, and stuck work with color-coded columns and WIP bars.
+Two terminal UI options are available — a **pi extension** for use inside pi, and a **standalone TUI** that runs in its own terminal tab with no pi dependency.
+
+---
+
+### Option 1: Standalone TUI (no pi dependency)
+
+A real-time, keyboard-navigable Kanban board that runs in its **own terminal tab** — completely independent of pi. It watches `.kanban/` files with `chokidar` and updates automatically as cards move.
+
+#### Install & Run
+
+```bash
+# 1. Install dependencies (one-time)
+cd skills/kanban-board/tui
+npm install
+
+# 2. Open a new terminal tab and run from your project
+cd /path/to/your-project
+node /path/to/skills/kanban-board/tui/index.js
+
+# Or specify the project path as an argument
+node /path/to/skills/kanban-board/tui/index.js /path/to/your-project
+```
+
+#### Keyboard Shortcuts
+
+| Key | Action |
+|-----|--------|
+| `b` | Board view |
+| `m` | Metrics view |
+| `s` | Stuck work view |
+| `↑`/`k` | Navigate up (board view) |
+| `↓`/`j` | Navigate down (board view) |
+| `Enter` | Open card detail |
+| `Esc` | Back from detail view |
+| `p` | Toggle sort by priority / ID |
+| `r` | Refresh board state |
+| `q` or `Ctrl+C` | Quit |
+
+#### Views
+
+- **Board** — Columns with WIP counts, color-coded WIP bars, cards with priority colors, sticky work indicators
+- **Metrics** — Throughput (7d/30d), WIP counts with bars, cycle times (last 10), lead times (last 10), card distribution
+- **Blockers** — Stuck work list with card details and descriptions
+- **Card Detail** — Full card info on Enter
+
+> **Tip:** Run the standalone TUI in a second terminal tab while you work in the first. Cards update live as they move.
+
+#### Features
+
+- **Real-time file watching** — uses `chokidar` to detect changes in `.kanban/`
+- **WIP limit indicators** — color-coded bars (green < 75%, yellow < 100%, red = full)
+- **Priority sorting** — toggle between priority order and card ID order with `p`
+- **Card detail view** — press Enter on any card to see full description and metadata
+- **Terminal resize** — handles window resizing gracefully
+
+---
+
+### Option 2: pi TUI Extension
+
+A live-updating, keyboard-navigable Kanban board terminal UI available as a pi extension. It renders the board, metrics, and stuck work with color-coded columns and WIP bars.
+
+#### Install
+
+```bash
+# Link the extension into pi's global extensions:
+mkdir -p ~/.pi/agent/extensions
+ln -sf /path/to/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board
+
+# Then restart pi or run /reload
+```
+
+> **Tip:** Replace `/path/to/kanban-board` with the actual path to this skill directory. If you cloned the skills repo to `~/skills`, use:
+> `ln -sf ~/skills/kanban-board/pi-ext ~/.pi/agent/extensions/kanban-board`
+> 
+> Or from inside the `kanban-board` directory:
+> `ln -sf $(pwd)/pi-ext ~/.pi/agent/extensions/kanban-board`
+
+#### Verify
+
+1. Restart pi or run `/reload`
+2. Type `/kanban` and press enter
+3. The TUI board should render with your current board state
+4. Press `m` to see metrics, `s` for stuck work, `b` to return to board view
+5. Press `q` or `esc` to close
+
+If `/kanban` is not recognized, check that the symlink points to the correct directory and that `pi-ext/index.ts` exists.
+
+#### Usage
+
+| Command | Action |
+|---------|--------|
+| `/kanban` | Open interactive TUI board |
+| `m` (in TUI) | Switch to metrics view |
+| `b` (in TUI) | Switch back to board view |
+| `s` (in TUI) | Switch to stuck work view |
+| `q` or `esc` | Close TUI |
+
+The extension also:
+- Shows a **summary widget** above the input editor with column counts and WIP status
+- Registers a **`kanban_board` tool** for the LLM to read board state inline
 
 ### Install
 
@@ -440,5 +544,6 @@ The extension also:
 | `report-metrics.sh` | Comprehensive metrics report: WIP, cycle time, lead time, throughput, stuck work |
 | `archive-card.sh` | Archive a completed card (cleanup — metrics were already logged by move-card.sh) |
 | `pi-ext/` | pi TUI extension — interactive `/kanban` board with live updates |
+| `tui/` | Standalone TUI — runs in its own terminal tab; no pi dependency; real-time file watching |
 
 See [scripts/](scripts/) for implementation.
