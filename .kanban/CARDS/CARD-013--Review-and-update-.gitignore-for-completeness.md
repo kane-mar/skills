@@ -3,7 +3,7 @@ id: CARD-013
 title: "Review and update .gitignore for completeness"
 type: chore
 priority: high
-status: backlog
+status: done
 created: 2026-06-02T20:15:48+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:48+10:00
 (Add notes)
 
 ## Cycle Time
-started: —
-completed: —
+started: 2026-06-02T20:32:38+10:00
+completed: 2026-06-02T20:32:43+10:00

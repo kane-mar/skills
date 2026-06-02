@@ -3,7 +3,7 @@ id: CARD-016
 title: "Review the full diff and organize changes into logical commits"
 type: chore
 priority: high
-status: backlog
+status: done
 created: 2026-06-02T20:15:48+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:48+10:00
 (Add notes)
 
 ## Cycle Time
-started: —
-completed: —
+started: 2026-06-02T20:33:08+10:00
+completed: 2026-06-02T20:33:19+10:00

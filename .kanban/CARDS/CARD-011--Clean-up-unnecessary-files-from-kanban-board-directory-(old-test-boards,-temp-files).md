@@ -3,7 +3,7 @@ id: CARD-011
 title: "Clean up unnecessary files from kanban-board directory (old test boards, temp files)"
 type: chore
 priority: medium
-status: backlog
+status: done
 created: 2026-06-02T20:15:45+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:45+10:00
 (Add notes)
 
 ## Cycle Time
-started: —
-completed: —
+started: 2026-06-02T20:32:27+10:00
+completed: 2026-06-02T20:32:35+10:00

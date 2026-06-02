@@ -3,7 +3,7 @@ id: CARD-014
 title: "Audit all files for secrets, credentials, and sensitive data"
 type: chore
 priority: high
-status: backlog
+status: done
 created: 2026-06-02T20:15:48+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:48+10:00
 (Add notes)
 
 ## Cycle Time
-started: —
-completed: —
+started: 2026-06-02T20:32:46+10:00
+completed: 2026-06-02T20:32:52+10:00

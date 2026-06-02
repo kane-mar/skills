@@ -3,7 +3,7 @@ id: CARD-009
 title: "Review all SKILL.md files for completeness and remove draft content"
 type: chore
 priority: high
-status: backlog
+status: done
 created: 2026-06-02T20:15:42+10:00
 ---
 
@@ -17,5 +17,5 @@ created: 2026-06-02T20:15:42+10:00
 (Add notes)
 
 ## Cycle Time
-started: —
-completed: —
+started: 2026-06-02T20:31:38+10:00
+completed: 2026-06-02T20:31:52+10:00
