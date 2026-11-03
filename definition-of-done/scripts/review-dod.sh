@@ -15,9 +15,16 @@ DATE=$(date -Iseconds)
  echo "$NOTES"
 } >> .dod/REVIEW_LOG.md
 
-# Update the last reviewed date in DEFINITION_OF_DONE.md
+# Update the last reviewed date in DEFINITION_OF_DONE.md (portable: no sed -i dependency)
 if [ -f DEFINITION_OF_DONE.md ]; then
- sed -i '' "s/^_Last reviewed:.*/_Last reviewed: ${DATE:0:10}_/" DEFINITION_OF_DONE.md 2>/dev/null || true
+  TMP=$(mktemp)
+  while IFS= read -r line; do
+    case "$line" in
+      _Last\ reviewed:*) printf '_Last reviewed: %s_\n' "${DATE:0:10}" ;;
+      *) printf '%s\n' "$line" ;;
+    esac
+  done < DEFINITION_OF_DONE.md > "$TMP"
+  mv "$TMP" DEFINITION_OF_DONE.md
 fi
 
 echo "DoD review logged: $NOTES"

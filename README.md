@@ -9,7 +9,7 @@ A collection of AI agent skills.
 | Skill | Description |
 |-------|-------------|
 | [agent-collaboration](agent-collaboration/SKILL.md) | Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, or pair on high-risk tasks. Grounded in the five Scrum values: Commitment, Focus, Openness, Respect, Courage. |
-| [backlog-management](backlog-management/SKILL.md) | Manage product and sprint backlogs: writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large at bottom — break down only as items rise in priority). |
+| [backlog-management](backlog-management/SKILL.md) | Manage the product backlog: writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large at bottom — break down only as items rise in priority). The backlog is one flat ranked table with no grouped sections; close incomplete work before starting new work, and delivered rows keep their rank. |
 | [definition-of-done](definition-of-done/SKILL.md) | Define, enforce, and evolve the Definition of Done (DoD): shared quality checklist, DoD vs Acceptance Criteria, verification workflows, and periodic review. |
 
 ## Install

@@ -6,12 +6,10 @@ Agents should read this file when they need more detailed instructions on a spec
 ## Table of Contents
 
 1. [The Five Scrum Values — Deep Dive](#1-the-five-scrum-values--deep-dive)
-2. [Sprint Planning Best Practices](#2-sprint-planning-best-practices)
-3. [Swarming: How to Converge on Bottlenecks](#3-swarming-how-to-converge-on-bottlenecks)
-4. [Pair Programming for Agents](#4-pair-programming-for-agents)
-5. [Running Effective Agent Retros](#5-running-effective-agent-retros)
-6. [T-Shaped Skill Development for Agents](#6-t-shaped-skill-development-for-agents)
-7. [Troubleshooting Common Issues](#7-troubleshooting-common-issues)
+2. [Swarming: How to Converge on Bottlenecks](#2-swarming-how-to-converge-on-bottlenecks)
+3. [Pair Programming for Agents](#3-pair-programming-for-agents)
+4. [T-Shaped Skill Development for Agents](#4-t-shaped-skill-development-for-agents)
+5. [Troubleshooting Common Issues](#5-troubleshooting-common-issues)
 
 ---
 
@@ -21,20 +19,20 @@ Values are not abstract ideals. They are **daily operational choices** that dete
 
 ### Commitment: Beyond "My Task Is Done"
 
-Commitment is about dedication to the **team's Sprint Goal**, not just individual task completion.
+Commitment is about dedication to the **team's shared objective**, not just individual task completion.
 
 **What it looks like in an agent team:**
 - An agent who finishes its tasks early moves to help a teammate who is stuck — without being asked
-- An agent doesn't check out after its "part" is complete. It asks: "What else needs to happen for the Sprint Goal to be met?"
+- An agent doesn't check out after its "part" is complete. It asks: "What else needs to happen for the shared objective to be met?"
 - When scope needs to change, the team re-commits together rather than one agent unilaterally deciding
 
 **What it DOESN'T mean:**
 - A blood oath to deliver fixed scope no matter what
-- Working overtime or ignoring new information to protect estimates
+- Working overtime or ignoring new information to protect a fixed scope
 
 **Signs Commitment is weak:**
 - Agents disappear from the collaboration after their piece is done
-- SPRINT_BACKLOG.md shows items completed but nobody picked up the next thing
+- BACKLOG.md shows items completed but nobody picked up the next thing
 - "That's not my task" mentality
 
 ### Focus: The Power of a Shared Destination
@@ -42,8 +40,8 @@ Commitment is about dedication to the **team's Sprint Goal**, not just individua
 Focus means every agent is aligned on the same short-term goal, making collaboration highly efficient.
 
 **What it looks like in an agent team:**
-- Every agent reads SPRINT.md before acting and keeps the Sprint Goal top of mind
-- When an agent sees an interesting tangent (nice-to-have feature, refactoring opportunity), they log it in BACKLOG.md for later rather than derailing the sprint
+- Every agent reads the backlog and keeps the shared objective top of mind before acting
+- When an agent sees an interesting tangent (nice-to-have feature, refactoring opportunity), they log it in BACKLOG.md for later rather than derailing current work
 - Agents protect each other's focus — if an external request comes in, the team decides together whether to accept it
 
 **What it DOESN'T mean:**
@@ -52,8 +50,8 @@ Focus means every agent is aligned on the same short-term goal, making collabora
 
 **Signs Focus is weak:**
 - Half-finished features from scope creep
-- DAILY_LOG.md shows agents working on items not in the SPRINT_BACKLOG
-- Sprint Review reveals the team delivered less than expected because of unplanned work
+- DAILY_LOG.md shows agents working on items not in the BACKLOG.md
+- The team delivered less than expected because of unplanned work
 
 ### Openness: Bad News Early Is a Gift
 
@@ -69,7 +67,7 @@ Openness is the willingness to share the complete picture — especially the par
 - Being open only about successes and hiding failures
 
 **Signs Openness is weak:**
-- Problems only surface at the Sprint Review (or worse, in production)
+- Problems only surface in production, not during the work
 - DECISIONS.md is sparse or only logs safe, obvious decisions
 - DAILY_LOG.md entries are generic status updates with no mention of blockers or uncertainty
 
@@ -98,7 +96,7 @@ Courage is the willingness to do the right thing even when it's uncomfortable.
 
 **What it looks like in an agent team:**
 - An agent tells the team: "I don't know how to solve this — I need help"
-- An agent speaks up when the Sprint Goal is at risk, even if it means admitting an estimate was wrong
+- An agent speaks up when the shared objective is at risk, even if it means admitting they misunderstood the scope
 - An agent pushes back on a design decision that they believe will cause problems later
 - An agent volunteers for a task outside their comfort zone because the team needs it
 
@@ -108,20 +106,16 @@ Courage is the willingness to do the right thing even when it's uncomfortable.
 
 **Signs Courage is weak:**
 - Agents avoid flagging problems until they're emergencies
-- SPRINT_BACKLOG.md items stay "in-progress" for too long without explanation
-- Retrospectives are polite and surface-level, with no real disagreements
+- BACKLOG.md items stay "in-progress" for too long without explanation
+- Values reflections are polite and surface-level, with no real disagreements
 
 ### Values Interlock in Practice
 
 | Scenario | Commitment | Focus | Openness | Respect | Courage |
 |----------|-----------|-------|----------|---------|--------|
-| Feature is 2x more complex than estimated | Stay engaged, don't check out | Protect the Sprint Goal, don't add more work | Share the bad news immediately | Trust the PO's priorities; listen to the team's input | Admit the estimate was wrong |
+| Feature is 2x more complex than expected | Stay engaged, don't check out | Protect the shared objective, don't add more work | Share the bad news immediately | Trust the PO's priorities; listen to the team's input | Admit the scope was wrong |
 | QA bottleneck with 5 items queued | Help clear the queue | Don't start new work until bottleneck clears | Flag the bottleneck publicly | Trust QA's guidance on what to test | Offer to help in an area outside your expertise |
-| Disagreement on architecture approach | Stay committed to the shared outcome | Focus on what solves the Sprint Goal best | Articulate your reasoning fully | Listen to and engage with the other position | Have the hard conversation; don't avoid it |
-
----
-
-## 2. Sprint Planning Best Practices
+| Disagreement on architecture approach | Stay committed to the shared outcome | Focus on what best solves the objective | Articulate your reasoning fully | Listen to and engage with the other position | Have the hard conversation; don't avoid it |
 
 ### The Anti-Pattern: "Throw it over the wall"
 
@@ -129,40 +123,11 @@ Courage is the willingness to do the right thing even when it's uncomfortable.
 
 **Why it fails:** Each agent discovers issues the previous agent didn't anticipate. Feedback loops are long. Rework is expensive.
 
-### The Cross-Functional Way
-
-During Sprint Planning, all agents collaborate to negotiate scope. This exercise requires **Openness** (share concerns honestly), **Respect** (listen to each specialty's input), and **Courage** (push back on unrealistic commitments):
-
-1. **PO agent proposes** a Sprint Goal and candidate backlog items
-2. **Each agent assesses** from their expertise:
-   - **Backend agent:** "This API call will need pagination — adds 2 days"
-   - **Frontend agent:** "That animation requires a WebSocket — adds complexity"
-   - **QA agent:** "How do we test offline behavior? Need a mock server"
-3. **Team negotiates** — adjusts scope, finds simpler alternatives, identifies dependencies
-4. **Commit as a team** to a realistic Sprint Goal **(this is Commitment)**
-
-### Setting a Good Sprint Goal
-
-| Weak Goal | Strong Goal |
-|-----------|-------------|
-| "Implement user auth" | "Users can sign up and log in with email + password" |
-| "Build the dashboard" | "Team members can see their task status on a shared dashboard" |
-| "Fix bugs" | "The checkout flow works end-to-end with zero critical bugs" |
-
-### Definition of Done Checklist
-
-Customize per team, but every item should meet:
-
-- [ ] **Cross-functional review** — reviewed by at least one agent from a different discipline
-- [ ] **Tests pass** (unit + integration)
-- [ ] **QA signs off** — acceptance criteria verified
-- [ ] **Edge cases documented**
-- [ ] **Decision rationale** in DECISIONS.md
-- [ ] **Working increment** demo-able at Sprint Review
+**The cross-functional way:** All relevant agents negotiate scope **up front** using Three Amigos — each assesses from their expertise (backend: complexity, frontend: UX implications, QA: testability), and the team finds simpler alternatives before any code is written.
 
 ---
 
-## 3. Swarming: How to Converge on Bottlenecks
+## 2. Swarming: How to Converge on Bottlenecks
 
 ### What is Swarming?
 
@@ -179,13 +144,13 @@ Swarming is when multiple agents with different expertise converge on a single p
 
 ### How to Swarm (Step by Step)
 
-1. **Recognize** — Someone flags the bottleneck in DAILY_LOG.md or the sync
+1. **Recognize** — Someone flags the bottleneck in DAILY_LOG.md
 2. **Offer** — Available agents say "I can help with X"
 3. **Divide** — Break the bottleneck into parallel tasks:
    - *Example:* QA bottleneck → Agent A automates tests, Agent B runs manual tests, Agent C fixes the bugs found so far
 4. **Execute** — Work simultaneously, communicating via DAILY_LOG.md
 5. **Resolve** — When the bottleneck clears, note it in DECISIONS.md
-6. **Reflect** — In retro, ask: "How can we spot this bottleneck earlier next sprint?"
+6. **Reflect** — Ask: "How can we spot this kind of bottleneck earlier?"
 
 ### Swarming vs. Pairing
 
@@ -199,7 +164,7 @@ Swarming is when multiple agents with different expertise converge on a single p
 
 ---
 
-## 4. Pair Programming for Agents
+## 3. Pair Programming for Agents
 
 ### When to Pair
 
@@ -236,66 +201,7 @@ Pair programming is not for everything. Use it when:
 
 ---
 
-## 5. Running Effective Agent Retros
-
-### The Retro Structure
-
-1. **Set the stage** (2 min) — Remind everyone of the Sprint Goal
-2. **Gather data** (5 min) — Review SPRINT_BACKLOG.md, DAILY_LOG.md, DECISIONS.md
-3. **Generate insights** (5 min) — What went well? What could be improved?
-4. **Decide action items** (3 min) — 1-3 concrete improvements for next sprint
-5. **Close** (1 min) — Thank the team
-
-### Retro Questions for Agent Teams
-
-**Start with a Guardrails Check (3 min):**
-
-- Did our WIP limits work? Did they force useful swarming, or were they too tight/loose?
-- Did the Definition of Done catch issues that would have slipped through otherwise?
-- Did we use the Three Amigos pattern consistently? Did it prevent rework?
-- Did we follow the 15-Minute Rule? Were agents getting stuck too long before asking for help?
-- Is the WORKING_AGREEMENT.md still accurate? Does anything need updating?
-
-**Then a Values Check (5 min):**
-
-| Value | Question |
-|-------|----------|
-| **Commitment** | Did we all stay engaged after our individual tasks were done? Did anyone "check out" early? |
-| **Focus** | Did we stay focused on the Sprint Goal, or did we get pulled elsewhere? |
-| **Openness** | Did we surface bad news early enough? Were there hidden problems that only came out at the review? |
-| **Respect** | Did we truly listen to each other's expertise? Were there moments where an agent's input was dismissed? |
-| **Courage** | Did anyone speak up about an uncomfortable truth? Did we avoid a hard conversation? |
-
-**Then ask process-oriented questions:**
-
-- Was our swarming effective? Did we converge fast enough on bottlenecks?
-- Did we pair on the right things? Too much? Too little?
-- Was DECISIONS.md kept up to date? Did anyone have to hunt for context?
-- Did we respect our Definition of Done?
-- Was the Sprint Goal clear to everyone throughout the sprint?
-
-### Writing Good Action Items
-
-| Weak | Strong |
-|------|--------|
-| "Update docs more" | "Add a 'log decision' step to the daily sync template" |
-| "Communicate better" | "Flag blockers in DAILY_LOG.md within 1 turn of discovering them" |
-| "Swarm earlier" | "If an item is 'in-progress' for 3+ sync cycles, automatically flag it for swarming" |
-
-### Retro Formats
-
-Beyond "what went well / what could be improved," try:
-
-- **Start / Stop / Continue:**
-  - Start doing: _____
-  - Stop doing: _____
-  - Continue doing: _____
-- **4 Ls:** Liked, Learned, Lacked, Longed For
-- **Sailboat:** What's pushing us forward (wind)? What's holding us back (anchor)? What risks are ahead (rocks)?
-
----
-
-## 6. T-Shaped Skill Development for Agents
+## 4. T-Shaped Skill Development for Agents
 
 ### What "T-Shaped" Means for Agents
 
@@ -324,21 +230,21 @@ When an agent swarms on a bottleneck outside their primary expertise, they're pr
 
 ---
 
-## 7. Troubleshooting Common Issues
+## 5. Troubleshooting Common Issues
 
-### "The Sprint Goal is unclear halfway through"
+### "The shared objective has drifted"
 
-- Re-read SPRINT.md
+- Re-read BACKLOG.md and DECISIONS.md
 - Check DAILY_LOG.md for recent decisions that may have drifted scope
-- If still unclear, flag it: "I'm unclear on the Sprint Goal — can we re-align?"
+- If still unclear, flag it: "I'm unclear on what we're optimizing for — can we re-align?"
 - If no response, make a reasonable judgment and log your reasoning in DECISIONS.md
 
 ### "Two agents are working on the same thing"
 
-- Check SPRINT_BACKLOG.md — was the item already claimed?
+- Check BACKLOG.md — was the item already claimed (Owner set)?
 - If overlap happened anyway: "I see we both started on X. I'll work on Y instead — can you handle X?"
 - Log the realignment in DAILY_LOG.md
-- In retro: "We need a clearer ownership signal — maybe claim items in SPRINT_BACKLOG.md before starting"
+- Reflect: "We need a clearer ownership signal — maybe claim items in BACKLOG.md before starting"
 
 ### "An agent is stuck"
 
@@ -352,14 +258,14 @@ When an agent swarms on a bottleneck outside their primary expertise, they're pr
 - Check DECISIONS.md — is it being updated?
 - If not, start. Every time you make a non-trivial call (architecture, tooling, approach), log it.
 - If you can't find a previous decision, check git history or DAILY_LOG.md
-- In retro: "Let's commit to logging decisions within 1 turn of making them"
+- Reflect: "Let's commit to logging decisions within 1 turn of making them"
 
 ### "The team is falling back into serial handoffs"
 
 This is the most common anti-pattern. Watch for:
 
 - "I finished X, now someone else can do Y" → Instead: Ask "Who can help me verify X before I move on?"
-- SPRINT_BACKLOG.md showing items moving in lockstep (design → code → test) → Instead: Show multiple items in progress simultaneously
-- Long gaps between sync entries → Instead: Sync frequently, flag bottlenecks early
+- BACKLOG.md showing items moving in lockstep (design → code → test) → Instead: Show multiple items in progress simultaneously
+- Long gaps between activity-log entries → Instead: Log frequently, flag bottlenecks early
 
 **Recognize it. Call it out. Swarm to break the pattern.**

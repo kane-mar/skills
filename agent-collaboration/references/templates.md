@@ -1,4 +1,4 @@
-# Collaboration Templates — Cross-Functional Scrum Team
+# Collaboration Templates — Cross-Functional Team
 
 Ready-to-use templates for cross-functional collaboration artifacts. Copy and fill as needed.
 
@@ -7,19 +7,15 @@ Ready-to-use templates for cross-functional collaboration artifacts. Copy and fi
 ```markdown
 # Team Working Agreement
 
-> A living document. Review and update every sprint retrospective.
+> A living document. Review and update continuously as you learn.
 
 ## WIP Limits
-- Maximum active items on SPRINT_BACKLOG at any time: 3
+- Maximum active items (Status = in-progress) in BACKLOG.md at any time: 3
 - If at limit, swarm before pulling new work.
 
 ## Definition of Done
-An item is "Done" only when ALL of these are met:
-- [ ] Cross-functional review (agent from a different discipline signs off)
-- [ ] Tests pass (unit + integration)
-- [ ] QA signs off — acceptance criteria verified
-- [ ] Documentation updated
-- [ ] Decision rationale logged in DECISIONS.md
+- The authoritative DoD is in `DEFINITION_OF_DONE.md` (owned by the definition-of-done skill).
+- No duplicate here — read and enforce `DEFINITION_OF_DONE.md`.
 
 ## Three Amigos
 - Every story requires a Three Amigos review before moving to "In Progress"
@@ -32,8 +28,8 @@ An item is "Done" only when ALL of these are met:
 ## Communication
 - Design feedback: in shared documents / comments
 - Architectural decisions: in DECISIONS.md
-- Status: in SPRINT_BACKLOG.md
-- Blockers & sync: in DAILY_LOG.md
+- Status: in BACKLOG.md
+- Blockers & activity: in DAILY_LOG.md
 
 ## Code Reviews
 - All pull requests must be reviewed within 4 hours of submission
@@ -63,39 +59,17 @@ An item is "Done" only when ALL of these are met:
 **Still stuck after 15min → asking [agent-name] for help**
 ```
 
-## SPRINT.md
+## Backlog Entry
+
+The canonical backlog table uses the columns defined by the [backlog-management](../backlog-management/SKILL.md) skill. When collaborating with multiple agents, add an **`Owner`** column to record who is working on each `in-progress` item:
 
 ```markdown
-# Sprint [N]
-
-## Sprint Goal
-_(A single sentence describing the value the team commits to deliver)_
-
-## Team
-| Agent | Primary Expertise | Can Help With |
-|-------|------------------|---------------|
-| (name) | (expertise) | (adjacent skills) |
-
-## Sprint Scope
-_(Backlog items committed for this sprint — reference SPRINT_BACKLOG.md)_
-
-## Definition of Done
-- [ ] **Cross-functional review** — reviewed by at least one agent from a different discipline
-- [ ] **Tests pass** (unit + integration)
-- [ ] **QA signs off** — acceptance criteria verified
-- [ ] **Documentation updated**
-- [ ] **Decision logged** in DECISIONS.md with rationale
+| Rank | ID | Title | Type | Status | Notes | Owner |
+|------|----|-------|------|--------|-------|-------|
+| 1 | ITEM-001 | User password reset | feature | in-progress | Waiting on email service config | agent-alpha |
 ```
 
-## Sprint Backlog Entry
-
-```markdown
-| Item | Owner | Status | Notes |
-|------|-------|--------|-------|
-| User password reset | agent-alpha | in-progress | Waiting on email service config |
-```
-
-## Daily Sync Entry
+## Activity Log Entry (for DAILY_LOG.md)
 
 ```markdown
 ## 2026-05-23
@@ -152,68 +126,31 @@ status: in-progress
 
 - **Decision:** Use client-side cooldown + server-side rate limiting for password reset emails
 - **Rationale:** Email provider limits to 10 req/min. Client cooldown prevents most exceeded limits; server-side catch handles edge cases.
-- **Alternatives considered:** Switch email provider (too slow for this sprint), queue-based sending (overengineering for current volume)
+- **Alternatives considered:** Switch email provider, queue-based sending (overengineering for current volume)
 - **Values reflected:** Openness (agent-alpha surfaced the limit early), Courage (agent-beta admitted the UI cooldown adds complexity)
 - **Logged by:** agent-alpha
 ```
 
-## Sprint Review
+## Values Reflection
+
+A lightweight, in-the-flow alternative to a scheduled retrospective. Use it when something goes wrong or feels off — or just periodically — and log the result in DECISIONS.md.
 
 ```markdown
-# Sprint Review — Sprint [N]
-
-**Date:** 2026-05-23
-
-## Sprint Goal
-_(Restate the goal)_
-
-## Completed
-- Item 1 — what was built, how it contributes to the goal
-- Item 2 — what was built, how it contributes to the goal
-
-## Not Completed
-- Item 3 — why? What was learned?
-
-## Feedback
-_(From stakeholders or other agents)_
-
-## New Backlog Items
-- Item discovered during sprint
-- Improvement idea from review
-```
-
-## Sprint Retrospective (with Values Check)
-
-```markdown
-# Sprint Retrospective — Sprint [N]
-
-**Date:** 2026-05-23
-
-## Values Check (5 min — start here)
+## Values Reflection — 2026-05-23
 
 | Value | Reflection |
 |-------|------------|
-| **Commitment** | Did we all stay engaged after our individual tasks were done? |
-| **Focus** | Did we stay focused on the Sprint Goal, or get pulled elsewhere? |
+| **Commitment** | Did everyone stay engaged after their individual task was done? |
+| **Focus** | Did we stay on the shared objective, or get pulled elsewhere? |
 | **Openness** | Did we surface bad news early enough? |
 | **Respect** | Did we truly listen to each other's expertise? |
 | **Courage** | Did anyone speak up about an uncomfortable truth? |
 
-_Which value was weakest this sprint? What one thing can we do to strengthen it?_
-
-## What went well
-- 
-
-## What could be improved
-- 
+_Which value was weakest? What one thing can we do to strengthen it?_
 
 ## Action Items
-_(1-3 concrete improvements)
-- [ ] 
-- [ ] 
-
-## Discussion Notes
-_(Key points from the retro conversation)_
+- [ ]
+- [ ]
 ```
 
 ## Swarming Invitation (for DAILY_LOG.md)

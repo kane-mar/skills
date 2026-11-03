@@ -11,7 +11,7 @@ A common source of confusion is the difference between the **Definition of Done 
 | **Answers** | "Is this work complete to the team's quality standard?" | "Does this work behave correctly?" |
 | **Scope** | Global — applies to every item | Local — specific to one story |
 | **Focus** | Quality, process, completeness | Behavior, functionality, edge cases |
-| **Changes** | Rare — reviewed quarterly | Often — refined per sprint |
+| **Changes** | Rare — reviewed periodically | Often — refined per item |
 | **Who owns it** | The whole team | The Product Owner |
 
 ## Examples
@@ -52,11 +52,11 @@ Both must be satisfied. If the acceptance criteria are all met but the code wasn
 
 **Why it's bad:** The DoD exists to catch exactly this kind of shortcut. Skipping it creates technical debt and erodes quality standards. If the DoD is too onerous, review the DoD — don't ignore it.
 
-### Mistake 3: Confusing DoD with "Ready"
+### Mistake 3: Confusing DoD with an entry gate
 
 **Bad:** Using the DoD as a checklist before starting work.
 
-**Why it's bad:** The DoD is about completion, not readiness. A separate "Definition of Ready" covers what's needed to start work (e.g., acceptance criteria defined, estimated, dependencies clear).
+**Why it's bad:** The DoD is about completion, not readiness. There is no separate "Definition of Ready"; deciding whether a backlog item is ready to work on is simply a judgment about whether it has been sufficiently refined — a concern for the [backlog-management](../backlog-management/SKILL.md) skill, not a parallel quality gate.
 
 ### Mistake 4: Adding item-specific rules to the DoD
 
@@ -71,7 +71,7 @@ Both must be satisfied. If the acceptance criteria are all met but the code wasn
 ```
 Item created → refined → Acceptance Criteria written
                               ↓
-                      Sprint Planning: item pulled in
+                      Item pulled from the backlog
                               ↓
                       Work begins (In Progress)
                               ↓

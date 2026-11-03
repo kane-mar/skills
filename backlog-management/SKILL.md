@@ -1,17 +1,17 @@
 ---
 name: backlog-management
-description: "Manage product and sprint backlogs: the backlog is a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). Use when maintaining a backlog, preparing for sprint planning, or triaging incoming work."
+description: "Manage the product backlog: a dynamic, single-ranked, ordered list of everything needed to achieve the product goal. Includes writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large work at bottom — break down large items at the top of the backlog into smaller items before working on them). The backlog is one flat ranked table with no grouped sections (active/gated/delivered); close incomplete work before starting new work, and delivered rows keep their rank. Use when maintaining a backlog, preparing for planning, or triaging incoming work."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   patterns: "backlog-refinement, user-stories, acceptance-criteria"
 ---
 
 # Backlog Management
 
-This skill provides structured workflows for managing product and sprint backlogs with AI agents. It is grounded in the Certified Scrum Master (CSM) definition: **the product backlog is a dynamic, single-ranked, ordered list** of everything needed to achieve the product goal.
+This skill provides structured workflows for managing the product backlog with AI agents. It is grounded in the Certified Scrum Master (CSM) definition: **the product backlog is a dynamic, single-ranked, ordered list** of everything needed to achieve the product goal.
 
-It covers the full lifecycle: defining the product goal, capturing items, writing user stories with acceptance criteria, prioritizing using established frameworks, estimating effort, refining items, and maintaining a healthy backlog.
+It covers the full lifecycle: defining the product goal, capturing items, writing user stories with acceptance criteria, keeping a single rank order (rank *is* priority), refining items, and maintaining a healthy backlog.
 
 > **Relationship to agent-collaboration:** This skill focuses on the *backlog artifact itself* — its structure, quality, and prioritization. The [agent-collaboration](../agent-collaboration/SKILL.md) skill focuses on *team collaboration patterns* — the five Scrum values, swarming on bottlenecks, pair programming, and the structural guardrails (WIP limits, Three Amigos, Definition of Done, 15-minute rule). They work well together: use backlog-management to keep your backlog healthy, and agent-collaboration to resolve bottlenecks and coordinate multi-agent work.
 
@@ -26,7 +26,6 @@ If you're entering a project that already has backlog management set up:
 ```bash
 # Read the current state
 cat BACKLOG.md
-cat .collaboration/BACKLOG.md   # if agent-collaboration is active
 ```
 
 If no backlog exists, initialize one:
@@ -69,6 +68,16 @@ There is only **one item at the top**, one item underneath that, one item undern
 
 **Why this matters:** If a product owner says "these top 50 things are my highest priority," where do you start? Item #1? Item #50? Somewhere in between? That's not useful. Instead, the product owner chooses **one thing** to solve first, then one thing after that, then one thing after that.
 
+> **Rank *is* priority.** Because the list is single-ranked, an item's position is already a complete expression of its priority. Do **not** add a separate "Priority" column or field — a rank position of `1` means "highest priority, do this first," and a rank position of `50` means "do this fiftieth." A second priority value can only disagree with the rank, which is a contradiction. The only fields a backlog row needs are the ones that describe the work itself.
+
+#### One List, No Grouped Sections
+
+The backlog is **one table, one ranked list**. It must **not** be split into grouped sections — no "Active" / "Gated" / "Delivered" subdivisions, no "In Progress" blocks, no separate "Done" area at the top or bottom. Every item lives in the same single-ranked table in priority order.
+
+**Why this matters:** Grouped sections fragment the single rank that makes the backlog useful. The moment items are split into sections, there is no longer one answer to "what do I work on next?" — each section has its own implicit top. A single flat list guarantees exactly one next item.
+
+> **Status is a per-row attribute, not a section.** Whether an item is `captured`, `in-progress`, `done`, or `blocked` is recorded as a *column value* on the row — never as a way to partition the table into sections. The rank order is independent of status.
+
 #### Ordered (Progressive Granularity)
 
 The backlog is structured with **small, fine-grained bodies of work at the top** and **larger, chunkier bodies of work at the bottom**.
@@ -83,14 +92,11 @@ The backlog is structured with **small, fine-grained bodies of work at the top**
 
 > **Guardrail:** Do not treat the backlog like a requirements document. Requirements documents are held static through reviews and sign-offs — they resist change. The backlog must be freely changeable. Requirements documents also break everything down to roughly the same size upfront — the backlog keeps small work at top and large work at bottom to avoid waste. These are fundamentally different artifacts.
 
-### Backlog Types
+### The Backlog
 
-| Type | Purpose |
-|------|---------|
-| **Product Backlog** | All planned work the team might do — features, improvements, and **production defects** (bugs identified in a live environment that represent new work). |
-| **Sprint Backlog** | Active work currently being worked on, reviewed, or completed this cycle. **Bugs discovered during development** go here: they must be fixed before the item is done, aligned with the Definition of Done (no known defects). |
+The product backlog is the primary, single-ranked, ordered list of everything needed to achieve the product goal. Whether a team additionally maintains a separate "sprint backlog" (or "in-flight" view) is a **contextual choice** — some teams track the work of the current cycle in its own list, others simply track status on the same ranked table. This skill is agnostic on the matter: the single-ranked ordering discipline described here applies regardless of how a team chooses to represent its current work in progress.
 
-**Rule of thumb:** If a bug is discovered while building something, fix it now — it goes on the sprint backlog. If a bug is reported from production after release, it goes on the product backlog as new work to be prioritized.
+> **Bug placement:** Whether a bug is discovered while building or reported from production after release, it is captured as a new item in the ranked list. A known defect blocking delivery is fixed immediately (it is already in hand); a production defect discovered later is captured and triaged into the list like any other item.
 
 ---
 
@@ -104,15 +110,18 @@ Agents must always work in priority order without exception. The highest-priorit
 
 ### Rule 2 — Pull Work at Any Time, in Priority Order
 
-Agents can pull work from the backlog at any time — they do not need to wait for a formal sprint start or assignment. However, they **must** respect Rule 1: always pull the highest-priority unstarted item.
+Agents can pull work from the backlog at any time — they do not need to wait for a formal start or assignment. However, they **must** respect Rule 1: always pull the highest-priority unstarted item.
 
-### Rule 3 — Help Others Before Pulling New Work
+### Rule 3 — Close Incomplete Work Before Starting New Work
 
-If an agent is not busy, they should first help other agents complete any work that is already in progress before pulling new work from the backlog. This maximizes throughput by finishing started work rather than starting new work. See also the [swarming protocol in agent-collaboration](../agent-collaboration/SKILL.md#4-swarming-bottleneck-protocol).
+Work through the backlog **top-down**: finish the item you're on before opening the next one. Specifically, **close incomplete work before starting new work** — an agent must complete (or explicitly return) its current item before pulling the next-highest-priority item. If an agent is not busy, it should first help other agents close any work already in progress before pulling new work from the backlog. This maximizes throughput by finishing started work rather than starting new work, and keeps the backlog from accumulating half-open items. See also the [swarming protocol in agent-collaboration](../agent-collaboration/SKILL.md#3-swarming-bottleneck-protocol).
 
-### Rule 4 — Archive When Done
+### Rule 4 — Mark Done, Keep the Rank, Archive the Item File
 
-Once all acceptance criteria have been met and the work meets the Definition of Done, the backlog item must be archived. Archiving means moving the item out of the active backlog (e.g., into an `ARCHIVED/` directory or marking it as `done` in the tracking table) so it no longer appears as pending work.
+Once all acceptance criteria have been met and the work meets the Definition of Done, mark the item **done**:
+
+1. **Set its status to `done`** in the `BACKLOG.md` table. **The delivered row keeps its rank and stays in the table** — do not move it into a separate "Delivered" section and do not delete it from the list. Historical rank is preserved so the order of record is never lost.
+2. **Archive the item file** — move `.backlog/ITEMS/ITEM-NNN.md` into `.backlog/ARCHIVED/`. The table row stays (with rank + `done` status); only the per-item detail file is retired to the archive, so the active `ITEMS/` directory holds only unfinished work.
 
 ### Rule 5 — Keep Moving
 
@@ -126,11 +135,13 @@ Agents should continue working while there are items in the backlog. If no items
 project-root/
  BACKLOG.md                   # ← READ THIS FIRST. The product backlog.
  .backlog/
-    CONFIG.md                # Workflow states and item types
-    ITEMS/                   # Individual backlog items (one file per item)
+    CONFIG.md                # Item types and status values (status is a per-row attribute, not a section)
+    ITEMS/                   # Active backlog items (one file per item)
        ITEM-001--user-auth.md
        ITEM-002--password-reset.md
        ...
+    ARCHIVED/                # Item files moved here once marked done
+       ITEM-000--done-thing.md
     EPICS.md                 # Epics (large initiatives broken into items) — use with caution, see warning below
     REFINEMENT_LOG.md        # Notes from backlog refinement sessions
 ```
@@ -155,20 +166,20 @@ When a new idea, feature request, or bug is identified, capture it as a backlog 
 
 ```bash
 # Quick capture
-<SKILL_DIR>/scripts/capture-item.sh "User can reset password via email" "feature" "high"
+<SKILL_DIR>/scripts/capture-item.sh "User can reset password via email" "feature"
 ```
 
 **Minimum viable capture** (log directly to BACKLOG.md):
 
 ```markdown
-| Item | Type | Priority | Notes |
-|------|------|----------|-------|
-| User password reset | feature | high | Need email service integration |
+| Rank | ID | Title | Type | Status | Notes |
+|-----|----|-------|------|--------|-------|
+| 1 | ITEM-001 | User password reset | feature | captured | Need email service integration |
 ```
 
 ### 2. Writing a User Story
 
-When an item is refined for sprint planning, write it as a full user story:
+When refining an item for the top of the backlog, write it as a full user story:
 
 ```
 **As a** [type of user]
@@ -213,7 +224,7 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 - Breaking down large bodies of work into smaller ones
 - Writing new user stories and acceptance criteria
 - Breaking down high-priority work into smaller chunks so the team better understands it
-- Re-estimating items where context has changed
+- Clarifying items whose scope has changed
 
 **Refinement checklist:**
 
@@ -221,29 +232,15 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 - [ ] **Top 20%** of backlog items have user stories and acceptance criteria
 - [ ] **No zombies** — items older than 3 months without activity → remove or flag for review
 - [ ] **Split into vertical slices** — items should be as independent as possible
-- [ ] **Splitting done** — items > 13 points are broken down
+- [ ] **Splitting done** — items too large to complete in a single sprint are broken down
 - [ ] **Duplicates merged** — search for overlapping items
 
 ```bash
 # Log a refinement session
-<SKILL_DIR>/scripts/refine.sh "Refined top 10 items, split ITEM-005 into 3 stories, re-estimated 4 items"
+<SKILL_DIR>/scripts/refine.sh "Refined top 10 items, split ITEM-005 into 3 stories"
 ```
 
-### 4. Sprint Backlog Preparation
-
-When preparing for sprint planning, pull the top N items from the backlog that fit in the sprint:
-
-```bash
-# Select items for the sprint (capacity-based)
-<SKILL_DIR>/scripts/select-for-sprint.sh 3 "Items for Sprint 4"
-```
-
-**Selection rules:**
-1. Take items from the top of the prioritized backlog
-2. Stop when total estimated effort reaches team capacity
-3. Include at least one bug fix if bugs exist in the backlog
-
-### 5. Work in Vertical Slices
+### 4. Work in Vertical Slices
 
 Break down work into **vertical slices** — small, independent items that deliver end-to-end value on their own. Each item should be as independent as possible, requiring no other item to be complete before it can be delivered.
 
@@ -261,13 +258,13 @@ If a dependency does arise, the simplest resolution is **backlog order**: the de
 ### After Any Action
 - [ ] **Update BACKLOG.md** — reflect the new status of any item that changed
 - [ ] **Log decisions** — record refinement notes in REFINEMENT_LOG.md
-- [ ] **Archive completed items** — acceptance criteria met + DoD satisfied → archive out of active backlog (Rule 4)
+- [ ] **Mark completed items done, keep their rank, archive the item file** — acceptance criteria met + DoD satisfied → set status to `done` in the table (leave the row in place), and move the item file to `.backlog/ARCHIVED/` (Rule 4)
 - [ ] **Keep moving** — if items remain, pull the next highest-priority item (Rule 5)
 
 ### When Capturing a New Item
 - [ ] Give it a unique ID (ITEM-NNN)
 - [ ] Record: description, type (feature/bug/tech-debt/improvement), source
-- [ ] Assign a rough priority now; refine later
+- [ ] Insert it into the single ranked list at its correct position — the rank is the priority, so place it relative to existing items
 - [ ] If unclear → log as a note and flag for refinement
 
 ### When Refining an Item
@@ -276,7 +273,7 @@ If a dependency does arise, the simplest resolution is **backlog order**: the de
 - [ ] Split into vertical slices — each item should be independent
 - [ ] Check for duplicates
 
-### Before Sprint Planning
+### Before Starting New Work
 - [ ] Top items have stories + AC
 - [ ] Dependencies are clear (backlog order handles them naturally)
 - [ ] Stale items are removed or flagged for review
@@ -296,7 +293,7 @@ If a dependency does arise, the simplest resolution is **backlog order**: the de
 |--------|---------|
 | `init-backlog.sh` | Initialize the backlog directory structure |
 | `capture-item.sh` | Quick-capture a new backlog item |
+| `archive-item.sh` | Archive a done item's detail file to `.backlog/ARCHIVED/` |
 | `refine.sh` | Log a refinement session |
-| `select-for-sprint.sh` | Pull items from backlog into sprint scope |
 
 See [scripts/](scripts/) for implementation.

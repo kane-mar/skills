@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # verify-dod.sh
 # Check an item against every active DoD criterion.
-# Usage: ./scripts/verify-dod.sh CARD-003 [--override "reason"]
+# Usage: ./scripts/verify-dod.sh ITEM-003 [--override "reason"]
 
 set -euo pipefail
 

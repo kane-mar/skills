@@ -3,7 +3,7 @@ name: definition-of-done
 description: "Define, enforce, and evolve the Definition of Done (DoD): a shared checklist of quality criteria that all work must meet before it can be considered complete. Covers DoD vs Acceptance Criteria, standard criteria templates, verification workflows, DoD review, and integration with the backlog-management skill."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
-  version: "1.0.0"
+  version: "2.0.0"
   patterns: "definition-of-done, quality-gates, acceptance-criteria, done-checklist"
 ---
 
@@ -13,7 +13,7 @@ The **Definition of Done (DoD)** is a shared, explicit checklist of quality crit
 
 > **DoD is not negotiable per item.** Acceptance Criteria vary per story. The DoD applies to *everything* the team delivers. If an item doesn't meet the DoD, it's not done — regardless of whether its Acceptance Criteria are satisfied.
 
-> **Relationship to other skills:** The [backlog-management](../backlog-management/SKILL.md) skill covers writing Acceptance Criteria for individual items. This skill defines *what "Done" actually means* — the gate that must be passed before an item is marked complete.
+> **Relationship to other skills:** The [backlog-management](../backlog-management/SKILL.md) skill covers writing Acceptance Criteria for individual items. The [agent-collaboration](../agent-collaboration/SKILL.md) skill's `WORKING_AGREEMENT.md` **references** this skill's `DEFINITION_OF_DONE.md` rather than duplicating it. This skill defines *what "Done" actually means* — the gate that must be passed before an item is marked complete — and `DEFINITION_OF_DONE.md` is the **single authoritative** DoD.
 
 ---
 
@@ -57,18 +57,9 @@ The Definition of Done is a **shared quality checklist** that the entire team ag
 ### Why a DoD Matters
 
 - **Prevents technical debt** — no cutting corners on quality to meet a deadline
-- **Shared understanding** — everyone agrees on what "done" means, avoiding arguments at the Sprint Review
+- **Shared understanding** — everyone agrees on what "done" means, avoiding arguments when work is declared complete
 - **Consistent quality** — every item meets the same bar, regardless of who built it
 - **Transparency** — stakeholders know what "done" actually means
-
-### DoD vs "Ready"
-
-| Concept | Definition |
-|---------|-----------|
-| **Definition of Done** | Criteria that must be met for work to be considered complete |
-| **Definition of Ready** | Criteria that must be met for work to be pulled into a sprint |
-
-The DoD is about the exit door. "Ready" is about the entry door. They are complementary but different.
 
 ---
 
@@ -128,6 +119,17 @@ Below is an example for a software team building and deploying production servic
 
 > **Not all criteria apply to all teams.** Customize the checklist in `.dod/CHECKLIST.md` to match your team's context. A small team building a prototype may have a lightweight DoD. A regulated industry team may have an extensive one.
 
+### Example: A Lean, Evidence-Driven DoD (Rust + Web)
+
+A different team — smaller, shipping a Rust backend with a TypeScript web frontend — uses a tighter, more opinionated DoD. Notice the shift in emphasis: **every item demands *evidence* or a *live verification*, not a claimed status.** This is a good model when the cost of "it works on my machine" is high.
+
+1. **Every AC in the item file is met, with evidence in the close-out section.** Acceptance criteria are not assumed satisfied; each one is answered against an artifact, log line, screenshot, or test result recorded in the item's close-out.
+2. **TDD — failing test first where the change is behavioural; the suite is the guard.** Behavioural changes start with a red test that encodes the new behaviour before the implementation turns it green. The test suite, not intuition, is the authority for "done".
+3. **Green locally — `cargo test`, `clippy` (0 warnings), plus web `tsc`/`eslint`/`i18n`.** The full local gate runs clean before anything is claimed: Rust unit/`clippy` with zero warnings, TypeScript type-check and lint, and i18n validation.
+4. **Live verification on the durable host — a real request, a real row, a real 404, not "it compiles".** The change is exercised against the real, durable environment (not a throwaway container): a genuine request, a genuine database row written/read, a genuine not-found path. Compiling is necessary but never sufficient.
+5. **Commit + push, status `done` (rank kept), item file archived to `.backlog/ARCHIVED/`, backlog row updated.** The work is committed and pushed; the table row's status is set to `done` and its rank preserved; the item's detail file moves to `.backlog/ARCHIVED/`; and the backlog table stays well-formed (right columns, no grouped sections).
+6. **Deploy smoke passes — added today, after two outages shipped as "healthy".** A deploy smoke test is run and green. (This check exists to close a specific past failure mode: two outages had been shipped as "healthy" because there was no post-deploy verification.)
+
 ---
 
 ## DoD Workflows
@@ -147,42 +149,57 @@ Customize the checklist by editing `.dod/CHECKLIST.md` — enable or disable ite
 Before marking any work as Done, verify it against every active criterion in the DoD:
 
 ```bash
-<SKILL_DIR>/scripts/verify-dod.sh CARD-003
+<SKILL_DIR>/scripts/verify-dod.sh ITEM-003
 ```
 
-The script reads the checklist from `.dod/CHECKLIST.md` and walks through each criterion:
+The script reads the checklist from `.dod/CHECKLIST.md` and walks through each enabled criterion, prompting for a result for each one:
 
 ```
- Verifying CARD-003 against Definition of Done...
+Verifying ITEM-003 against Definition of Done...
 
- Code reviewed
- Unit tests pass
- New unit tests added
- Integration tests pass  ← NOT MET
- Edge cases tested
- Code documented
- No regressions
+ [Code Quality] No known defects
+ Met? (y/n/skip): y
 
-Result:  NOT DONE — 1 criterion not met
+ [Code Quality] Technical debt addressed
+ Met? (y/n/skip): n
+
+ [Testing] Unit tests pass
+ Met? (y/n/skip): y
+
+ ...
+
+Result: NOT DONE — 1 of 12 criteria not met
+ Logged in .dod/VERIFICATION_LOG.md
 ```
 
-If any criterion is not met, the item cannot be moved to Done. Log the verification result in `.dod/VERIFICATION_LOG.md`.
+Three answers are accepted for each criterion:
+- `y` (met) — counts toward a passing item
+- `n` (not met) — counts as failed (unless an override applies)
+- `s` / `skip` — skipped; recorded separately and does **not** count as failed
 
-### 3. Overriding a DoD Item (Rare)
+If any enabled criterion is not met, the item cannot be marked Done. Log the verification result in `.dod/VERIFICATION_LOG.md`.
 
-In exceptional cases, the team may agree to waive a specific DoD criterion for a specific item. This must be:
+> **Skipped criteria count as neither met nor failed.** The summary reports them separately ("N criteria were skipped") so they are visible, but a skipped criterion does not by itself block an item from being "Done". Be deliberate about skips — if the DoD lists a criterion you routinely skip, that criterion is a candidate for removal during the next DoD review.
+
+### 3. Overriding the DoD (Rare)
+
+In exceptional cases, the team may agree to waive the DoD for a specific item. This must be:
 
 1. **Explicit** — logged in VERIFICATION_LOG.md with the reason
 2. **Rare** — frequent overrides mean the DoD needs updating
 3. **Team decision** — not a single agent's choice
 
 ```bash
-<SKILL_DIR>/scripts/verify-dod.sh CARD-003 --override "Integration tests waived — test environment down, will add in next sprint"
+<SKILL_DIR>/scripts/verify-dod.sh ITEM-003 --override "Integration tests waived — test environment down, will add later"
 ```
+
+> **An override waives the *item*, not a single criterion.** When `--override` is supplied, *every* unmet criterion for that item is recorded as waived under the one reason given. This is a coarse instrument and is deliberately kept simple: the intent is to let the team explicitly accept a known gap and move on, not to surgically excuse one checklist line. If you need to waive individual criteria with per-criterion justification, prefer logging that decision manually in `VERIFICATION_LOG.md` (or revisit whether those criteria belong in the DoD at all).
+
+> **Relationship to "not negotiable":** The DoD itself is not *silently* negotiable — no agent may quietly skip a criterion. An override is an *explicit, recorded, team-level* exception, which is a different thing from an agent deciding unilaterally that a criterion doesn't apply. Overrides should stay rare precisely because the DoD is meant to be uniform.
 
 ### 4. Reviewing the DoD
 
-The DoD should be reviewed periodically (e.g., every quarter or after a major retrospective). Update it based on what the team has learned.
+The DoD should be reviewed periodically (e.g., every quarter or when the team notices it drifting). Update it based on what the team has learned.
 
 ```bash
 <SKILL_DIR>/scripts/review-dod.sh "Added security review criterion. Removed outdated browser test requirement."
@@ -195,8 +212,8 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 ## Quick Reference Cards
 
 ### Before Marking an Item as Done
-- [ ] Run `verify-dod.sh <item-id>` to check every DoD criterion
-- [ ] Every criterion must be met — no exceptions without a logged override
+- [ ] Run `verify-dod.sh <item-id>` to check every enabled DoD criterion
+- [ ] Every enabled criterion must be met (or explicitly skipped with intent) — no exceptions without a logged override
 - [ ] Acceptance Criteria are NOT a substitute for the DoD — both must be satisfied
 - [ ] Log the verification result in VERIFICATION_LOG.md
 
@@ -207,8 +224,8 @@ Review history is logged in `.dod/REVIEW_LOG.md`.
 - [ ] Write each criterion as a clear yes/no check — no ambiguity
 
 ### During DoD Review
-- [ ] Review the DoD every quarter or after major retros
-- [ ] Ask: "Did we skip any DoD items this sprint?" — that's a signal the DoD is wrong
+- [ ] Review the DoD every quarter or when the team notices it drifting
+- [ ] Ask: "Did we skip any DoD items recently?" — that's a signal the DoD is wrong
 - [ ] Ask: "Are there new quality concerns not covered?" — add them
 - [ ] Ask: "Are any criteria obsolete?" — remove them
 - [ ] Log changes in REVIEW_LOG.md

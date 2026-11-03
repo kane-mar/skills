@@ -135,7 +135,7 @@ Refinement is the ongoing activity of keeping the backlog healthy. It happens co
 - Breaking down large bodies of work into smaller ones
 - Writing new user stories
 - Breaking down high-priority work into smaller chunks so the team better understands it
-- Re-estimating items where context has changed
+- Clarifying items whose scope has changed
 
 ---
 
@@ -149,4 +149,4 @@ Refinement is the ongoing activity of keeping the backlog healthy. It happens co
 | **Single Ranked** | One item at the top, one underneath — no ties, no "top 50" |
 | **Granularity** | Small/fine at top, large/chunky at bottom — break down only as items rise in priority |
 | **Waste avoidance** | Don't break down low-value work you may never reach |
-| **Refinement** | Not a formal Scrum event, but essential — regular weekly sessions prevent chaotic Sprint Planning |
+| **Refinement** | Not a formal Scrum event, but essential — regular refinement keeps the top of the backlog ready |
