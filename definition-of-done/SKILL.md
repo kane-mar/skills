@@ -1,6 +1,6 @@
 ---
 name: definition-of-done
-description: "Define, enforce, and evolve the Definition of Done (DoD): a shared checklist of quality criteria that all work must meet before it can be considered complete. Covers DoD vs Acceptance Criteria, standard criteria templates, verification workflows, DoD review, and integration with backlog-management and kanban-board skills."
+description: "Define, enforce, and evolve the Definition of Done (DoD): a shared checklist of quality criteria that all work must meet before it can be considered complete. Covers DoD vs Acceptance Criteria, standard criteria templates, verification workflows, DoD review, and integration with the backlog-management skill."
 compatibility: "Works with any coding agent harness that supports reading/writing files and running shell commands."
 metadata:
   version: "1.0.0"
@@ -13,7 +13,7 @@ The **Definition of Done (DoD)** is a shared, explicit checklist of quality crit
 
 > **DoD is not negotiable per item.** Acceptance Criteria vary per story. The DoD applies to *everything* the team delivers. If an item doesn't meet the DoD, it's not done — regardless of whether its Acceptance Criteria are satisfied.
 
-> **Relationship to other skills:** The [backlog-management](../backlog-management/SKILL.md) skill covers writing Acceptance Criteria for individual items. The [kanban-board](../kanban-board/SKILL.md) skill controls *when* an item moves to Done. This skill defines *what "Done" actually means* — the gate that must be passed before that move happens.
+> **Relationship to other skills:** The [backlog-management](../backlog-management/SKILL.md) skill covers writing Acceptance Criteria for individual items. This skill defines *what "Done" actually means* — the gate that must be passed before an item is marked complete.
 
 ---
 

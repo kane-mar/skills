@@ -440,7 +440,6 @@ Team demoes end-to-end password reset. PO agent confirms acceptance criteria met
 - [Templates](references/templates.md) — Ready-to-use templates for all collaboration artifacts: Working Agreement, Three Amigos, 15-minute rule, SPRINT.md, sprint backlog, daily sync, swarm events, pair programming, decision log, and sprint retros.
 - [backlog-management](../backlog-management/SKILL.md) — Managing the product backlog: user stories, acceptance criteria, prioritization, estimation, refinement.
 - [definition-of-done](../definition-of-done/SKILL.md) — Defining and enforcing the Definition of Done: the quality gate everything must pass.
-- [kanban-board](../kanban-board/SKILL.md) — Visualizing workflow with a Kanban board: WIP limits, flow metrics, card lifecycle.
 
 ---
 
