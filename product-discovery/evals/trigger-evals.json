@@ -1,0 +1,50 @@
+[
+  {
+    "query": "should I build a markdown notes app for macOS? is there a market?",
+    "should_trigger": true
+  },
+  {
+    "query": "run product discovery on our startup idea",
+    "should_trigger": true
+  },
+  {
+    "query": "what are people complaining about in the note-taking space?",
+    "should_trigger": true
+  },
+  {
+    "query": "who are the competitors to Notion and where are the gaps?",
+    "should_trigger": true
+  },
+  {
+    "query": "which of these feature ideas should we validate first?",
+    "should_trigger": true
+  },
+  {
+    "query": "is there a market for AI meeting summarizers?",
+    "should_trigger": true
+  },
+  {
+    "query": "there is a bug in the cart component, fix it",
+    "should_trigger": false
+  },
+  {
+    "query": "write me a SQL query for a sales report",
+    "should_trigger": false
+  },
+  {
+    "query": "how do I deploy a Next.js app to Vercel?",
+    "should_trigger": false
+  },
+  {
+    "query": "translate this paragraph into English",
+    "should_trigger": false
+  },
+  {
+    "query": "refactor this function to be async",
+    "should_trigger": false
+  },
+  {
+    "query": "write a unit test for the login controller",
+    "should_trigger": false
+  }
+]

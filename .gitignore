@@ -16,3 +16,6 @@ Desktop.ini
 
 # Node.js
 node_modules/
+
+# Secrets — never commit real credentials
+**/references/config.json
