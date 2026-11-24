@@ -15,6 +15,8 @@ It covers the full lifecycle: defining the product goal, capturing items, writin
 
 > **Relationship to agent-collaboration:** This skill focuses on the *backlog artifact itself* — its structure, quality, and prioritization. The [agent-collaboration](../agent-collaboration/SKILL.md) skill focuses on *team collaboration patterns* — the five Scrum values, swarming on bottlenecks, pair programming, and the structural guardrails (WIP limits, Three Amigos, Definition of Done, 15-minute rule). They work well together: use backlog-management to keep your backlog healthy, and agent-collaboration to resolve bottlenecks and coordinate multi-agent work.
 
+> **Relationship to product-discovery:** This skill begins where [product-discovery](../product-discovery/SKILL.md) ends. Product-discovery produces the *decision of what to build* (an evidence-cited Discovery Report with a Build / Don't Build / Investigate Further verdict and a recommendation). This skill turns that verdict into a **single-ranked list of work** — the ordered backlog items with user stories and acceptance criteria. See [Seeding the Backlog from Discovery](#seeding-the-backlog-from-discovery) below for the exact handoff.
+
 > **CSM reference:** See [references/csm-course-notes.md](references/csm-course-notes.md) for the full Certified Scrum Master training on the product backlog by Kane Mar.
 
 ---
@@ -245,6 +247,39 @@ Refinement is the ongoing activity of keeping the backlog healthy. It is not a s
 Break down work into **vertical slices** — small, independent items that deliver end-to-end value on their own. Each item should be as independent as possible, requiring no other item to be complete before it can be delivered.
 
 If a dependency does arise, the simplest resolution is **backlog order**: the depended-upon item naturally comes first in priority, so it gets pulled and completed before the dependent item. No explicit dependency tracking is needed — the single ranked order handles it.
+
+### 5. Seeding the Backlog from Discovery
+
+When a [product-discovery](../product-discovery/SKILL.md) run has produced a Discovery Report with a **Build** or **Investigate Further** verdict, seed its outcome into the backlog. This is the handoff from *"what to build"* to *"the ordered work to build it"* — but only after a decision has been made; discovery evidence alone does not belong in the backlog.
+
+**Three rules of the handoff:**
+
+1. **The product goal comes from the discovery's decision.** Set (or update) the product goal from the opportunity summary + validation hypothesis so every seeded item traces back to a *decided* direction. Do not seed items against an undecided "maybe," and do not seed anything for a **Don't Build** verdict.
+2. **Weak evidence → `spike`, never `feature`.** The discovery report rates each claim Weak / Medium / Strong. Strong/Medium evidence can justify committed build items (`feature`). Weak evidence (e.g. a single comment, sentiment without willingness-to-pay) becomes a `spike` — "investigate / validate" — not a `feature`. This preserves the discovery skill's evidence ladder once work enters the backlog.
+3. **Acceptance criteria encode the real pain points.** Pull the customer problems from the Discovery Report's "Customer problems" section into the top item's acceptance criteria. The AC must express the *evidenced* problem, not a rephrased guess. Reference the report path in each item's technical notes.
+
+**Seeding procedure:**
+
+1. Read the Discovery Report (e.g. `PRODUCT_DISCOVERY.md`).
+2. Ensure a backlog exists (`init-backlog.sh` if not).
+3. Set the product goal from the report's opportunity summary.
+4. **Build verdict** → capture the MVP scope as `feature` item(s). Capture the "riskiest assumption" as a `spike` ranked **above** the build items (validated before committing deeper).
+5. **Investigate Further** → capture the open questions as `spike` / validation items, ranked by which uncertainty most gates the decision. Do **not** seed build work.
+6. **Don't Build** → seed nothing. Record the decision for the record.
+7. Write the user story + acceptance criteria on the top item(s), then rank the list (risk spike first, MVP slices after).
+8. Log any still-unvalidated hypothesis in `REFINEMENT_LOG.md` rather than assuming it true.
+
+**Example — a Build verdict on a markdown notes app:**
+
+```
+Rank | ID     | Title                              | Type    | Status   | Notes                                   |
+|----|--------|-------------------------------------|---------|----------|-------------------------------------------|
+| 1  | ITEM-001| Validate one-time-pricing WTP     | spike   | captured | Riskiest assumption; see PRODUCT_DISCOVERY.md |
+| 2  | ITEM-002| Plain-folder .md vault (no DB)    | feature | captured | MVP slice 1; AC from "file ownership" pain  |
+| 3  | ITEM-003| Minimal Bear-grade editor          | feature | captured | MVP slice 2; AC from "simplicity" pain      |
+```
+
+> **Boundary:** discovery uncovers and validates *what* to build; the backlog sequences and refines *how* to build it. Keep them as separate artifacts — the Discovery Report is the evidence trail, the backlog is the working list. The handoff copies traceable item references (rank, type, notes) into the backlog; it does not absorb the whole report.
 
 ---
 

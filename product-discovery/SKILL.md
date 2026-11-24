@@ -121,6 +121,30 @@ Produce a **Discovery Report** containing:
 
 Store the report alongside the user's project (e.g. `PRODUCT_DISCOVERY.md` or a `discovery/` directory). Do not dump it into chat and lose it.
 
+## Handoff to backlog
+
+After producing the report, if the decision is **Build** or **Investigate Further**, turn the outcome into backlog items using the [backlog-management](../backlog-management/SKILL.md) skill, which is grounded in Scrum's single-ranked backlog discipline.
+
+This is the bridge from *"what to build"* to *"the ordered work to build it."* Discovery produces a decision; the backlog turns that decision into ranked, pullable work. **Do not drop the discovery evidence** — it is the seed for the first backlog items and their acceptance criteria.
+
+**The handoff, by decision:**
+
+| Decision | What to seed into the backlog |
+|---|---|
+| **Build** | The recommended MVP scope becomes the top backlog item(s). The "riskiest assumption to validate first" becomes a `spike` item immediately above the build work (validate before committing deeper). |
+| **Investigate Further** | Seed the open questions as `spike` / validation items (e.g. "test willingness-to-pay with a landing-page pre-order"), ordered by which uncertainty most gates the decision. Do **not** seed build work. |
+| **Don't Build** | Seed nothing. Record the decision (and the evidence) for the record; the backlog stays untouched. |
+
+**Steps:**
+1. Read [backlog-management/SKILL.md](../backlog-management/SKILL.md) and follow its structure (`BACKLOG.md`, `.backlog/`). Run its `init-backlog.sh` if no backlog exists.
+2. Set the **product goal** from the discovery's opportunity summary + the validation hypothesis, so every seeded item traces back to it.
+3. For each MVP slice or validation question, capture it as an item. Use `type: feature` for build slices and `type: spike` for validation/uncertainty items.
+4. Write the **user story + acceptance criteria** on the top item(s), pulling the customer problems from the discovery report's "Customer problems" section — the acceptance criteria should encode the real, evidenced pain points, not guesses.
+5. **Rank the items.** The riskiest-assumption spike goes at the very top (it must be resolved first); the MVP slices follow. Reference the Discovery Report path in each item's technical notes so the evidence stays traceable.
+6. If the discovery surfaced an **unvalidated hypothesis**, capture it as an open question in `REFINEMENT_LOG.md` rather than silently assuming it true.
+
+> **Guardrail:** discovery evidence rates something Weak/Medium/Strong. Weak evidence must **not** become committed build work in the backlog — it becomes a `spike` ("investigate/validate"), never a `feature` ("build"). This preserves the evidence ladder across the handoff.
+
 ## Configuration
 
 By default the skill runs fully key-less: HN, Stack Exchange, iTunes, and Reddit **via the Arctic Shift mirror** (`arctic-shift.photon-reddit.com`). No credentials are required by default.
