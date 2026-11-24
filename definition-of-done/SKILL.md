@@ -11,6 +11,8 @@ metadata:
 
 The **Definition of Done (DoD)** is a shared, explicit checklist of quality criteria that every piece of work must meet before it can be considered complete. It protects quality by ensuring nothing is called "done" prematurely.
 
+> **Where this fits:** this is the **final stage** of the product flow (discovery → backlog → build → done). It gates completion after [agent-collaboration](../agent-collaboration/SKILL.md) has built the work. See the collection [README](../README.md) for the full end-to-end pipeline.
+
 > **DoD is not negotiable per item.** Acceptance Criteria vary per story. The DoD applies to *everything* the team delivers. If an item doesn't meet the DoD, it's not done — regardless of whether its Acceptance Criteria are satisfied.
 
 > **Relationship to other skills:** The [backlog-management](../backlog-management/SKILL.md) skill covers writing Acceptance Criteria for individual items. The [agent-collaboration](../agent-collaboration/SKILL.md) skill's `WORKING_AGREEMENT.md` **references** this skill's `DEFINITION_OF_DONE.md` rather than duplicating it. This skill defines *what "Done" actually means* — the gate that must be passed before an item is marked complete — and `DEFINITION_OF_DONE.md` is the **single authoritative** DoD.

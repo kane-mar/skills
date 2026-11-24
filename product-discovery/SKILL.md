@@ -11,6 +11,8 @@ metadata:
 
 Autonomous, evidence-driven product discovery. This skill helps founders, product managers, and AI agents discover **what is worth building, why it matters, and how to validate it** — before writing any code or committing resources.
 
+> **Where this fits:** this is the **first stage** of the product flow (discovery → backlog → build → done). See the collection [README](../README.md) for the full end-to-end pipeline.
+
 > **Core shift:** this skill *discovers and validates* opportunities. It does not merely document an idea, generate a generic plan, or output frameworks for their own sake. Every conclusion must be traceable to gathered evidence, a source, and a timestamp.
 
 ## When to use
