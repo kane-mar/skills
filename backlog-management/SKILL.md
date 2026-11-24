@@ -255,7 +255,7 @@ When a [product-discovery](../product-discovery/SKILL.md) run has produced a Dis
 **Three rules of the handoff:**
 
 1. **The product goal comes from the discovery's decision.** Set (or update) the product goal from the opportunity summary + validation hypothesis so every seeded item traces back to a *decided* direction. Do not seed items against an undecided "maybe," and do not seed anything for a **Don't Build** verdict.
-2. **Weak evidence → `spike`, never `feature`.** The discovery report rates each claim Weak / Medium / Strong. Strong/Medium evidence can justify committed build items (`feature`). Weak evidence (e.g. a single comment, sentiment without willingness-to-pay) becomes a `spike` — "investigate / validate" — not a `feature`. This preserves the discovery skill's evidence ladder once work enters the backlog.
+2. **Weak evidence → validation item, never `feature`.** The discovery report rates each claim Weak / Medium / Strong. Strong/Medium evidence can justify committed build items (`feature`). Weak evidence (e.g. a single comment, sentiment without willingness-to-pay) becomes a validation item — "investigate / validate" — not a `feature`. This preserves the discovery skill's evidence ladder once work enters the backlog.
 3. **Acceptance criteria encode the real pain points.** Pull the customer problems from the Discovery Report's "Customer problems" section into the top item's acceptance criteria. The AC must express the *evidenced* problem, not a rephrased guess. Reference the report path in each item's technical notes.
 
 **Seeding procedure:**
@@ -263,10 +263,10 @@ When a [product-discovery](../product-discovery/SKILL.md) run has produced a Dis
 1. Read the Discovery Report (e.g. `PRODUCT_DISCOVERY.md`).
 2. Ensure a backlog exists (`init-backlog.sh` if not).
 3. Set the product goal from the report's opportunity summary.
-4. **Build verdict** → capture the MVP scope as `feature` item(s). Capture the "riskiest assumption" as a `spike` ranked **above** the build items (validated before committing deeper).
-5. **Investigate Further** → capture the open questions as `spike` / validation items, ranked by which uncertainty most gates the decision. Do **not** seed build work.
+4. **Build verdict** → capture the MVP scope as `feature` item(s). Capture the "riskiest assumption" as a validation item ranked **above** the build items (validated before committing deeper).
+5. **Investigate Further** → capture the open questions as validation items, ranked by which uncertainty most gates the decision. Do **not** seed build work.
 6. **Don't Build** → seed nothing. Record the decision for the record.
-7. Write the user story + acceptance criteria on the top item(s), then rank the list (risk spike first, MVP slices after).
+7. Write the user story + acceptance criteria on the top item(s), then rank the list (validation item first, MVP slices after).
 8. Log any still-unvalidated hypothesis in `REFINEMENT_LOG.md` rather than assuming it true.
 
 **Example — a Build verdict on a markdown notes app:**
@@ -274,7 +274,7 @@ When a [product-discovery](../product-discovery/SKILL.md) run has produced a Dis
 ```
 Rank | ID     | Title                              | Type    | Status   | Notes                                   |
 |----|--------|-------------------------------------|---------|----------|-------------------------------------------|
-| 1  | ITEM-001| Validate one-time-pricing WTP     | spike   | captured | Riskiest assumption; see PRODUCT_DISCOVERY.md |
+| 1  | ITEM-001| Validate one-time-pricing WTP     | improvement | captured | Riskiest assumption; see PRODUCT_DISCOVERY.md |
 | 2  | ITEM-002| Plain-folder .md vault (no DB)    | feature | captured | MVP slice 1; AC from "file ownership" pain  |
 | 3  | ITEM-003| Minimal Bear-grade editor          | feature | captured | MVP slice 2; AC from "simplicity" pain      |
 ```

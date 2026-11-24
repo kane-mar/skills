@@ -131,19 +131,19 @@ This is the bridge from *"what to build"* to *"the ordered work to build it."* D
 
 | Decision | What to seed into the backlog |
 |---|---|
-| **Build** | The recommended MVP scope becomes the top backlog item(s). The "riskiest assumption to validate first" becomes a `spike` item immediately above the build work (validate before committing deeper). |
-| **Investigate Further** | Seed the open questions as `spike` / validation items (e.g. "test willingness-to-pay with a landing-page pre-order"), ordered by which uncertainty most gates the decision. Do **not** seed build work. |
+| **Build** | The recommended MVP scope becomes the top backlog item(s). The "riskiest assumption to validate first" becomes a validation item ranked **above** the build work (resolve the uncertainty before committing deeper). |
+| **Investigate Further** | Seed the open questions as validation items (e.g. "test willingness-to-pay with a landing-page pre-order"), ordered by which uncertainty most gates the decision. Do **not** seed build work. |
 | **Don't Build** | Seed nothing. Record the decision (and the evidence) for the record; the backlog stays untouched. |
 
 **Steps:**
 1. Read [backlog-management/SKILL.md](../backlog-management/SKILL.md) and follow its structure (`BACKLOG.md`, `.backlog/`). Run its `init-backlog.sh` if no backlog exists.
 2. Set the **product goal** from the discovery's opportunity summary + the validation hypothesis, so every seeded item traces back to it.
-3. For each MVP slice or validation question, capture it as an item. Use `type: feature` for build slices and `type: spike` for validation/uncertainty items.
+3. For each MVP slice or validation question, capture it as an item. Use `type: feature` for build slices and `type: improvement` for validation items.
 4. Write the **user story + acceptance criteria** on the top item(s), pulling the customer problems from the discovery report's "Customer problems" section — the acceptance criteria should encode the real, evidenced pain points, not guesses.
-5. **Rank the items.** The riskiest-assumption spike goes at the very top (it must be resolved first); the MVP slices follow. Reference the Discovery Report path in each item's technical notes so the evidence stays traceable.
+5. **Rank the items.** The riskiest-assumption validation item goes at the very top (it must be resolved first); the MVP slices follow. Reference the Discovery Report path in each item's technical notes so the evidence stays traceable.
 6. If the discovery surfaced an **unvalidated hypothesis**, capture it as an open question in `REFINEMENT_LOG.md` rather than silently assuming it true.
 
-> **Guardrail:** discovery evidence rates something Weak/Medium/Strong. Weak evidence must **not** become committed build work in the backlog — it becomes a `spike` ("investigate/validate"), never a `feature` ("build"). This preserves the evidence ladder across the handoff.
+> **Guardrail:** discovery evidence rates something Weak/Medium/Strong. Weak evidence must **not** become committed build work in the backlog — it becomes a validation item ("investigate/validate"), never a `feature` ("build"). This preserves the evidence ladder across the handoff.
 
 ## Configuration
 
