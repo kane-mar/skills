@@ -1,6 +1,6 @@
 ---
 name: product-discovery
-description: Autonomous, evidence-driven product discovery. Use when deciding what is worth building, researching a market, analyzing competitors, or validating a product opportunity. Guides a seven-stage loop (understand, research market, analyze competitors, discover customer problems, identify opportunities, validate, decide) that gathers real evidence from Hacker News, Stack Exchange, and the App Store, then produces a build / don't-build / investigate decision with a cited evidence log.
+description: Autonomous, evidence-driven product discovery. Use when deciding what is worth building, researching a market, analyzing competitors, or validating a product opportunity. Guides a seven-stage loop (understand, research market, analyze competitors, discover customer problems, identify opportunities, validate, decide) that gathers real evidence from Hacker News, Stack Exchange, and the App Store, then produces a build / don't-build / investigate decision with a cited evidence log. Delegates deep market sizing / channels / monetization / North Star to the product-research skill, and personas / interview guides / simulated interviews to the user-communication skill.
 license: MIT
 metadata:
   version: "0.1.0"
@@ -12,6 +12,10 @@ metadata:
 Autonomous, evidence-driven product discovery. This skill helps founders, product managers, and AI agents discover **what is worth building, why it matters, and how to validate it** — before writing any code or committing resources.
 
 > **Where this fits:** this is the **first stage** of the product flow (discovery → backlog → build → done). See the collection [README](../README.md) for the full end-to-end pipeline.
+>
+> **Companion skills (this collection):**
+> - **[product-research](../product-research/SKILL.md)** — market sizing (TAM/SAM/SOM), distribution channels, monetization/pricing, and the North Star metric. Call it when stages 2, 3, or 6 need *economic* depth this skill only sketches.
+> - **[user-communication](../user-communication/SKILL.md)** — personas, interview guides, and simulated user interviews. Call it when stage 4 needs the *human* layer — naming the people behind the pain, and (real or simulated) conversation to deepen it.
 
 > **Core shift:** this skill *discovers and validates* opportunities. It does not merely document an idea, generate a generic plan, or output frameworks for their own sake. Every conclusion must be traceable to gathered evidence, a source, and a timestamp.
 
@@ -32,15 +36,15 @@ Each stage lists **→ source** (which verified source supplies its data) and **
 1. **Understand the opportunity** — the problem space, target market, and explicit initial hypotheses.
    → source: the input brief only (no external fetch). → lands in: the report header + "Opportunity summary".
 2. **Research the market** — sizing, trends, customer segments, dynamics (numeric + directional signals only).
-   → source: **none of the four key-less sources yields market size**; you can only extract *directional* signals (rating counts as popularity proxy, HN/Reddit comment volume as interest proxy). Sizing is normally a Gap — record it as such. → lands in: "Limitations" (unless you happened to find a citable primary number, which you won't from these sources).
+   → source: **none of the four key-less sources yields market size**; you can only extract *directional* signals (rating counts as popularity proxy, HN/Reddit comment volume as interest proxy). **For real market sizing, TAM/SAM/SOM, channels, monetization, and North Star, delegate to [product-research](../product-research/SKILL.md)** rather than record a permanent Gap. → lands in: "Limitations" as a Gap **only if product-research is not run**; otherwise its Market Research Report supplies stage 2.
 3. **Analyze competitors** — direct/indirect, substitutes, positioning, pricing, gaps.
    → source: iTunes `search`/`lookup` (find apps, pricing, ratings) + HN/Reddit mentions of competitors. → lands in: "Competitive landscape".
 4. **Discover customer problems** — JTBD, pain points, unmet needs, from *real* user language.
-   → source: HN `tags=comment`, Reddit via Arctic Shift `body=`, Stack Exchange `filter=withbody`. → lands in: "Customer problems".
+   → source: HN `tags=comment`, Reddit via Arctic Shift `body=`, Stack Exchange `filter=withbody`. **To name the people behind the pain — personas, interview guides, simulated interviews — delegate to [user-communication](../user-communication/SKILL.md).** → lands in: "Customer problems".
 5. **Identify opportunities** — whitespace, opportunity mapping, prioritization.
-   → source: synthesis of stages 2–4 (no new fetch). → lands in: "Competitive landscape" (the positioning-gap row) + "Decision" rationale. There is no separate sizing/prioritization section.
+   → source: synthesis of stages 2–4 (no new fetch). → lands in: "Competitive landscape" (the positioning-gap row) + "Decision" rationale. There is no separate sizing/prioritization section (a dedicated sizing section lives in the product-research Market Research Report when that skill is run).
 6. **Validate opportunities** — hypotheses, feasibility, willingness-to-pay proxies, validation criteria.
-   → source: a *critical* reading of stages 3–4 evidence (ratings ≠ willingness-to-pay; sentiment ≠ demand). No new fetch; this is where you apply the evidence ladder. → lands in: "Decision" rationale + "If Build → riskiest assumption".
+   → source: a *critical* reading of stages 3–4 evidence (ratings ≠ willingness-to-pay; sentiment ≠ demand). For willingness-to-pay *numbers*, reference the product-research monetization section; for what a real customer would hypothetically say, reference the user-communication simulated interviews. No new fetch in this skill; this is where you apply the evidence ladder. → lands in: "Decision" rationale + "If Build → riskiest assumption".
 7. **Make a product decision** — Build / Don't Build / Investigate Further, plus a recommended MVP and an actionable product brief.
    → source: the ladder-scored claims from all prior stages. → lands in: "Decision" + "If Build".
 
@@ -49,11 +53,11 @@ Each stage lists **→ source** (which verified source supplies its data) and **
 | Stage | Feeds report section(s) |
 |---|---|
 | 1 Understand | header + Opportunity summary |
-| 2 Research market | Limitations (sizing is a Gap) — plus any directional signals into the Evidence log |
+| 2 Research market | Limitations (sizing is a Gap) **unless [product-research](../product-research/SKILL.md) supplies it** — plus any directional signals into the Evidence log |
 | 3 Analyze competitors | Competitive landscape |
-| 4 Discover problems | Customer problems |
+| 4 Discover problems | Customer problems (deepened by [user-communication](../user-communication/SKILL.md) personas/interviews) |
 | 5 Identify opportunities | Competitive landscape (positioning gap) + Decision rationale |
-| 6 Validate opportunities | Decision rationale + If-Build riskiest assumption |
+| 6 Validate opportunities | Decision rationale + If-Build riskiest assumption (willingness-to-pay from product-research; hypothetical user voice from user-communication) |
 | 7 Decide | Decision + If Build |
 
 ## Core principles
@@ -123,7 +127,14 @@ Produce a **Discovery Report** containing:
 
 Store the report alongside the user's project (e.g. `PRODUCT_DISCOVERY.md` or a `discovery/` directory). Do not dump it into chat and lose it.
 
-## Handoff to backlog
+## Handoffs
+
+### To companion skills (before the backlog)
+
+- **To [product-research](../product-research/SKILL.md):** when the decision would hinge on a number discovery can't produce — market size, channel cost, a defensible price, a North Star — run product-research and cite its Market Research Report. A discovery stage that needs these numbers **delegates**, it does not fabricate.
+- **To [user-communication](../user-communication/SKILL.md):** when you need to name the customer or literally converse with them — personas from the "Customer problems" evidence, an interview guide, or a simulated interview to pressure-test the riskiest assumption — run user-communication. Its outputs deepen stage 4 and stage 6.
+
+### To backlog-management
 
 After producing the report, if the decision is **Build** or **Investigate Further**, turn the outcome into backlog items using the [backlog-management](../backlog-management/SKILL.md) skill, which is grounded in Scrum's single-ranked backlog discipline.
 

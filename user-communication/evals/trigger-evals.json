@@ -1,0 +1,50 @@
+[
+  {
+    "query": "who is our customer? build personas for this product",
+    "should_trigger": true
+  },
+  {
+    "query": "what should I ask in user interviews?",
+    "should_trigger": true
+  },
+  {
+    "query": "run a simulated interview with our target user",
+    "should_trigger": true
+  },
+  {
+    "query": "write an interview guide for talking to indie developers",
+    "should_trigger": true
+  },
+  {
+    "query": "what are the jobs-to-be-done and pain points for this segment?",
+    "should_trigger": true
+  },
+  {
+    "query": "let me role-play as a potential customer",
+    "should_trigger": true
+  },
+  {
+    "query": "there's a bug in the cart component, fix it",
+    "should_trigger": false
+  },
+  {
+    "query": "write me a SQL query for a sales report",
+    "should_trigger": false
+  },
+  {
+    "query": "how do I deploy a Next.js app to Vercel?",
+    "should_trigger": false
+  },
+  {
+    "query": "refactor this function to be async",
+    "should_trigger": false
+  },
+  {
+    "query": "who are the competitors to Notion?",
+    "should_trigger": false
+  },
+  {
+    "query": "how big is the market for X?",
+    "should_trigger": false
+  }
+]

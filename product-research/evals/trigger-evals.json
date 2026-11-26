@@ -1,0 +1,50 @@
+[
+  {
+    "query": "how big is the market for a macOS markdown notes app?",
+    "should_trigger": true
+  },
+  {
+    "query": "what's the TAM SAM SOM for an AI meeting summarizer?",
+    "should_trigger": true
+  },
+  {
+    "query": "what channels should we use to reach indie developers?",
+    "should_trigger": true
+  },
+  {
+    "query": "how should we monetize a privacy-focused notes app — subscription or one-time?",
+    "should_trigger": true
+  },
+  {
+    "query": "what's the right price to charge, and what do competitors charge?",
+    "should_trigger": true
+  },
+  {
+    "query": "what should our north star metric be?",
+    "should_trigger": true
+  },
+  {
+    "query": "there's a bug in the cart component, fix it",
+    "should_trigger": false
+  },
+  {
+    "query": "refactor this function to be async",
+    "should_trigger": false
+  },
+  {
+    "query": "translate this paragraph into English",
+    "should_trigger": false
+  },
+  {
+    "query": "how do I deploy a Next.js app to Vercel?",
+    "should_trigger": false
+  },
+  {
+    "query": "write a unit test for the login controller",
+    "should_trigger": false
+  },
+  {
+    "query": "what are people complaining about in the note-taking space?",
+    "should_trigger": false
+  }
+]

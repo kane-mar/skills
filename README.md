@@ -8,14 +8,16 @@ A collection of AI agent skills.
 
 | Skill | Description |
 |-------|-------------|
-| [product-discovery](product-discovery/SKILL.md) | Autonomous, evidence-driven product discovery. Decide what is worth building using real evidence from Hacker News, Stack Exchange, the App Store, and Reddit. Produces a Build / Don't Build / Investigate Further decision, then hands off to backlog-management. |
+| [product-discovery](product-discovery/SKILL.md) | Autonomous, evidence-driven product discovery. Decide what is worth building using real evidence from Hacker News, Stack Exchange, the App Store, and Reddit. Produces a Build / Don't Build / Investigate Further decision, then hands off to backlog-management. Delegates deep market sizing / channels / monetization / North Star to product-research, and personas / interview guides / simulated interviews to user-communication. |
+| [product-research](product-research/SKILL.md) | Evidence-driven market research. Sizes the market (TAM/SAM/SOM), maps distribution channels, analyzes monetization/pricing, and defines the North Star metric — every figure tagged Fact / Inference / Assumption / Gap and tied to a source. Supplies the economic layer a discovery decision rests on. |
+| [user-communication](user-communication/SKILL.md) | Understand and talk to users: evidence-grounded personas, behavior-not-opinion interview guides, and simulated user interviews that stay inside their evidence block. Supplies the human layer (who the customer is, what to ask, what they'd say) feeding discovery and product-research. |
 | [agent-collaboration](agent-collaboration/SKILL.md) | Scrum-based collaboration for multi-agent teams. Use when multiple agents share a project, need to avoid serial handoffs, swarm bottlenecks, or pair on high-risk tasks. Grounded in the five Scrum values: Commitment, Focus, Openness, Respect, Courage. |
 | [backlog-management](backlog-management/SKILL.md) | Manage the product backlog: writing user stories, acceptance criteria, backlog refinement, and progressive granularity (small work at top, large at bottom — break down only as items rise in priority). The backlog is one flat ranked table with no grouped sections; close incomplete work before starting new work, and delivered rows keep their rank. Seeds the backlog from product-discovery outcomes. |
 | [definition-of-done](definition-of-done/SKILL.md) | Define, enforce, and evolve the Definition of Done (DoD): shared quality checklist, DoD vs Acceptance Criteria, verification workflows, and periodic review. |
 
 ## The Product Flow: Discovery → Backlog → Well-Built Product
 
-The four skills form one end-to-end pipeline that takes a fuzzy idea and turns it into a shipped, quality-gated product. Each skill owns one stage and hands off to the next. **Together they close the loop — but each is independently usable** if you only need one stage.
+The skills form one end-to-end pipeline that takes a fuzzy idea and turns it into a shipped, quality-gated product. Each skill owns one stage and hands off to the next. **Together they close the loop — but each is independently usable** if you only need one stage. Two skills deepen the discovery stage — [product-research](product-research/SKILL.md) for the market/economic layer and [user-communication](user-communication/SKILL.md) for the human layer — while four carry the build through to done.
 
 ```
 ┌──────────────────┐   ┌───────────────────┐   ┌──────────────────────┐   ┌──────────────────────┐
@@ -98,6 +100,14 @@ npx skills add kane-mar/skills --skill agent-collaboration
 
 ```bash
 npx skills add kane-mar/skills --skill product-discovery
+```
+
+```bash
+npx skills add kane-mar/skills --skill product-research
+```
+
+```bash
+npx skills add kane-mar/skills --skill user-communication
 ```
 
 ```bash
