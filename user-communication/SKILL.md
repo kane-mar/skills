@@ -1,6 +1,6 @@
 ---
 name: user-communication
-description: Understand and talk to users — build personas, write interview guides, and run simulated user interviews. Use when you need to know who the customer is, what to ask them, or what they'd actually say before you've found real users to talk to. Produces research-backed personas, evidence-anchored interview guides, and transcribed simulated interviews whose answers stay grounded in the evidence (never pasted-in bias). Complements product-discovery (which finds the problem) and product-research (which sizes the market) by supplying the human layer.
+description: Data-grounded user communication — build personas, write interview guides, and run simulated user interviews. Use when you need to know who the customer is, what to ask them, or what they'd actually say before you've found real users to talk to. Produces personas, interview guides, and simulated interviews that are grounded in evidence live-fetched from product-discovery and product-research, with every claim tagged Fact / Inference / Assumption / Gap and tied to a source + timestamp. Simulated answers are explicitly Inference-only, never Fact.
 license: MIT
 metadata:
   version: "0.1.0"
@@ -13,7 +13,7 @@ Understand who the customer is, what to ask them, and what they'd say — before
 
 > **Where this fits:** this is the **human layer** that feeds [product-discovery](../product-discovery/SKILL.md) (customer problems, jobs-to-be-done) and [product-research](../product-research/SKILL.md) (who pays, at what price). Discovery *mines* problems from HN/Reddit/Stack Exchange; this skill *names and converses with* the people behind those problems.
 
-> **Core shift:** a persona is not a marketing stereotype. It is a **synthesis of sourced evidence** about a segment. A simulated interview is not the model role-playing a fake person from imagination — it is the model **answering within the constraints of the evidence** it was given, and it must not "know" answers that aren't in that evidence.
+> **Core shift:** this is a **data-grounded** skill, not a generative one. A persona is not a marketing stereotype — it is a **synthesis of live-fetched evidence** about a segment. A simulated interview is not the model role-playing a fake person from imagination — it is the model **answering within the constraints of the evidence** it was given, and it must not "know" answers that aren't in that evidence. No deliverable of this skill is a Fact on its own; every claim traces to a sourced datum or is tagged as Inference/Assumption/Gap.
 
 ## When to use
 
@@ -22,6 +22,15 @@ Understand who the customer is, what to ask them, and what they'd say — before
 - "Run a simulated interview with my target user."
 - "What are the jobs-to-be-done and pain points for this segment?"
 - Preparing for real customer discovery, or standing in for it before real users are reachable.
+
+## Data grounding (non-negotiable)
+
+This skill is data-grounded. The same evidence discipline that governs [product-discovery](../product-discovery/SKILL.md) and [product-research](../product-research/SKILL.md) applies here:
+
+1. **Evidence is live-fetched, not pasted-in.** The evidence block that anchors a persona or simulation is built by *running* [product-discovery](../product-discovery/SKILL.md) and/or [product-research](../product-research/SKILL.md) at run time to gather real, timestamped datums from their verified sources (HN, Stack Exchange, iTunes, Reddit via Arctic Shift, SEC EDGAR, Census/BLS). Do **not** accept a hand-written "here's what I think the user is like" block as evidence — if the user supplies claim-like material with no source, treat it as **Assumption**, not Fact, and try to back it with a live query.
+2. **Every claim carries a tag + source + timestamp.** Reuse the discovery taxonomy exactly: **Fact** (sourced, verifiable), **Inference** (derived judgment), **Assumption** (unverified belief), **Gap** (cannot be sourced), **Directional** (a real signal that suggests, not proves). No untagged claim survives.
+3. **Same evidence ladder.** **Weak** (one comment) / **Medium** (multiple independent, or named methodology) / **Strong** (primary data, direct interviews). Personas and guides stand on Medium/Strong wherever the claim shapes a decision; Weak-backed claims are flagged as such.
+4. **The model's own output is never a source.** A synthesized persona, a simulated answer, or an interview-guide question is **Inference** (or, where unbacked, **Assumption**) — it is *derived from* evidence, not evidence itself. Only the underlying fetched datums are Facts.
 
 ## The three capabilities
 
@@ -47,7 +56,9 @@ Each persona records:
 
 **Rules:**
 
-- **Each persona must trace to evidence.** Every goal/pain/behavior either cites a source (HN comment, Reddit thread, Stack Exchange question, interview, survey) or is labeled an **Assumption**. A persona with no sources is a stereotype.
+- **Each persona must trace to live-fetched evidence.** Every goal/pain/behavior either cites a real datum (an HN comment id, a Reddit permalink/`created_utc`, a Stack Exchange question id, an iTunes metadata fetch, a SEC/Census figure) with source + timestamp, or is labeled an **Assumption**. A persona with no sources is a stereotype and is rejected.
+- **Attach an evidence table to every persona card.** One row per claim:
+  | Claim | Tag (Fact / Inference / Assumption / Gap / Directional) | Strength (Weak / Medium / Strong) | Source (endpoint + id) | Timestamp |
 - **Do not invent demographics.** Age/gender/location/income that aren't in the evidence are Assumptions — say so, or omit them.
 - **Personas are segments, not individuals.** A persona represents a *pattern across a segment*. Name it by the pattern ("The File-Owning Developer"), not a fabricated person ("John, 34, San Francisco").
 - **One persona per distinct job, not per fringe behavior.** Split segments only when the JTBD or pain points genuinely differ.
@@ -75,12 +86,13 @@ Write a guide that surfaces what the customer actually does and feels, in an ord
 
 ### Capability 3 — Simulated interviews
 
-Run a simulated interview with a persona and produce a transcript **that stays inside the evidence**. This is the risky part, so the rules are strict:
+Run a simulated interview with a persona and produce a transcript **that stays inside the evidence**. This is the risky part — it is the *only* capability that produces model-generated language, and it is **Inference-only, never Fact**. The rules are strict:
 
 **Setup — before any question is asked:**
 
-1. **Ground the persona.** Assemble every source element for that persona (goals, JTBD, pains, context, current solution) into a single "persona evidence" block. The persona must answer *from this block*.
+1. **Ground the persona in live-fetched evidence.** Build the persona's evidence block by *running* discovery/research (see "Data grounding"), not from memory or a pasted-in description. Every source element carries its endpoint + timestamp.
 2. **Declare the evidence boundaries.** State explicitly: *"The persona only knows what is in the evidence block. Answers outside it must be flagged as the model's inference, not the persona's knowledge."*
+3. **Label the output as simulation up front.** The transcript header must read: *"SIMULATED interview — model-generated inference over fetched evidence; NOT a real user and NOT a Fact."*
 
 **Rules for the simulated interviewee:**
 
@@ -92,19 +104,19 @@ Run a simulated interview with a persona and produce a transcript **that stays i
 **After the interview, output:**
 
 - **Transcript** — the full Q&A.
-- **Evidence map** — which answers were grounded in which source element vs. which were model inference (flagged).
+- **Evidence map** — which answers were grounded in which source element (giving that datum's endpoint + timestamp) vs. which were model inference (flagged).
 - **Unsurfaced threads** — questions the interviewer *should* have asked but didn't, given the persona's pains.
 - **Assumptions to test** — every answer that was inference (not evidence) becomes a real assumption to validate against real users later.
 
-> **⚠️ Honesty about simulation:** a simulated interview is a **thought aid and a hypothesis generator**, not a substitute for real user research. It surfaces the questions worth asking and the assumptions worth testing, but it cannot *discover* what real users would say that isn't already in your evidence. Always hand off real talk to real users when reachable; treat simulated answers as **Inference**, never **Fact**.
+> **⚠️ Honesty about simulation:** a simulated interview is a **thought aid and a hypothesis generator**, not data and not a substitute for real user research. It surfaces the questions worth asking and the assumptions worth testing, but it cannot *discover* what real users would say that isn't already in your evidence. Every simulated answer is **Inference** over fetched evidence and must be tagged so; it can never be cited as a **Fact** and can never seed a build decision. Always hand off real talk to real users when reachable.
 
 ## Core principles
 
-1. **Evidence over stereotype.** Personas and answers trace to sources or are labeled Assumption/Inference.
-2. **Same evidence ladder.** Weak (one comment) / Medium (multiple independent) / Strong (primary data, direct interviews). Act accordingly.
+1. **Data-grounded over generative.** Personas and answers trace to live-fetched sources + timestamp, or are labeled Assumption/Inference/Gap. No untagged claim survives.
+2. **Same evidence ladder.** Weak (one comment) / Medium (multiple independent, or named methodology) / Strong (primary data, direct interviews). Act accordingly.
 3. **Behavior over opinion.** Question and answer about what people *do*, not what they *say they'd do*.
 4. **No leading, no confirmation-seeking.** The guide and the simulated interviewee both resist steering toward a desired answer.
-5. **Simulation is bounded.** A simulated interviewee cannot know what its evidence doesn't contain, and must say so.
+5. **Simulation is bounded and inference-only.** A simulated interviewee cannot know what its evidence doesn't contain, and must say so; its answers are Inference, never Fact.
 
 ## Relationship to the other skills
 
@@ -117,22 +129,25 @@ A user-communication run needs a target. If the user has not supplied one, ask f
 
 - `product_or_category` — what we're building or studying (the context for the personas).
 - `target_market` — the segment(s) to persona-ize.
-- `evidence` — the source material (discovery report, research report, interviews, survey results) the personas and simulations must stay grounded in. If none exists, run [product-discovery](../product-discovery/SKILL.md) and/or [product-research](../product-research/SKILL.md) first — do **not** invent evidence.
+- `evidence` — the source datums the personas and simulations must stay grounded in. This is **live-fetched** by running [product-discovery](../product-discovery/SKILL.md) and/or [product-research](../product-research/SKILL.md) first (their verified key-less sources: HN, Stack Exchange, iTunes, Reddit via Arctic Shift, SEC EDGAR, Census/BLS). Do **not** invent evidence and do **not** treat a pasted-in, unsourced description as Fact — label any such input an **Assumption** until backed by a live query.
 
 ## Output
 
 Produce one or more of:
 
-1. **Persona cards** — one per segment, each with a source/Assumption tag on every claim.
-2. **Interview guide(s)** — the ordered question script with probe branches, one per persona.
-3. **Simulated interview transcript(s)** — Q&A + evidence map + unsurfaced threads + assumptions to test.
+1. **Persona cards** — one per segment, each with a tag + source + timestamp on every claim (the evidence table required by Capability 1).
+2. **Interview guide(s)** — the ordered question script with probe branches, one per persona, with each question mapped to the sourcing pain/JTBD it targets.
+3. **Simulated interview transcript(s)** — Q&A + evidence map + unsurfaced threads + assumptions to test, with a `SIMULATED` header and every inference answer tagged **Inference**.
+4. **Evidence log** — the single consolidated table of every fetched datum used across all deliverables:
+   | Claim | Tag | Strength | Source (endpoint + id) | Timestamp |
 
 Store alongside the project (e.g. `PERSONAS.md`, `INTERVIEW_GUIDES.md`, `interviews/`). Do not dump into chat.
 
 ## Guardrails
 
-- **Never** present a persona or a simulated answer as a real user or as validated Fact.
-- **Never** fabricate evidence to make a persona feel complete.
-- **Never** let a simulated interviewee answer beyond its evidence block without flagging it as inference.
-- **Always** distinguish real interviews (Fact) from simulated ones (Inference) in any downstream use.
+- **Never** present a persona, an interview-guide question, or a simulated answer as a real user or as a validated **Fact**.
+- **Never** fabricate evidence to make a persona feel complete — an unsourced detail is an **Assumption**, not a filled-in fact.
+- **Never** cite a source you did not actually query (directly, or via a discovery/research run you can point to) in this run.
+- **Never** let a simulated interviewee answer beyond its live-fetched evidence block without flagging it as **Inference**.
+- **Always** distinguish real interviews (Fact) from simulated ones (Inference) in any downstream use; a simulated answer can never seed a Build decision.
 - **Respect** user privacy: anonymize real interview content before storing it.
